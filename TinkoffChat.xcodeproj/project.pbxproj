@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */; };
-		EF08B64225D59BA70050FBA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B64125D59BA70050FBA3 /* SceneDelegate.swift */; };
 		EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B64325D59BA70050FBA3 /* ViewController.swift */; };
-		EF08B64725D59BA70050FBA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64525D59BA70050FBA3 /* Main.storyboard */; };
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
+		EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCC25D81DD00016BD67 /* Log.swift */; };
+		EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCF25D81E240016BD67 /* Constants.swift */; };
+		EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF08B63C25D59BA70050FBA3 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF08B64125D59BA70050FBA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EF08B64325D59BA70050FBA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EF08B64625D59BA70050FBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF08B64825D59BA80050FBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF08B64B25D59BA80050FBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF08B64D25D59BA80050FBA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFDE1BCC25D81DD00016BD67 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		EFDE1BCF25D81E240016BD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,56 @@
 		EF08B63E25D59BA70050FBA3 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
-				EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */,
-				EF08B64125D59BA70050FBA3 /* SceneDelegate.swift */,
-				EF08B64325D59BA70050FBA3 /* ViewController.swift */,
-				EF08B64525D59BA70050FBA3 /* Main.storyboard */,
-				EF08B64825D59BA80050FBA3 /* Assets.xcassets */,
-				EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */,
-				EF08B64D25D59BA80050FBA3 /* Info.plist */,
+				EFDE1BD625D82AC80016BD67 /* App */,
+				EFDE1BE025D82BD90016BD67 /* Presentation */,
+				EFDE1BD925D82B200016BD67 /* Support */,
+				EFDE1BD825D82B190016BD67 /* Resources */,
 			);
 			path = TinkoffChat;
+			sourceTree = "<group>";
+		};
+		EFDE1BD625D82AC80016BD67 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */,
+				EFDE1BCF25D81E240016BD67 /* Constants.swift */,
+				EF08B64D25D59BA80050FBA3 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EFDE1BD825D82B190016BD67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF08B64825D59BA80050FBA3 /* Assets.xcassets */,
+				EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EFDE1BD925D82B200016BD67 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				EFDE1BDB25D82B720016BD67 /* Extensions */,
+				EFDE1BCC25D81DD00016BD67 /* Log.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		EFDE1BDB25D82B720016BD67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EFDE1BE025D82BD90016BD67 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EF08B64325D59BA70050FBA3 /* ViewController.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +169,6 @@
 			files = (
 				EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */,
 				EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */,
-				EF08B64725D59BA70050FBA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,23 +179,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
 				EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
-				EF08B64225D59BA70050FBA3 /* SceneDelegate.swift in Sources */,
+				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
+				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EF08B64525D59BA70050FBA3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF08B64625D59BA70050FBA3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,15 +324,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6939WNYZGH;
-				INFOPLIST_FILE = TinkoffChat/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.home.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,7 +346,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6939WNYZGH;
-				INFOPLIST_FILE = TinkoffChat/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +355,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.home.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
