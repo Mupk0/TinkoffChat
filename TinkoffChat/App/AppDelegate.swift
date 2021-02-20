@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = ProfileViewController()
         window?.makeKeyAndVisible()
         
         return true
