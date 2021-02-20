@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController {
     private let userInfoLabel = UILabel()
     
     private let editButton = UIButton(type: .system)
-    private let saveButton = UIButton(type: .system)
     
     private var imagePicker: ImagePicker?
     
@@ -52,18 +51,16 @@ class ProfileViewController: UIViewController {
         view.addSubview(userAvatarView)
         userAvatarView.addSubview(userAvatarLabel)
         userAvatarView.addSubview(userAvatarImageView)
-        view.addSubview(editButton)
         view.addSubview(userNameLabel)
         view.addSubview(userInfoLabel)
-        view.addSubview(saveButton)
+        view.addSubview(editButton)
         
         userAvatarView.translatesAutoresizingMaskIntoConstraints = false
         userAvatarLabel.translatesAutoresizingMaskIntoConstraints = false
         userAvatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        editButton.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userInfoLabel.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        editButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             userAvatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 7),
@@ -81,10 +78,7 @@ class ProfileViewController: UIViewController {
             userAvatarImageView.leadingAnchor.constraint(equalTo: userAvatarView.leadingAnchor),
             userAvatarImageView.trailingAnchor.constraint(equalTo: userAvatarView.trailingAnchor),
             
-            editButton.centerYAnchor.constraint(equalTo: userAvatarView.bottomAnchor),
-            editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -55),
-            
-            userNameLabel.topAnchor.constraint(equalTo: editButton.bottomAnchor, constant: 10),
+            userNameLabel.topAnchor.constraint(equalTo: userAvatarView.bottomAnchor, constant: 32),
             userNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userNameLabel.leadingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             userNameLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
@@ -94,10 +88,10 @@ class ProfileViewController: UIViewController {
             userInfoLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userInfoLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
             
-            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            saveButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),
-            saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -62),
-            saveButton.heightAnchor.constraint(equalToConstant: 40),
+            editButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            editButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),
+            editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -62),
+            editButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         userAvatarView.layoutIfNeeded()
@@ -123,9 +117,6 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.height / 2
         userAvatarImageView.clipsToBounds = true
         
-        editButton.setTitle("Edit", for: .normal)
-        editButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
         userNameLabel.textColor = .black
         userNameLabel.textAlignment = .center
         userNameLabel.lineBreakMode = .byWordWrapping
@@ -140,10 +131,10 @@ class ProfileViewController: UIViewController {
         userInfoLabel.numberOfLines = 0
         userInfoLabel.text = userInfo
         
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        saveButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
-        saveButton.layer.cornerRadius = 14
+        editButton.setTitle("Edit", for: .normal)
+        editButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        editButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
+        editButton.layer.cornerRadius = 14
     }
     
     @objc private func showImagePickerAlert() {
