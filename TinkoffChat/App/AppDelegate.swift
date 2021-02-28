@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        window?.rootViewController = ProfileViewController()
+        let chatListViewController = ConversationsListViewController()
+        window?.rootViewController = UINavigationController(rootViewController: chatListViewController)
         window?.makeKeyAndVisible()
         
         return true

@@ -71,8 +71,13 @@ class ProfileViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
+        navigationItem.title =  "Profile"
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel,
+                                                                 target: self,
+                                                                 action: #selector(didTapCloseButton))
 
-        print("frame for edit button in init(): \(editButton.frame)")
+        //print("frame for edit button in init(): \(editButton.frame)")
     }
     
     required init?(coder: NSCoder) {
@@ -83,13 +88,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        print("frame for edit button in viewDidLoad(): \(editButton.frame)")
+        //print("frame for edit button in viewDidLoad(): \(editButton.frame)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("frame for edit button in viewWillAppear(): \(editButton.frame)")
+        //print("frame for edit button in viewWillAppear(): \(editButton.frame)")
     }
     
     private func setupViews() {
@@ -156,6 +161,10 @@ class ProfileViewController: UIViewController {
     @objc private func showImagePickerAlert() {
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         imagePicker?.present()
+    }
+    
+    @objc private func didTapCloseButton() {
+        dismiss(animated: true)
     }
 }
 

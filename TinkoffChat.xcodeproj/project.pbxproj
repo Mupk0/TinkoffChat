@@ -17,6 +17,9 @@
 		EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCC25D81DD00016BD67 /* Log.swift */; };
 		EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCF25D81E240016BD67 /* Constants.swift */; };
 		EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */; };
+		EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B525EC23C100869295 /* ConversationsListViewController.swift */; };
+		EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B825EC2B3F00869295 /* ConversationsListType.swift */; };
+		EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C125EC2BFD00869295 /* ConversationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		EFDE1BCC25D81DD00016BD67 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		EFDE1BCF25D81E240016BD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.swift; sourceTree = "<group>"; };
+		EFE436B525EC23C100869295 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		EFE436B825EC2B3F00869295 /* ConversationsListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListType.swift; sourceTree = "<group>"; };
+		EFE436C125EC2BFD00869295 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +119,37 @@
 			isa = PBXGroup;
 			children = (
 				EF08B64325D59BA70050FBA3 /* ViewController.swift */,
+				EFE436BB25EC2B7300869295 /* ConversationsList */,
+				EFE436C025EC2BF100869295 /* Conversation */,
+				EFE436BD25EC2B7D00869295 /* Profile */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		EFE436BB25EC2B7300869295 /* ConversationsList */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436B525EC23C100869295 /* ConversationsListViewController.swift */,
+				EFE436B825EC2B3F00869295 /* ConversationsListType.swift */,
+			);
+			path = ConversationsList;
+			sourceTree = "<group>";
+		};
+		EFE436BD25EC2B7D00869295 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
 				EF835BE525DFB29400906839 /* ProfileViewController.swift */,
 				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
 			);
-			path = Presentation;
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EFE436C025EC2BF100869295 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436C125EC2BFD00869295 /* ConversationViewController.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,13 +221,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */,
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
+				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
 				EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */,
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
+				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
