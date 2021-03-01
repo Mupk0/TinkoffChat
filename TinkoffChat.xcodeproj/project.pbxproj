@@ -20,6 +20,10 @@
 		EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B525EC23C100869295 /* ConversationsListViewController.swift */; };
 		EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B825EC2B3F00869295 /* ConversationsListType.swift */; };
 		EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C125EC2BFD00869295 /* ConversationViewController.swift */; };
+		EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */; };
+		EFE436CA25ECE04C00869295 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C925ECE04C00869295 /* ConversationCellModel.swift */; };
+		EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CC25ECE19D00869295 /* DateUtils.swift */; };
+		EFE436D025ECF97600869295 /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CF25ECF97600869295 /* Randomizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		EFE436B525EC23C100869295 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		EFE436B825EC2B3F00869295 /* ConversationsListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListType.swift; sourceTree = "<group>"; };
 		EFE436C125EC2BFD00869295 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListTableViewCell.swift; sourceTree = "<group>"; };
+		EFE436C925ECE04C00869295 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
+		EFE436CC25ECE19D00869295 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		EFE436CF25ECF97600869295 /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,8 @@
 			children = (
 				EFDE1BDB25D82B720016BD67 /* Extensions */,
 				EFDE1BCC25D81DD00016BD67 /* Log.swift */,
+				EFE436CC25ECE19D00869295 /* DateUtils.swift */,
+				EFE436CF25ECF97600869295 /* Randomizer.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -131,6 +141,8 @@
 			children = (
 				EFE436B525EC23C100869295 /* ConversationsListViewController.swift */,
 				EFE436B825EC2B3F00869295 /* ConversationsListType.swift */,
+				EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */,
+				EFE436C925ECE04C00869295 /* ConversationCellModel.swift */,
 			);
 			path = ConversationsList;
 			sourceTree = "<group>";
@@ -222,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */,
+				EFE436D025ECF97600869295 /* Randomizer.swift in Sources */,
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
@@ -229,7 +242,10 @@
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
+				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
+				EFE436CA25ECE04C00869295 /* ConversationCellModel.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
+				EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);

@@ -11,18 +11,35 @@ class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
+    var conversationsOnline: [ConversationCellModel] = []
+    var conversationsHistory: [ConversationCellModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
+        loadData()
+    }
+    
+    private func loadData() {
+        for item in getData() {
+            if item.online {
+                conversationsOnline.append(item)
+            } else {
+                conversationsHistory.append(item)
+            }
+        }
     }
     
     private func configureViews() {
         
         navigationItem.title =  "Tinkoff Chat"
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .bookmarks,
-                                                                 target: self,
-                                                                 action: #selector(didTapProfileButton))
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let profileButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "profileIcon"),
+                                                 style: .plain,
+                                                 target: self, action: #selector(didTapProfileButton))
+        navigationItem.rightBarButtonItem = profileButton
         
         view.addSubview(tableView)
         
@@ -38,6 +55,8 @@ class ConversationsListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.register(ConversationsListTableViewCell.self,
+                           forCellReuseIdentifier: ConversationsListTableViewCell.reuseIdentifier)
     }
     
     @objc private func didTapProfileButton() {
@@ -57,14 +76,21 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
         return ConversationsListType.init(rawValue: section)?.getTitle()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return section == 0 ? conversationsOnline.count : conversationsHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.selectionStyle = .none
-        cell.backgroundColor = .systemGray
+        let conversation = indexPath.section == 0 ? conversationsOnline[indexPath.row] : conversationsHistory[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
+                                                       for: indexPath) as? ConversationsListTableViewCell else {
+            fatalError("dequeueReusableCell ConversationsListTableViewCell not found")
+        }
+        cell.configureCell(model: conversation)
         return cell
     }
     
@@ -76,4 +102,19 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
         navigationController?.pushViewController(chatViewController, animated: true)
     }
 
+}
+
+extension ConversationsListViewController {
+    fileprivate func getData() -> [ConversationCellModel] {
+        var result: [ConversationCellModel] = []
+        for (_, index) in (0 ... 20).enumerated() {
+            let element = ConversationCellModel(name: Randomizer.shared.getName(),
+                                                message: Randomizer.shared.getText(),
+                                                date: Randomizer.shared.getDate(),
+                                                online: index < 10 ? true : false,
+                                                hasUnreadMessages: Bool.random())
+            result.append(element)
+        }
+        return result
+    }
 }
