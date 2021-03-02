@@ -24,6 +24,13 @@
 		EFE436CA25ECE04C00869295 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C925ECE04C00869295 /* ConversationCellModel.swift */; };
 		EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CC25ECE19D00869295 /* DateUtils.swift */; };
 		EFE436D025ECF97600869295 /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CF25ECF97600869295 /* Randomizer.swift */; };
+		EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436D825ED512900869295 /* OutgoingMessageTableViewCell.swift */; };
+		EFE436E025ED71A200869295 /* IncomingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436DF25ED71A200869295 /* IncomingMessageTableViewCell.swift */; };
+		EFE436E325ED727000869295 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436E225ED727000869295 /* MessageType.swift */; };
+		EFE436E625ED728A00869295 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436E525ED728A00869295 /* ConversationModel.swift */; };
+		EFE436EA25EE290E00869295 /* MessageCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436E925EE290E00869295 /* MessageCellProtocol.swift */; };
+		EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436FB25EE2A8000869295 /* MessageCellConfiguration.swift */; };
+		EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +53,13 @@
 		EFE436C925ECE04C00869295 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
 		EFE436CC25ECE19D00869295 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		EFE436CF25ECF97600869295 /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
+		EFE436D825ED512900869295 /* OutgoingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageTableViewCell.swift; sourceTree = "<group>"; };
+		EFE436DF25ED71A200869295 /* IncomingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageTableViewCell.swift; sourceTree = "<group>"; };
+		EFE436E225ED727000869295 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		EFE436E525ED728A00869295 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
+		EFE436E925EE290E00869295 /* MessageCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellProtocol.swift; sourceTree = "<group>"; };
+		EFE436FB25EE2A8000869295 /* MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellConfiguration.swift; sourceTree = "<group>"; };
+		EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,10 +153,10 @@
 		EFE436BB25EC2B7300869295 /* ConversationsList */ = {
 			isa = PBXGroup;
 			children = (
-				EFE436B525EC23C100869295 /* ConversationsListViewController.swift */,
-				EFE436B825EC2B3F00869295 /* ConversationsListType.swift */,
-				EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */,
-				EFE436C925ECE04C00869295 /* ConversationCellModel.swift */,
+				EFE436ED25EE295000869295 /* Controller */,
+				EFE436EE25EE295800869295 /* View */,
+				EFE436F125EE29B600869295 /* Entities */,
+				EFE436FF25EE2C3D00869295 /* Interfaces */,
 			);
 			path = ConversationsList;
 			sourceTree = "<group>";
@@ -159,9 +173,80 @@
 		EFE436C025EC2BF100869295 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
-				EFE436C125EC2BFD00869295 /* ConversationViewController.swift */,
+				EFE436F325EE29C600869295 /* Controller */,
+				EFE436F525EE29CE00869295 /* Views */,
+				EFE436F725EE29F700869295 /* Entities */,
+				EFE436F925EE2A7000869295 /* Interfaces */,
 			);
 			path = Conversation;
+			sourceTree = "<group>";
+		};
+		EFE436ED25EE295000869295 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436B525EC23C100869295 /* ConversationsListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EFE436EE25EE295800869295 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EFE436F125EE29B600869295 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436B825EC2B3F00869295 /* ConversationsListType.swift */,
+				EFE436C925ECE04C00869295 /* ConversationCellModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		EFE436F325EE29C600869295 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436C125EC2BFD00869295 /* ConversationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EFE436F525EE29CE00869295 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436DF25ED71A200869295 /* IncomingMessageTableViewCell.swift */,
+				EFE436D825ED512900869295 /* OutgoingMessageTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EFE436F725EE29F700869295 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436E225ED727000869295 /* MessageType.swift */,
+				EFE436E525ED728A00869295 /* ConversationModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		EFE436F925EE2A7000869295 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				EFE436E925EE290E00869295 /* MessageCellProtocol.swift */,
+				EFE436FB25EE2A8000869295 /* MessageCellConfiguration.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		EFE436FF25EE2C3D00869295 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */,
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,14 +323,21 @@
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
+				EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */,
+				EFE436E325ED727000869295 /* MessageType.swift in Sources */,
+				EFE436E625ED728A00869295 /* ConversationModel.swift in Sources */,
 				EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */,
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
+				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
 				EFE436CA25ECE04C00869295 /* ConversationCellModel.swift in Sources */,
+				EFE436EA25EE290E00869295 /* MessageCellProtocol.swift in Sources */,
+				EFE436E025ED71A200869295 /* IncomingMessageTableViewCell.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
 				EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */,
+				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);

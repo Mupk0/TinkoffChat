@@ -10,30 +10,20 @@ import UIKit
 class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
-    
-    var conversationsOnline: [ConversationCellModel] = []
-    var conversationsHistory: [ConversationCellModel] = []
+
+    var conversations: [ConversationCellModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
-        loadData()
-    }
-    
-    private func loadData() {
-        for item in getData() {
-            if item.online {
-                conversationsOnline.append(item)
-            } else {
-                conversationsHistory.append(item)
-            }
-        }
+        
+        conversations = getData()
     }
     
     private func configureViews() {
         
-        navigationItem.title =  "Tinkoff Chat"
+        navigationItem.title = "Tinkoff Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let profileButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "profileIcon"),
@@ -81,11 +71,14 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? conversationsOnline.count : conversationsHistory.count
+        let isOnlineSection = ConversationsListType.init(rawValue: section) == .online
+        return isOnlineSection ? conversations.getOnline().count : conversations.getOffline().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let conversation = indexPath.section == 0 ? conversationsOnline[indexPath.row] : conversationsHistory[indexPath.row]
+        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
+        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
                                                        for: indexPath) as? ConversationsListTableViewCell else {
             fatalError("dequeueReusableCell ConversationsListTableViewCell not found")
@@ -95,10 +88,12 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
+        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let chatViewController =  ConversationViewController()
+        let chatViewController =  ConversationViewController(userName: conversation.name ?? "Unknown Name")
         navigationController?.pushViewController(chatViewController, animated: true)
     }
 
@@ -107,14 +102,15 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
 extension ConversationsListViewController {
     fileprivate func getData() -> [ConversationCellModel] {
         var result: [ConversationCellModel] = []
-        for (_, index) in (0 ... 20).enumerated() {
+        for (_, index) in (0 ... 30).enumerated() {
             let element = ConversationCellModel(name: Randomizer.shared.getName(),
                                                 message: Randomizer.shared.getText(),
                                                 date: Randomizer.shared.getDate(),
-                                                online: index < 10 ? true : false,
+                                                online: index < 15 ? true : false,
                                                 hasUnreadMessages: Bool.random())
             result.append(element)
         }
+        
         return result
     }
 }

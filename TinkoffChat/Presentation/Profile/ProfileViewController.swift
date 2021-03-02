@@ -74,9 +74,9 @@ class ProfileViewController: UIViewController {
         
         navigationItem.title =  "Profile"
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel,
-                                                                 target: self,
-                                                                 action: #selector(didTapCloseButton))
-
+                                                                target: self,
+                                                                action: #selector(didTapCloseButton))
+        
         //print("frame for edit button in init(): \(editButton.frame)")
     }
     
@@ -151,8 +151,8 @@ class ProfileViewController: UIViewController {
         userAvatarView.layer.cornerRadius = userAvatarView.frame.height / 2
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.height / 2
         userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target:self,
-                                                              action: #selector(showImagePickerAlert)))
-
+                                                                        action: #selector(showImagePickerAlert)))
+        
         userAvatarLabel.text = userName.getStringFirstChars()
         userNameLabel.text = userName
         userDescriptionLabel.text = userDescription
