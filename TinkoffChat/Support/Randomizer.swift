@@ -14,16 +14,15 @@ class Randomizer {
     func getDate() -> Date? {
         let date = Date()
         let calendar = Calendar.current
-        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-        guard
-            let days = calendar.range(of: .day, in: .month, for: date),
-            let randomDay = days.randomElement(),
-            let hours = calendar.range(of: .hour, in: .day, for: date),
-            let randomHour = hours.randomElement()
-        else {
-                return nil
-        }
-        dateComponents.setValue(randomDay, for: .day)
+        guard let randomDayBefore = calendar.date(byAdding: .day,
+                                                  value: Int.random(in: -5...0),
+                                                  to: date) else { return nil }
+        
+        let maxHourInRandomDay = Calendar.current.component(.hour, from: randomDayBefore)
+        let randomHour = (0...maxHourInRandomDay).randomElement()
+        
+        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour], from: randomDayBefore)
+
         dateComponents.setValue(randomHour, for: .hour)
         return calendar.date(from: dateComponents)
     }
