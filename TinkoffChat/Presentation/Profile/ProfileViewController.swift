@@ -71,8 +71,14 @@ class ProfileViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-
-        print("frame for edit button in init(): \(editButton.frame)")
+        
+        navigationItem.title =  "Profile"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(didTapCloseButton))
+        
+        //print("frame for edit button in init(): \(editButton.frame)")
     }
     
     required init?(coder: NSCoder) {
@@ -83,13 +89,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        print("frame for edit button in viewDidLoad(): \(editButton.frame)")
+        //print("frame for edit button in viewDidLoad(): \(editButton.frame)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("frame for edit button in viewWillAppear(): \(editButton.frame)")
+        //print("frame for edit button in viewWillAppear(): \(editButton.frame)")
     }
     
     private func setupViews() {
@@ -146,8 +152,8 @@ class ProfileViewController: UIViewController {
         userAvatarView.layer.cornerRadius = userAvatarView.frame.height / 2
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.height / 2
         userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target:self,
-                                                              action: #selector(showImagePickerAlert)))
-
+                                                                        action: #selector(showImagePickerAlert)))
+        
         userAvatarLabel.text = userName.getStringFirstChars()
         userNameLabel.text = userName
         userDescriptionLabel.text = userDescription
@@ -156,6 +162,10 @@ class ProfileViewController: UIViewController {
     @objc private func showImagePickerAlert() {
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         imagePicker?.present()
+    }
+    
+    @objc private func didTapCloseButton() {
+        dismiss(animated: true)
     }
 }
 

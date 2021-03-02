@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "outgoing-message-bubble.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
