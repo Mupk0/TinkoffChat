@@ -15,8 +15,9 @@ class DateUtils {
         if let date = date {
             let calendar = Calendar.current
             let dateFormatter = DateFormatter()
+            let startOfCurrentDay = calendar.startOfDay(for: Date())
             dateFormatter.locale = Locale(identifier: "ru_RU")
-            dateFormatter.dateFormat = calendar.isDateInToday(date) ? "HH:mm" : "dd MMM"
+            dateFormatter.dateFormat = date > startOfCurrentDay ? "HH:mm" : "dd MMM"
             
             return dateFormatter.string(from: date)
         }
