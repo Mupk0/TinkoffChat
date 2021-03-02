@@ -25,6 +25,7 @@ class ConversationsListViewController: UIViewController {
         
         navigationItem.title = "Tinkoff Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let profileButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "profileIcon"),
                                                  style: .plain,

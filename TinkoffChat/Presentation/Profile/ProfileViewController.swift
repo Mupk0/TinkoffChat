@@ -73,9 +73,10 @@ class ProfileViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.title =  "Profile"
-        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel,
-                                                                target: self,
-                                                                action: #selector(didTapCloseButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(didTapCloseButton))
         
         //print("frame for edit button in init(): \(editButton.frame)")
     }
