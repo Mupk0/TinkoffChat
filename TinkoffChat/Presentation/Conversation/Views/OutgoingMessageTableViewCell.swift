@@ -13,9 +13,9 @@ class OutgoingMessageTableViewCell: UITableViewCell, MessageCellProtocol {
     
     private let messageContainerView: UIImageView = {
         let imageView = UIImageView()
-        let insets = UIEdgeInsets(top: 17, left: 21, bottom: 17, right: 21)
         let bubbleImage = #imageLiteral(resourceName: "outgoingMessageBubble")
-            .resizableImage(withCapInsets: insets, resizingMode: .stretch)
+            .resizableImage(withCapInsets: Constants.BUBBLE_IMAGE_INSETS,
+                            resizingMode: .stretch)
             .withRenderingMode(.alwaysTemplate)
         imageView.image = bubbleImage
         imageView.tintColor = .systemBlue
@@ -24,18 +24,15 @@ class OutgoingMessageTableViewCell: UITableViewCell, MessageCellProtocol {
     
     private let messageTextView: UITextView = {
         let textView = UITextView()
-        let insets = UIEdgeInsets(top: 17, left: 21, bottom: 17, right: 21)
-        textView.textContainerInset = insets
+        textView.textContainerInset = Constants.BUBBLE_IMAGE_INSETS
         textView.backgroundColor = .clear
         textView.textColor = .white
-        textView.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
         textView.sizeToFit()
         textView.isScrollEnabled = false
         textView.isEditable = false
         return textView
     }()
-    
-    private let containerInsets = UIEdgeInsets(top: 17, left: 21, bottom: 17, right: 21)
     
     func setMessageModel(_ model: MessageCellConfiguration) {
         messageTextView.text = model.text ?? "Unknown Message"
