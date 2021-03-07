@@ -9,7 +9,7 @@ import UIKit
 
 class ConversationViewController: UIViewController {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView(frame: .zero, style: .plain)
     
     private var messages: [ConversationModel] = []
     

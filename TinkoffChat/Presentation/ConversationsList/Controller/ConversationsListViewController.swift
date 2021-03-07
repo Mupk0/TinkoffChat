@@ -32,6 +32,11 @@ class ConversationsListViewController: UIViewController {
                                                  target: self, action: #selector(didTapProfileButton))
         navigationItem.rightBarButtonItem = profileButton
         
+        let settingsButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "settings"),
+                                                 style: .plain,
+                                                 target: self, action: #selector(didTapSettingsButton))
+        navigationItem.leftBarButtonItem = settingsButton
+        
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +59,16 @@ class ConversationsListViewController: UIViewController {
         let profileController = ProfileViewController()
         let navController = UINavigationController(rootViewController: profileController)
         present(navController, animated: true)
+    }
+    
+    @objc private func didTapSettingsButton() {
+        let themesViewController = ThemesViewController()
+        //themesViewController.delegate = self
+        navigationController?.pushViewController(themesViewController, animated: true)
+        
+        themesViewController.didSelectThemeType = { themeType in
+            print("Selected \(themeType.rawValue) Theme")
+        }
     }
 }
 
@@ -99,6 +114,13 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
 
 }
+
+
+//extension ConversationsListViewController: ThemesViewControllerDelegate {
+//    func didSelectTheme(_ themeType: ThemeType) {
+//        print("Selected \(themeType.rawValue) Theme")
+//    }
+//}
 
 extension ConversationsListViewController {
     fileprivate func getData() -> [ConversationCellModel] {
