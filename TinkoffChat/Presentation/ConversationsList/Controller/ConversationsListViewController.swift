@@ -65,6 +65,10 @@ class ConversationsListViewController: UIViewController {
         let themesViewController = ThemesViewController()
         themesViewController.delegate = self
         navigationController?.pushViewController(themesViewController, animated: true)
+        
+        themesViewController.didSelectThemeType = { themeType in
+            print("Selected \(themeType.rawValue) Theme")
+        }
     }
 }
 

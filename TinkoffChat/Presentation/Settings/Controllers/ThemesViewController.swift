@@ -7,17 +7,23 @@
 
 import UIKit
 
+protocol ThemesViewControllerProtocol {
+    var delegate: ThemesViewControllerDelegate? { get set }
+    var didSelectThemeType: ((ThemeType) -> ())? { get set }
+}
+
 protocol ThemesViewControllerDelegate: class {
     func didSelectTheme(_ themeType: ThemeType)
 }
 
-class ThemesViewController: UIViewController {
+class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     
     private let classicThemeView = ThemeTypeView(.Classic)
     private let dayThemeView = ThemeTypeView(.Day)
     private let nightThemeView = ThemeTypeView(.Night)
     
     weak var delegate: ThemesViewControllerDelegate?
+    var didSelectThemeType: ((ThemeType) -> ())?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -91,6 +97,8 @@ class ThemesViewController: UIViewController {
         nightThemeView.isSelected = themeType == .Night
         
         delegate?.didSelectTheme(themeType)
+        didSelectThemeType?(themeType)
+        
         ThemeSwitcher.shared.setTheme(themeType)
     }
 }
