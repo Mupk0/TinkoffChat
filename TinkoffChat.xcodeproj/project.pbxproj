@@ -25,8 +25,9 @@
 		EFD1348125F5050600C398CE /* ThemeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348025F5050600C398CE /* ThemeType.swift */; };
 		EFD1348725F517D900C398CE /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348625F517D900C398CE /* MainTitleLabel.swift */; };
 		EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348B25F5190100C398CE /* SubTitleLabel.swift */; };
-		EFD1348F25F51B0E00C398CE /* ThemeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348E25F51B0E00C398CE /* ThemeBackgroundView.swift */; };
-		EFD1349225F51D6000C398CE /* ProfileEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349125F51D6000C398CE /* ProfileEditButton.swift */; };
+		EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */; };
+		EFD1349225F51D6000C398CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349125F51D6000C398CE /* CustomButton.swift */; };
+		EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */; };
 		EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCC25D81DD00016BD67 /* Log.swift */; };
 		EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCF25D81E240016BD67 /* Constants.swift */; };
 		EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */; };
@@ -67,8 +68,9 @@
 		EFD1348025F5050600C398CE /* ThemeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeType.swift; sourceTree = "<group>"; };
 		EFD1348625F517D900C398CE /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		EFD1348B25F5190100C398CE /* SubTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleLabel.swift; sourceTree = "<group>"; };
-		EFD1348E25F51B0E00C398CE /* ThemeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeBackgroundView.swift; sourceTree = "<group>"; };
-		EFD1349125F51D6000C398CE /* ProfileEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditButton.swift; sourceTree = "<group>"; };
+		EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackgroundView.swift; sourceTree = "<group>"; };
+		EFD1349125F51D6000C398CE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeControllerBackgroundView.swift; sourceTree = "<group>"; };
 		EFDE1BCC25D81DD00016BD67 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		EFDE1BCF25D81E240016BD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.swift; sourceTree = "<group>"; };
@@ -175,8 +177,9 @@
 			children = (
 				EFD1348625F517D900C398CE /* MainTitleLabel.swift */,
 				EFD1348B25F5190100C398CE /* SubTitleLabel.swift */,
-				EFD1348E25F51B0E00C398CE /* ThemeBackgroundView.swift */,
-				EFD1349125F51D6000C398CE /* ProfileEditButton.swift */,
+				EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */,
+				EFD1349125F51D6000C398CE /* CustomButton.swift */,
+				EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -423,14 +426,15 @@
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
-				EFD1348F25F51B0E00C398CE /* ThemeBackgroundView.swift in Sources */,
+				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFE436CA25ECE04C00869295 /* ConversationCellModel.swift in Sources */,
 				EFD1348725F517D900C398CE /* MainTitleLabel.swift in Sources */,
-				EFD1349225F51D6000C398CE /* ProfileEditButton.swift in Sources */,
+				EFD1349225F51D6000C398CE /* CustomButton.swift in Sources */,
 				EFE436EA25EE290E00869295 /* MessageCellProtocol.swift in Sources */,
+				EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */,
 				EFE436E025ED71A200869295 /* IncomingMessageTableViewCell.swift in Sources */,
 				EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */,
 				EFD1348125F5050600C398CE /* ThemeType.swift in Sources */,

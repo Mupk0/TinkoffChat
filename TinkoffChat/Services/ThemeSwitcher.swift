@@ -14,13 +14,13 @@ class ThemeSwitcher {
     public func setTheme(_ themeType: ThemeType) {
         updateAppereances(themeType)
         resetSubviews()
-        updateUserTheme(themeType)
+        updateUserDefaultsWith(themeType)
     }
     
     private func updateAppereances(_ themeType: ThemeType) {
         // Tables
         let tableViewAppearance = UITableView.appearance()
-        tableViewAppearance.backgroundColor = themeType.backgroundColor
+        tableViewAppearance.backgroundColor = themeType.mainBackgroundColor
         // Chat Cells
         let incomingMessageCellAppearance = IncomingMessageImageView.appearance()
         incomingMessageCellAppearance.messageBackgroundColor = themeType.incomingMessageBackgroundColor
@@ -29,30 +29,34 @@ class ThemeSwitcher {
         outgoingMessageCellAppearance.messageBackgroundColor = themeType.outgoingMessageBackgroundColor
         
         let messageTextViewAppearence = MessageTextView.appearance()
-        messageTextViewAppearence.messageTextColor = themeType.textColor
+        messageTextViewAppearence.messageTextColor = themeType.mainTitleLabelColor
         // Navigation
         UINavigationBar.appearance().barStyle = themeType.barStyle
-        UINavigationBar.appearance().tintColor = themeType.textColor
+        UINavigationBar.appearance().tintColor = themeType.mainTitleLabelColor
         UINavigationBar.appearance().barTintColor = themeType.navigationBackgroundColor
         UINavigationBar.appearance().shadowImage = themeType.navigationSeparatorColor.getOnePxImage()
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: themeType.textColor as Any]
-        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: themeType.textColor as Any],
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: themeType.mainTitleLabelColor as Any]
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: themeType.mainTitleLabelColor as Any],
                                                             for: .normal)
         // Buttons
-        let customButtonAppearance = ProfileEditButton.appearance()
-        customButtonAppearance.backgroundColor = themeType.buttonBackground
+        let customButtonAppearance = CustomButton.appearance()
+        customButtonAppearance.backgroundColor = themeType.buttonBackgroundColor
         // Labels
         let mainLabelAppearance = MainTitleLabel.appearance()
-        mainLabelAppearance.textColor = themeType.textColor
+        mainLabelAppearance.textColor = themeType.mainTitleLabelColor
         
         let subTitleLabelAppearance = SubTitleLabel.appearance()
         subTitleLabelAppearance.textColor = themeType.subtitleLabelColor
         
-        let backgroundViewAppearance = ThemeBackgroundView.appearance()
-        backgroundViewAppearance.backgroundColor = themeType.backgroundColor
+        let backgroundViewAppearance = MainBackgroundView.appearance()
+        backgroundViewAppearance.backgroundColor = themeType.mainBackgroundColor
         
-        let convCell = ConversationsListTableViewCell.appearance()
-        convCell.backgroundColor = themeType.backgroundColor
+        let chatListCellAppearance = ConversationsListTableViewCell.appearance()
+        chatListCellAppearance.backgroundColor = themeType.mainBackgroundColor
+        
+        let themeBackgroundViewAppearance = ThemeControllerBackgroundView.appearance()
+        themeBackgroundViewAppearance.backgroundColor = themeType.themeControllerBackgroundColor
+        
     }
     
     private func resetSubviews() {
@@ -63,7 +67,7 @@ class ThemeSwitcher {
         })
     }
     
-    private func updateUserTheme(_ themeType: ThemeType) {
+    private func updateUserDefaultsWith(_ themeType: ThemeType) {
         let settings = Settings.shared
         settings.themeType = themeType.rawValue
         settings.save()

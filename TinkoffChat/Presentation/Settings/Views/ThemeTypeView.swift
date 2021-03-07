@@ -74,7 +74,7 @@ class ThemeTypeView: UIView {
             themeOutgoingMessageView.leadingAnchor.constraint(equalTo: themeBackgroundView.centerXAnchor, constant: 3),
         ])
         
-        themeBackgroundView.backgroundColor = themeType.backgroundColor
+        themeBackgroundView.backgroundColor = themeType.mainBackgroundColor
         themeBackgroundView.layer.cornerRadius = 15.5
         
         themeIncomingMessageView.tintColor = themeType.incomingMessageBackgroundColor

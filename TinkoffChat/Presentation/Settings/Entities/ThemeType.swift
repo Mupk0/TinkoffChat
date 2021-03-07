@@ -25,7 +25,7 @@ enum ThemeType: String {
 }
     
 extension ThemeType {
-    var backgroundColor: UIColor {
+    var mainBackgroundColor: UIColor {
         switch self {
         case .Classic:
             return .white
@@ -36,7 +36,7 @@ extension ThemeType {
         }
     }
     
-    var textColor: UIColor {
+    var mainTitleLabelColor: UIColor {
         switch self {
         case .Classic:
             return .black
@@ -91,7 +91,7 @@ extension ThemeType {
         }
     }
     
-    var buttonBackground: UIColor {
+    var buttonBackgroundColor: UIColor {
         switch self {
         case .Classic:
             return UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
@@ -121,6 +121,17 @@ extension ThemeType {
             return UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
         case .Night:
             return UIColor(red: 0.553, green: 0.553, blue: 0.576, alpha: 1)
+        }
+    }
+    
+    var themeControllerBackgroundColor: UIColor {
+        switch self {
+        case .Classic:
+            return UIColor(red: 0.38, green: 0.49, blue: 0.60, alpha: 1.00)
+        case .Day:
+            return UIColor(red: 0.38, green: 0.49, blue: 0.60, alpha: 1.00)
+        case .Night:
+            return UIColor(red: 0.098, green: 0.21, blue: 0.379, alpha: 1)
         }
     }
 }

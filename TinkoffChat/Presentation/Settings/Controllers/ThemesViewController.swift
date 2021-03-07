@@ -18,6 +18,8 @@ protocol ThemesViewControllerDelegate: class {
 
 class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     
+    private let backView = ThemeControllerBackgroundView()
+    
     private let classicThemeView = ThemeTypeView(.Classic)
     private let dayThemeView = ThemeTypeView(.Day)
     private let nightThemeView = ThemeTypeView(.Night)
@@ -50,15 +52,22 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     }
     
     private func configureViews() {
+        view.addSubview(backView)
         view.addSubview(classicThemeView)
         view.addSubview(dayThemeView)
         view.addSubview(nightThemeView)
         
+        backView.translatesAutoresizingMaskIntoConstraints = false
         classicThemeView.translatesAutoresizingMaskIntoConstraints = false
         dayThemeView.translatesAutoresizingMaskIntoConstraints = false
         nightThemeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            backView.topAnchor.constraint(equalTo: view.topAnchor),
+            backView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             classicThemeView.bottomAnchor.constraint(equalTo: dayThemeView.topAnchor, constant: -80),
             classicThemeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
             classicThemeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
@@ -75,8 +84,6 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
             nightThemeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
             nightThemeView.heightAnchor.constraint(equalToConstant: 57),
         ])
-        
-        view.backgroundColor = UIColor(red: 0.098, green: 0.21, blue: 0.379, alpha: 1)
     }
     
     private func setupClosures() {

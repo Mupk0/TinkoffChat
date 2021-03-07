@@ -101,7 +101,7 @@ class ConversationsListTableViewCell: UITableViewCell {
     
     private func getOfflineBackgroundColor() -> UIColor {
         let theme = ThemeType.init(Settings.shared.themeType)
-        return theme.backgroundColor
+        return theme.mainBackgroundColor
     }
     
     override func prepareForReuse() {

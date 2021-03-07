@@ -1,5 +1,5 @@
 //
-//  ProfileEditButton.swift
+//  CustomButton.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 07.03.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileEditButton: UIButton {
+class CustomButton: UIButton {
     
     init() {
         super.init(frame: .zero)

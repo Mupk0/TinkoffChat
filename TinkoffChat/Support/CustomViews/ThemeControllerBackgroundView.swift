@@ -1,5 +1,5 @@
 //
-//  ThemeBackgroundView.swift
+//  ThemeViewControllerBackgroundView.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 07.03.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThemeBackgroundView: UIView {
+class ThemeControllerBackgroundView: UIView {
     init() {
         super.init(frame: .zero)
     }

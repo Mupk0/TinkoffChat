@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let backView = ThemeBackgroundView()
+    private let backView = MainBackgroundView()
     
     private let userAvatarView: UIView = {
         let view = UIView()
@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    private let editButton = ProfileEditButton()
+    private let editButton = CustomButton()
     
     private var imagePicker: ImagePicker?
     
