@@ -19,9 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 
+
+        
         let chatListViewController = ConversationsListViewController()
         window?.rootViewController = UINavigationController(rootViewController: chatListViewController)
         window?.makeKeyAndVisible()
+        
+        let themeType = ThemeType.init(Settings.shared.themeType)
+        ThemeSwitcher.shared.setTheme(themeType)
         
         return true
     }

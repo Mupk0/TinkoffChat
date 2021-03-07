@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    let backView = ThemeBackgroundView()
+    
     private let userAvatarView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1)
@@ -35,9 +37,8 @@ class ProfileViewController: UIViewController {
         return imageView
     }()
     
-    private let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
+    private let userNameLabel: MainTitleLabel = {
+        let label = MainTitleLabel()
         label.textAlignment = .center
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -46,23 +47,15 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    private let userDescriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
+    private let userDescriptionLabel: MainTitleLabel = {
+        let label = MainTitleLabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .light)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
     }()
     
-    private let editButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Edit", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
-        button.layer.cornerRadius = 14
-        return button
-    }()
+    private let editButton = ProfileEditButton()
     
     private var imagePicker: ImagePicker?
     
@@ -77,7 +70,6 @@ class ProfileViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(didTapCloseButton))
-        
         //print("frame for edit button in init(): \(editButton.frame)")
     }
     
@@ -99,15 +91,15 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = .white
-        
-        view.addSubview(userAvatarView)
+        view.addSubview(backView)
+        backView.addSubview(userAvatarView)
         userAvatarView.addSubview(userAvatarLabel)
         userAvatarView.addSubview(userAvatarImageView)
-        view.addSubview(userNameLabel)
-        view.addSubview(userDescriptionLabel)
-        view.addSubview(editButton)
+        backView.addSubview(userNameLabel)
+        backView.addSubview(userDescriptionLabel)
+        backView.addSubview(editButton)
         
+        backView.translatesAutoresizingMaskIntoConstraints = false
         userAvatarView.translatesAutoresizingMaskIntoConstraints = false
         userAvatarLabel.translatesAutoresizingMaskIntoConstraints = false
         userAvatarImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +108,11 @@ class ProfileViewController: UIViewController {
         editButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            backView.topAnchor.constraint(equalTo: view.topAnchor),
+            backView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             userAvatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 7),
             userAvatarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 68),
             userAvatarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -68),
