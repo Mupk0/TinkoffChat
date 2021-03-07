@@ -63,7 +63,7 @@ class ConversationsListViewController: UIViewController {
     
     @objc private func didTapSettingsButton() {
         let themesViewController = ThemesViewController()
-        themesViewController.delegate = self
+        //themesViewController.delegate = self
         navigationController?.pushViewController(themesViewController, animated: true)
         
         themesViewController.didSelectThemeType = { themeType in
@@ -116,11 +116,11 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
 }
 
 
-extension ConversationsListViewController: ThemesViewControllerDelegate {
-    func didSelectTheme(_ themeType: ThemeType) {
-        print("Selected \(themeType.rawValue) Theme")
-    }
-}
+//extension ConversationsListViewController: ThemesViewControllerDelegate {
+//    func didSelectTheme(_ themeType: ThemeType) {
+//        print("Selected \(themeType.rawValue) Theme")
+//    }
+//}
 
 extension ConversationsListViewController {
     fileprivate func getData() -> [ConversationCellModel] {
