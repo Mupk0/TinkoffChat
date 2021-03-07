@@ -59,11 +59,12 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
         nightThemeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            classicThemeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 162),
+            classicThemeView.bottomAnchor.constraint(equalTo: dayThemeView.topAnchor, constant: -80),
             classicThemeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
             classicThemeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
             classicThemeView.heightAnchor.constraint(equalToConstant: 57),
             
+            dayThemeView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             dayThemeView.topAnchor.constraint(equalTo: classicThemeView.bottomAnchor, constant: 80),
             dayThemeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
             dayThemeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
