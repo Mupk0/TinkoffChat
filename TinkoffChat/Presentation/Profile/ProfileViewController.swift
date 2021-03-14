@@ -277,6 +277,7 @@ class ProfileViewController: UIViewController {
     private func setStateOfSaveButtons(to state: SaveButtonsState) {
         gcdButton.isEnabled = state == .enabled
         operationButton.isEnabled = state == .enabled
+        cancelButton.isEnabled = state == .enabled
     }
     // MARK: - Click Action Methods
     @objc private func showImagePickerAlert() {
@@ -335,27 +336,29 @@ class ProfileViewController: UIViewController {
         
         profileStorage?.save(profile: profile) { status in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let window = UIApplication.shared.delegate?.window as? UIWindow
                 self.activityIndicator.stopAnimating()
                 self.setStateOfSaveButtons(to: .enabled)
                 if status {
-                    self.showAlertWithTitle(title: "Данные сохранены",
-                                            buttonLeftTitle: "Ок",
-                                            buttonLeftAction: { _ in },
-                                            buttonRightAction: { _ in })
+                    
+                    window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
+                                                                      buttonLeftTitle: "Ок",
+                                                                      buttonLeftAction: { _ in },
+                                                                      buttonRightAction: { _ in })
                     self.hasUnsavedChanges = false
                     self.profileState = .show
                 } else {
-                    self.showAlertWithTitle(title: "Ошибка",
-                                            message: "Не удалось сохранить данные",
-                                            buttonLeftTitle: "Ок",
-                                            buttonRightTitle: "Повторить",
-                                            buttonLeftAction: { _ in
-                                                self.profileState = .show
-                                                self.unsavedProfile = self.savedProfile
-                                            },
-                                            buttonRightAction: { _ in
-                                                self.saveProfile(type: type)
-                                            })
+                    window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
+                                                                      message: "Не удалось сохранить данные",
+                                                                      buttonLeftTitle: "Ок",
+                                                                      buttonRightTitle: "Повторить",
+                                                                      buttonLeftAction: { _ in
+                                                                        self.profileState = .show
+                                                                        self.unsavedProfile = self.savedProfile
+                                                                      },
+                                                                      buttonRightAction: { _ in
+                                                                        self.saveProfile(type: type)
+                                                                      })
                 }
             }
         }
