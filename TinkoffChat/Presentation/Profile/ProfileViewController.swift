@@ -87,6 +87,16 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicatorView: UIActivityIndicatorView
+        if #available(iOS 13.0, *) {
+            indicatorView = UIActivityIndicatorView(style: .large)
+        } else {
+            indicatorView = UIActivityIndicatorView(style: .gray)
+        }
+        return indicatorView
+    }()
+    
     private var imagePicker: ImagePicker?
     
     private let userName = "Marina Dudarenko"
@@ -131,6 +141,7 @@ class ProfileViewController: UIViewController {
         backView.addSubview(cancelButton)
         backView.addSubview(editButton)
         backView.addSubview(editProfileStackView)
+        backView.addSubview(activityIndicator)
         
         backView.translatesAutoresizingMaskIntoConstraints = false
         userAvatarView.translatesAutoresizingMaskIntoConstraints = false
@@ -141,6 +152,7 @@ class ProfileViewController: UIViewController {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editProfileStackView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -172,7 +184,7 @@ class ProfileViewController: UIViewController {
             userDescriptionTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
-            userDescriptionTextView.bottomAnchor.constraint(lessThanOrEqualTo: cancelButton.topAnchor, constant: -50),
+            userDescriptionTextView.bottomAnchor.constraint(lessThanOrEqualTo: activityIndicator.topAnchor, constant: -10),
             
             cancelButton.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10),
             cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
@@ -188,6 +200,11 @@ class ProfileViewController: UIViewController {
             editProfileStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
             editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
             editProfileStackView.heightAnchor.constraint(equalToConstant: 40),
+            
+            activityIndicator.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -45),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 90),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 90),
         ])
         
         userAvatarView.layoutIfNeeded()

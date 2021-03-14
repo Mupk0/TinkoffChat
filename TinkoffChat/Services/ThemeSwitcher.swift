@@ -63,6 +63,9 @@ class ThemeSwitcher {
         let textViewAppearance = UITextView.appearance()
         textViewAppearance.textColor = themeType.mainTitleLabelColor
         textViewAppearance.backgroundColor = themeType.mainBackgroundColor
+        
+        let activityIndicatorAppearance = UIActivityIndicatorView.appearance()
+        activityIndicatorAppearance.color = themeType.mainTitleLabelColor
     }
     
     private func resetSubviews() {
