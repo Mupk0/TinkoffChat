@@ -8,7 +8,22 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    // MARK: - Private Enums
+    private enum SaveButtonsState {
+        case enabled
+        case disabled
+    }
     
+    private enum SaveType {
+        case GCD
+        case operation
+    }
+    
+    private enum ProfileState {
+        case show
+        case edit
+    }
+    // MARK: - Private Subviews
     private let backView = MainBackgroundView()
     
     private let userAvatarView: UIView = {
@@ -41,6 +56,7 @@ class ProfileViewController: UIViewController {
         let textField = UITextField()
         textField.textAlignment = .center
         textField.font = UIFont.boldSystemFont(ofSize: 24)
+        textField.isEnabled = false
         textField.sizeToFit()
         return textField
     }()
@@ -49,6 +65,7 @@ class ProfileViewController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
         textView.isScrollEnabled = false
+        textView.isEditable = false
         textView.sizeToFit()
         return textView
     }()
@@ -98,9 +115,35 @@ class ProfileViewController: UIViewController {
     }()
     
     private var imagePicker: ImagePicker?
+    private var profileStorage: ProfileStorageProtocol?
     
-    private let userName = "Marina Dudarenko"
-    private let userDescription = "UX/UI designer, web-designer Moscow, Russia"
+    // MARK: - Profile Datas
+    private var savedProfile: Profile?
+    
+    private var unsavedProfile: Profile? {
+        didSet {
+            updateViewsByProfile(unsavedProfile)
+            hasUnsavedChanges = unsavedProfile != savedProfile
+        }
+    }
+    // MARK: - Controller states
+    private var hasUnsavedChanges: Bool = false {
+        didSet {
+            setStateOfSaveButtons(to: hasUnsavedChanges ? .enabled : .disabled)
+        }
+    }
+    
+    private var profileState: ProfileState = .show {
+        didSet {
+            editButton.isHidden = profileState != .show
+            cancelButton.isHidden = profileState == .show
+            editProfileStackView.isHidden = profileState == .show
+            
+            userNameTextField.isEnabled = profileState != .show
+            userDescriptionTextView.isEditable = profileState != .show
+            setStateOfSaveButtons(to: profileState == .show ? .enabled : .disabled)
+        }
+    }
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -110,7 +153,6 @@ class ProfileViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(didTapCloseButton))
-        //print("frame for edit button in init(): \(editButton.frame)")
     }
     
     required init?(coder: NSCoder) {
@@ -121,16 +163,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        loadProfile()
         hideKeyboardWhenTappedAround()
-        //print("frame for edit button in viewDidLoad(): \(editButton.frame)")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        //print("frame for edit button in viewWillAppear(): \(editButton.frame)")
+        userNameTextField.delegate = self
+        userDescriptionTextView.delegate = self
     }
-    
+    // MARK: - Views configure methods
     private func setupViews() {
         view.addSubview(backView)
         backView.addSubview(userAvatarView)
@@ -214,10 +253,6 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target:self,
                                                                         action: #selector(showImagePickerAlert)))
         
-        userAvatarLabel.text = userName.getStringFirstChars()
-        userNameTextField.text = userName
-        userDescriptionTextView.text = userDescription
-        
         editProfileStackView.addArrangedSubview(gcdButton)
         editProfileStackView.addArrangedSubview(operationButton)
         
@@ -225,8 +260,25 @@ class ProfileViewController: UIViewController {
                                                                action: #selector(didTapEditButton)))
         cancelButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
                                                                  action: #selector(didTapCancelButton)))
+        
+        gcdButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+                                                              action: #selector(didTapButtonSaveUsingGSD)))
+        operationButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+                                                                    action: #selector(didTapButtonSaveUsingOperation)))
     }
     
+    private func updateViewsByProfile(_ profile: Profile?) {
+        userAvatarImageView.image = unsavedProfile?.photo ?? nil
+        userNameTextField.text = unsavedProfile?.userName ?? "Your name"
+        userDescriptionTextView.text = unsavedProfile?.about ?? "About you"
+        userAvatarLabel.text = userNameTextField.text?.getStringFirstChars()
+    }
+    
+    private func setStateOfSaveButtons(to state: SaveButtonsState) {
+        gcdButton.isEnabled = state == .enabled
+        operationButton.isEnabled = state == .enabled
+    }
+    // MARK: - Click Action Methods
     @objc private func showImagePickerAlert() {
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         imagePicker?.present()
@@ -237,22 +289,102 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapEditButton() {
-        editButton.isHidden = true
-        cancelButton.isHidden = false
-        editProfileStackView.isHidden = false
+        profileState = .edit
         userNameTextField.becomeFirstResponder()
     }
     
     @objc private func didTapCancelButton() {
-        editButton.isHidden = false
-        cancelButton.isHidden = true
-        editProfileStackView.isHidden = true
+        profileState = .show
+        unsavedProfile = savedProfile
+    }
+    
+    @objc private func didTapButtonSaveUsingGSD() {
+        saveProfile(type: .GCD)
+    }
+    
+    @objc private func didTapButtonSaveUsingOperation() {
+        saveProfile(type: .operation)
+    }
+    // MARK: - Storage methods
+    private func loadProfile() {
+        profileStorage = ProfileFileStorage()
+        profileStorage?.load { profile in
+            self.savedProfile = profile
+            self.unsavedProfile = profile
+        }
+    }
+    
+    private func saveProfile(type: SaveType) {
+        profileStorage = ProfileFileStorage()
+        switch type {
+        case .GCD:
+            // Класс для GCD
+            break
+        case .operation:
+            // Класс для Operation
+            break
+        }
+        
+        activityIndicator.startAnimating()
+        
+        setStateOfSaveButtons(to: .disabled)
+        
+        let profile = Profile(about: userDescriptionTextView.text,
+                              photo: userAvatarImageView.image,
+                              userName: userNameTextField.text)
+        
+        profileStorage?.save(profile: profile) { status in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.activityIndicator.stopAnimating()
+                self.setStateOfSaveButtons(to: .enabled)
+                if status {
+                    self.showAlertWithTitle(title: "Данные сохранены",
+                                            buttonLeftTitle: "Ок",
+                                            buttonLeftAction: { _ in },
+                                            buttonRightAction: { _ in })
+                    self.hasUnsavedChanges = false
+                    self.profileState = .show
+                } else {
+                    self.showAlertWithTitle(title: "Ошибка",
+                                            message: "Не удалось сохранить данные",
+                                            buttonLeftTitle: "Ок",
+                                            buttonRightTitle: "Повторить",
+                                            buttonLeftAction: { _ in
+                                                self.profileState = .show
+                                                self.unsavedProfile = self.savedProfile
+                                            },
+                                            buttonRightAction: { _ in
+                                                self.saveProfile(type: type)
+                                            })
+                }
+            }
+        }
     }
 }
-
+// MARK: - Image Picker Delegate
 extension ProfileViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
-        userAvatarImageView.image = image
+        if image != nil {
+            profileState = .edit
+            userAvatarImageView.image = image
+            setStateOfSaveButtons(to: .enabled)
+        }
         imagePicker = nil
+    }
+}
+// MARK: - UITextField Delegate
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        unsavedProfile = Profile(about: unsavedProfile?.about,
+                                 photo: unsavedProfile?.photo,
+                                 userName: textField.text)
+    }
+}
+// MARK: - UITextView Delegate
+extension ProfileViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        unsavedProfile = Profile(about: textView.text,
+                                 photo: unsavedProfile?.photo,
+                                 userName: unsavedProfile?.userName)
     }
 }
