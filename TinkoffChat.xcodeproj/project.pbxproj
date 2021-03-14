@@ -52,6 +52,9 @@
 		EFEC1DD825FE871400194752 /* ProfileStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */; };
 		EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDA25FE8A1800194752 /* UIWindow.swift */; };
 		EFEC1DDF25FE8D9D00194752 /* ProfileStorageWithGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */; };
+		EFEC1DE425FE8F2200194752 /* ProfileStorageWithOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DE325FE8F2200194752 /* ProfileStorageWithOperation.swift */; };
+		EFEC1DE725FE8F8C00194752 /* LoadProfileOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DE625FE8F8C00194752 /* LoadProfileOperation.swift */; };
+		EFEC1DEA25FE905700194752 /* SaveProfileOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DE925FE905700194752 /* SaveProfileOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +105,9 @@
 		EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageProtocol.swift; sourceTree = "<group>"; };
 		EFEC1DDA25FE8A1800194752 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageWithGCD.swift; sourceTree = "<group>"; };
+		EFEC1DE325FE8F2200194752 /* ProfileStorageWithOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageWithOperation.swift; sourceTree = "<group>"; };
+		EFEC1DE625FE8F8C00194752 /* LoadProfileOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileOperation.swift; sourceTree = "<group>"; };
+		EFEC1DE925FE905700194752 /* SaveProfileOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveProfileOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,9 +367,10 @@
 		EFEC1DCE25FE50AD00194752 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				EFEC1DDD25FE8D7A00194752 /* GCD */,
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
 				EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */,
+				EFEC1DDD25FE8D7A00194752 /* GCD */,
+				EFEC1DE225FE8F1200194752 /* Operation */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -374,6 +381,16 @@
 				EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */,
 			);
 			path = GCD;
+			sourceTree = "<group>";
+		};
+		EFEC1DE225FE8F1200194752 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				EFEC1DE325FE8F2200194752 /* ProfileStorageWithOperation.swift */,
+				EFEC1DE625FE8F8C00194752 /* LoadProfileOperation.swift */,
+				EFEC1DE925FE905700194752 /* SaveProfileOperation.swift */,
+			);
+			path = Operation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,6 +487,7 @@
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
+				EFEC1DE425FE8F2200194752 /* ProfileStorageWithOperation.swift in Sources */,
 				EFEC1DDF25FE8D9D00194752 /* ProfileStorageWithGCD.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
@@ -486,6 +504,8 @@
 				EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */,
 				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
 				EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */,
+				EFEC1DEA25FE905700194752 /* SaveProfileOperation.swift in Sources */,
+				EFEC1DE725FE8F8C00194752 /* LoadProfileOperation.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);

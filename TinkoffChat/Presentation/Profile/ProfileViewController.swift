@@ -319,11 +319,8 @@ class ProfileViewController: UIViewController {
         switch type {
         case .GCD:
             profileStorage = ProfileStorageWithGCD()
-            break
         case .operation:
-            // Класс для Operation
-            profileStorage = ProfileFileStorage()
-            break
+            profileStorage = ProfileStorageWithOperation()
         }
         
         activityIndicator.startAnimating()
