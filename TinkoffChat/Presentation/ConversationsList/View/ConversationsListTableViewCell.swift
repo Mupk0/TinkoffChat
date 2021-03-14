@@ -15,6 +15,8 @@ class ConversationsListTableViewCell: UITableViewCell {
         let label = MainTitleLabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
         return label
     }()
     
@@ -56,7 +58,7 @@ class ConversationsListTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             userNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            userNameLabel.trailingAnchor.constraint(lessThanOrEqualTo: lastMessageDateLabel.leadingAnchor, constant: -10),
+            userNameLabel.trailingAnchor.constraint(lessThanOrEqualTo: lastMessageDateLabel.leadingAnchor, constant: -22),
             
             lastMessageDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
             lastMessageDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -74,9 +76,12 @@ class ConversationsListTableViewCell: UITableViewCell {
         
         userNameLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         userNameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        userNameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         lastMessageLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         lastMessageLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        
+        lastMessageDateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         userStatusView.layer.cornerRadius = 6
     }
