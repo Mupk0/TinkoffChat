@@ -12,9 +12,9 @@ class CustomButton: UIButton {
     init() {
         super.init(frame: .zero)
         
-        setTitle("Edit", for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         setTitleColor(.systemBlue, for: .normal)
+        setTitleColor(.lightGray, for: .disabled)
         layer.cornerRadius = 14
     }
     

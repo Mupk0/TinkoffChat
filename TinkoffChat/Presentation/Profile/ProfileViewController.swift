@@ -48,12 +48,44 @@ class ProfileViewController: UIViewController {
     private let userDescriptionLabel: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        textView.isScrollEnabled = false
+        textView.sizeToFit()
         return textView
     }()
     
-    private let editButton = CustomButton()
+    private let editButton: CustomButton = {
+        let button = CustomButton()
+        button.setTitle("Edit", for: .normal)
+        return button
+    }()
     
-    private let editPrifileStackView = UIStackView()
+    private let cancelButton: CustomButton = {
+        let button = CustomButton()
+        button.setTitle("Cancel", for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
+    private let editProfileStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 13
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.isHidden = true
+        return stackView
+    }()
+    
+    private let gcdButton: CustomButton = {
+        let button = CustomButton()
+        button.setTitle("Save GCD", for: .normal)
+        return button
+    }()
+    
+    private let operationButton: CustomButton = {
+        let button = CustomButton()
+        button.setTitle("Save Operations", for: .normal)
+        return button
+    }()
     
     private var imagePicker: ImagePicker?
     
@@ -96,7 +128,9 @@ class ProfileViewController: UIViewController {
         userAvatarView.addSubview(userAvatarImageView)
         backView.addSubview(userNameLabel)
         backView.addSubview(userDescriptionLabel)
+        backView.addSubview(cancelButton)
         backView.addSubview(editButton)
+        backView.addSubview(editProfileStackView)
         
         backView.translatesAutoresizingMaskIntoConstraints = false
         userAvatarView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +138,9 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.translatesAutoresizingMaskIntoConstraints = false
+        editProfileStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -136,12 +172,22 @@ class ProfileViewController: UIViewController {
             userDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
-            userDescriptionLabel.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -50),
+            userDescriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: cancelButton.topAnchor, constant: -50),
+            
+            cancelButton.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10),
+            cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
+            cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
+            cancelButton.heightAnchor.constraint(equalToConstant: 40),
             
             editButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             editButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),
             editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -62),
             editButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            editProfileStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            editProfileStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
+            editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
+            editProfileStackView.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         userAvatarView.layoutIfNeeded()
@@ -154,6 +200,14 @@ class ProfileViewController: UIViewController {
         userAvatarLabel.text = userName.getStringFirstChars()
         userNameLabel.text = userName
         userDescriptionLabel.text = userDescription
+        
+        editProfileStackView.addArrangedSubview(gcdButton)
+        editProfileStackView.addArrangedSubview(operationButton)
+        
+        editButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+                                                               action: #selector(didTapEditButton)))
+        cancelButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+                                                                 action: #selector(didTapCancelButton)))
     }
     
     @objc private func showImagePickerAlert() {
@@ -163,6 +217,19 @@ class ProfileViewController: UIViewController {
     
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
+    }
+    
+    @objc private func didTapEditButton() {
+        editButton.isHidden = true
+        cancelButton.isHidden = false
+        editProfileStackView.isHidden = false
+        userNameLabel.becomeFirstResponder()
+    }
+    
+    @objc private func didTapCancelButton() {
+        editButton.isHidden = false
+        cancelButton.isHidden = true
+        editProfileStackView.isHidden = true
     }
 }
 
