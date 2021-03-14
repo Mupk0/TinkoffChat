@@ -37,25 +37,23 @@ class ProfileViewController: UIViewController {
         return imageView
     }()
     
-    private let userNameLabel: MainTitleLabel = {
-        let label = MainTitleLabel()
-        label.textAlignment = .center
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.sizeToFit()
-        return label
+    private let userNameLabel: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .center
+        textField.font = UIFont.boldSystemFont(ofSize: 24)
+        textField.sizeToFit()
+        return textField
     }()
     
-    private let userDescriptionLabel: MainTitleLabel = {
-        let label = MainTitleLabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        return label
+    private let userDescriptionLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        return textView
     }()
     
     private let editButton = CustomButton()
+    
+    private let editPrifileStackView = UIStackView()
     
     private var imagePicker: ImagePicker?
     
@@ -81,6 +79,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        hideKeyboardWhenTappedAround()
         //print("frame for edit button in viewDidLoad(): \(editButton.frame)")
     }
     
@@ -137,6 +136,7 @@ class ProfileViewController: UIViewController {
             userDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
+            userDescriptionLabel.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -50),
             
             editButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             editButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),

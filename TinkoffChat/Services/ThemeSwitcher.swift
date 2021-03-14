@@ -57,6 +57,12 @@ class ThemeSwitcher {
         let themeBackgroundViewAppearance = ThemeControllerBackgroundView.appearance()
         themeBackgroundViewAppearance.backgroundColor = themeType.themeControllerBackgroundColor
         
+        let textFieldAppearance = UITextField.appearance()
+        textFieldAppearance.textColor = themeType.mainTitleLabelColor
+        
+        let textViewAppearance = UITextView.appearance()
+        textViewAppearance.textColor = themeType.mainTitleLabelColor
+        textViewAppearance.backgroundColor = themeType.mainBackgroundColor
     }
     
     private func resetSubviews() {
