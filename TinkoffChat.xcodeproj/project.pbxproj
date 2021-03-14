@@ -274,10 +274,9 @@
 		EFE436BD25EC2B7D00869295 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EFEC1DED25FE915800194752 /* Controllers */,
 				EFEC1DCE25FE50AD00194752 /* Storage */,
-				EF835BE525DFB29400906839 /* ProfileViewController.swift */,
-				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
-				EFEC1DC825FE373600194752 /* Profile.swift */,
+				EFEC1DEE25FE916700194752 /* Entities */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -391,6 +390,23 @@
 				EFEC1DE925FE905700194752 /* SaveProfileOperation.swift */,
 			);
 			path = Operation;
+			sourceTree = "<group>";
+		};
+		EFEC1DED25FE915800194752 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EF835BE525DFB29400906839 /* ProfileViewController.swift */,
+				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EFEC1DEE25FE916700194752 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EFEC1DC825FE373600194752 /* Profile.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

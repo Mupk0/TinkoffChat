@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Profile {
+struct Profile {
     var about: String?
     var photo: UIImage?
     var userName: String?

@@ -269,18 +269,18 @@ class ProfileViewController: UIViewController {
     
     private func updateViewsByProfile(_ profile: Profile?) {
         userAvatarImageView.image = unsavedProfile?.photo ?? nil
-        userNameTextField.text = unsavedProfile?.userName ?? "Your name"
-        userDescriptionTextView.text = unsavedProfile?.about ?? "About you"
+        userNameTextField.text = unsavedProfile?.userName ?? "Your Name"
+        userDescriptionTextView.text = unsavedProfile?.about ?? "Add Some Information About you"
         userAvatarLabel.text = userNameTextField.text?.getStringFirstChars()
     }
     
     private func setStateOfSaveButtons(to state: SaveButtonsState) {
         gcdButton.isEnabled = state == .enabled
         operationButton.isEnabled = state == .enabled
-        cancelButton.isEnabled = state == .enabled
     }
     // MARK: - Click Action Methods
     @objc private func showImagePickerAlert() {
+        profileState = .edit
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         imagePicker?.present()
     }
@@ -324,7 +324,7 @@ class ProfileViewController: UIViewController {
         }
         
         activityIndicator.startAnimating()
-        
+        cancelButton.isEnabled = false
         setStateOfSaveButtons(to: .disabled)
         
         let profile = Profile(about: userDescriptionTextView.text,
@@ -335,6 +335,7 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 let window = UIApplication.shared.delegate?.window as? UIWindow
                 self.activityIndicator.stopAnimating()
+                self.cancelButton.isEnabled = true
                 self.setStateOfSaveButtons(to: .enabled)
                 if status {
                     
@@ -343,6 +344,7 @@ class ProfileViewController: UIViewController {
                                                                       buttonLeftAction: { _ in },
                                                                       buttonRightAction: { _ in })
                     self.hasUnsavedChanges = false
+                    self.savedProfile = profile
                     self.profileState = .show
                 } else {
                     window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
@@ -365,9 +367,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         if image != nil {
-            profileState = .edit
+            
             userAvatarImageView.image = image
             setStateOfSaveButtons(to: .enabled)
+        } else {
+            profileState = .show
         }
         imagePicker = nil
     }
