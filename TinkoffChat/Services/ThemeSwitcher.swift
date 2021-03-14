@@ -36,6 +36,7 @@ class ThemeSwitcher {
         UINavigationBar.appearance().barTintColor = themeType.navigationBackgroundColor
         UINavigationBar.appearance().shadowImage = themeType.navigationSeparatorColor.getOnePxImage()
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: themeType.mainTitleLabelColor as Any]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: themeType.mainTitleLabelColor as Any]
         UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: themeType.mainTitleLabelColor as Any],
                                                             for: .normal)
         // Buttons

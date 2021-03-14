@@ -41,12 +41,6 @@ final class ProfileFileStorage: ProfileStorageProtocol {
     
     public func save(profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
         let dataDictionary = serialize(profile: profile)
-        let isRandomErrorHappened = Int(arc4random_uniform(2))
-        
-        if isRandomErrorHappened == 0 {
-            completionHandler(false)
-            return
-        }
         
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary, requiringSecureCoding: false)
