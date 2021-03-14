@@ -316,13 +316,13 @@ class ProfileViewController: UIViewController {
     }
     
     private func saveProfile(type: SaveType) {
-        profileStorage = ProfileFileStorage()
         switch type {
         case .GCD:
-            // Класс для GCD
+            profileStorage = ProfileStorageWithGCD()
             break
         case .operation:
             // Класс для Operation
+            profileStorage = ProfileFileStorage()
             break
         }
         

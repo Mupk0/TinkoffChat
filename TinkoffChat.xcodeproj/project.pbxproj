@@ -51,6 +51,7 @@
 		EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */; };
 		EFEC1DD825FE871400194752 /* ProfileStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */; };
 		EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDA25FE8A1800194752 /* UIWindow.swift */; };
+		EFEC1DDF25FE8D9D00194752 /* ProfileStorageWithGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageProtocol.swift; sourceTree = "<group>"; };
 		EFEC1DDA25FE8A1800194752 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageWithGCD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,10 +361,19 @@
 		EFEC1DCE25FE50AD00194752 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				EFEC1DDD25FE8D7A00194752 /* GCD */,
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
 				EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		EFEC1DDD25FE8D7A00194752 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */,
+			);
+			path = GCD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +470,7 @@
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
+				EFEC1DDF25FE8D9D00194752 /* ProfileStorageWithGCD.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
 				EFEC1DC925FE373600194752 /* Profile.swift in Sources */,
