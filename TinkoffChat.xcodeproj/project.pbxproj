@@ -47,6 +47,9 @@
 		EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */; };
 		EFEC1DC925FE373600194752 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DC825FE373600194752 /* Profile.swift */; };
 		EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DCB25FE3C6800194752 /* UIViewController.swift */; };
+		EFEC1DD025FE545600194752 /* ProfileFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */; };
+		EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */; };
+		EFEC1DD825FE871400194752 /* ProfileStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,9 @@
 		EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
 		EFEC1DC825FE373600194752 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		EFEC1DCB25FE3C6800194752 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFileStorage.swift; sourceTree = "<group>"; };
+		EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
+		EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,7 @@
 				EF835BEB25E0362000906839 /* String.swift */,
 				EF9BB92D25F4DEF3006D013A /* UIColor.swift */,
 				EFEC1DCB25FE3C6800194752 /* UIViewController.swift */,
+				EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -256,6 +263,7 @@
 		EFE436BD25EC2B7D00869295 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EFEC1DCE25FE50AD00194752 /* Storage */,
 				EF835BE525DFB29400906839 /* ProfileViewController.swift */,
 				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
 				EFEC1DC825FE373600194752 /* Profile.swift */,
@@ -345,6 +353,15 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		EFEC1DCE25FE50AD00194752 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
+				EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -417,6 +434,7 @@
 				EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */,
 				EFE436D025ECF97600869295 /* Randomizer.swift in Sources */,
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
+				EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */,
 				EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
@@ -429,6 +447,8 @@
 				EFBF508B25F4097F004F16C1 /* ThemeSwitcher.swift in Sources */,
 				EF9BB93B25F4E9D8006D013A /* ThemesViewController.swift in Sources */,
 				EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */,
+				EFEC1DD025FE545600194752 /* ProfileFileStorage.swift in Sources */,
+				EFEC1DD825FE871400194752 /* ProfileStorageProtocol.swift in Sources */,
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
