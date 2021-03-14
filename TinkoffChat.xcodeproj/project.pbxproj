@@ -50,6 +50,7 @@
 		EFEC1DD025FE545600194752 /* ProfileFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */; };
 		EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */; };
 		EFEC1DD825FE871400194752 /* ProfileStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */; };
+		EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDA25FE8A1800194752 /* UIWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFileStorage.swift; sourceTree = "<group>"; };
 		EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		EFEC1DD725FE871400194752 /* ProfileStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageProtocol.swift; sourceTree = "<group>"; };
+		EFEC1DDA25FE8A1800194752 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				EF9BB92D25F4DEF3006D013A /* UIColor.swift */,
 				EFEC1DCB25FE3C6800194752 /* UIViewController.swift */,
 				EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */,
+				EFEC1DDA25FE8A1800194752 /* UIWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
+				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
