@@ -15,4 +15,7 @@ class Constants {
     static let profileUserNameKey = "name"
     static let profileUserDescriptionKey = "description"
     static let profileUserPhotoKey = "userPhoto"
+    
+    static let userThemeFileName = "Theme"
+    static let userThemeKey = "currentTheme"
 }

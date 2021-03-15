@@ -99,8 +99,11 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     }
     
     private func updateCurrentTheme() {
-        let themeType = ThemeType.init(Settings.shared.themeType)
-        didSelectTheme(themeType)
+        let themeStorage = ThemeStorageWithGCD()
+        themeStorage.load(completionHandler: { userTheme in
+            let themeType = ThemeType.init(userTheme?.currentTheme)
+            self.didSelectTheme(themeType)
+        })
     }
     
     private func didSelectTheme(_ themeType: ThemeType) {

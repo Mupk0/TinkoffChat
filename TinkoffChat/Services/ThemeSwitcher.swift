@@ -14,7 +14,7 @@ class ThemeSwitcher {
     public func setTheme(_ themeType: ThemeType) {
         updateAppereances(themeType)
         resetSubviews()
-        updateUserDefaultsWith(themeType)
+        updateThemeInStorage(themeType)
     }
     
     private func updateAppereances(_ themeType: ThemeType) {
@@ -72,14 +72,26 @@ class ThemeSwitcher {
     private func resetSubviews() {
         // Reset Appearances
         UIApplication.shared.delegate?.window??.subviews.forEach({ (view: UIView) in
-          view.removeFromSuperview()
+            view.removeFromSuperview()
             UIApplication.shared.delegate?.window??.addSubview(view)
         })
     }
     
-    private func updateUserDefaultsWith(_ themeType: ThemeType) {
-        let settings = Settings.shared
-        settings.themeType = themeType.rawValue
-        settings.save()
+    private func updateThemeInStorage(_ themeType: ThemeType) {
+        let themeStorage = ThemeStorageWithGCD()
+        themeStorage.save(userTheme: UserTheme(currentTheme: themeType.rawValue),
+                          completionHandler: { status in
+                            if !status {
+                                let window = UIApplication.shared.delegate?.window as? UIWindow
+                                window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
+                                                                                  message: "Не удалось сохранить данные",
+                                                                                  buttonLeftTitle: "Ок",
+                                                                                  buttonRightTitle: "Повторить",
+                                                                                  buttonLeftAction: { _ in },
+                                                                                  buttonRightAction: { _ in
+                                                                                    self.updateThemeInStorage(themeType)
+                                                                                  })
+                            }
+                          })
     }
 }

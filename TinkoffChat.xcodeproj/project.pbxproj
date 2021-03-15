@@ -11,6 +11,9 @@
 		EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B64325D59BA70050FBA3 /* ViewController.swift */; };
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
+		EF7CD04C25FF979300EC4F0E /* ThemeFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */; };
+		EF7CD04F25FF990E00EC4F0E /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */; };
+		EF7CD05225FF9AC100EC4F0E /* ThemeStorageWithGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
 		EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE825DFCB4D00906839 /* ImagePicker.swift */; };
 		EF835BEC25E0362000906839 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BEB25E0362000906839 /* String.swift */; };
@@ -64,6 +67,9 @@
 		EF08B64825D59BA80050FBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF08B64B25D59BA80050FBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF08B64D25D59BA80050FBA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFileStorage.swift; sourceTree = "<group>"; };
+		EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
+		EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStorageWithGCD.swift; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EF835BE825DFCB4D00906839 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EF835BEB25E0362000906839 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 				EFD1347D25F504BB00C398CE /* Controllers */,
 				EFD1347E25F504C400C398CE /* Views */,
 				EFD1347F25F504E400C398CE /* Entities */,
+				EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */,
+				EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				EFD1348025F5050600C398CE /* ThemeType.swift */,
+				EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -484,11 +493,13 @@
 				EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */,
 				EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
+				EF7CD04C25FF979300EC4F0E /* ThemeFileStorage.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
 				EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */,
 				EFE436E325ED727000869295 /* MessageType.swift in Sources */,
 				EFE436E625ED728A00869295 /* ConversationModel.swift in Sources */,
 				EF9BB93725F4E83E006D013A /* MessageTextView.swift in Sources */,
+				EF7CD04F25FF990E00EC4F0E /* UserTheme.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
 				EFBF508325F40205004F16C1 /* Settings.swift in Sources */,
 				EFBF508B25F4097F004F16C1 /* ThemeSwitcher.swift in Sources */,
@@ -522,6 +533,7 @@
 				EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */,
 				EFEC1DEA25FE905700194752 /* SaveProfileOperation.swift in Sources */,
 				EFEC1DE725FE8F8C00194752 /* LoadProfileOperation.swift in Sources */,
+				EF7CD05225FF9AC100EC4F0E /* ThemeStorageWithGCD.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */,
 			);
