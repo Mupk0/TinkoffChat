@@ -25,8 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: chatListViewController)
         window?.makeKeyAndVisible()
         
-        let themeType = ThemeType.init(Settings.shared.themeType)
-        ThemeSwitcher.shared.setTheme(themeType)
+        let themeStorage = UserSettingsStorageWithGCD()
+        themeStorage.load(completionHandler: { userTheme in
+            let themeType = ThemeType.init(userTheme?.currentTheme)
+            ThemeSwitcher.shared.setTheme(themeType)
+        })
         
         return true
     }

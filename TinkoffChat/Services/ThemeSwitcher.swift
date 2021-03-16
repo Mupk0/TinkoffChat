@@ -14,7 +14,7 @@ class ThemeSwitcher {
     public func setTheme(_ themeType: ThemeType) {
         updateAppereances(themeType)
         resetSubviews()
-        updateUserDefaultsWith(themeType)
+        updateThemeInStorage(themeType)
     }
     
     private func updateAppereances(_ themeType: ThemeType) {
@@ -36,6 +36,7 @@ class ThemeSwitcher {
         UINavigationBar.appearance().barTintColor = themeType.navigationBackgroundColor
         UINavigationBar.appearance().shadowImage = themeType.navigationSeparatorColor.getOnePxImage()
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: themeType.mainTitleLabelColor as Any]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: themeType.mainTitleLabelColor as Any]
         UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: themeType.mainTitleLabelColor as Any],
                                                             for: .normal)
         // Buttons
@@ -57,19 +58,40 @@ class ThemeSwitcher {
         let themeBackgroundViewAppearance = ThemeControllerBackgroundView.appearance()
         themeBackgroundViewAppearance.backgroundColor = themeType.themeControllerBackgroundColor
         
+        let textFieldAppearance = UITextField.appearance()
+        textFieldAppearance.textColor = themeType.mainTitleLabelColor
+        
+        let textViewAppearance = UITextView.appearance()
+        textViewAppearance.textColor = themeType.mainTitleLabelColor
+        textViewAppearance.backgroundColor = themeType.mainBackgroundColor
+        
+        let activityIndicatorAppearance = UIActivityIndicatorView.appearance()
+        activityIndicatorAppearance.color = themeType.mainTitleLabelColor
     }
     
     private func resetSubviews() {
         // Reset Appearances
         UIApplication.shared.delegate?.window??.subviews.forEach({ (view: UIView) in
-          view.removeFromSuperview()
+            view.removeFromSuperview()
             UIApplication.shared.delegate?.window??.addSubview(view)
         })
     }
     
-    private func updateUserDefaultsWith(_ themeType: ThemeType) {
-        let settings = Settings.shared
-        settings.themeType = themeType.rawValue
-        settings.save()
+    private func updateThemeInStorage(_ themeType: ThemeType) {
+        let themeStorage = UserSettingsStorageWithGCD()
+        themeStorage.save(model: UserSettings(currentTheme: themeType.rawValue),
+                          completionHandler: { status in
+                            if !status {
+                                let window = UIApplication.shared.delegate?.window as? UIWindow
+                                window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
+                                                                                  message: "Не удалось сохранить данные",
+                                                                                  buttonLeftTitle: "Ок",
+                                                                                  buttonRightTitle: "Повторить",
+                                                                                  buttonLeftAction: { _ in },
+                                                                                  buttonRightAction: { _ in
+                                                                                    self.updateThemeInStorage(themeType)
+                                                                                  })
+                            }
+                          })
     }
 }
