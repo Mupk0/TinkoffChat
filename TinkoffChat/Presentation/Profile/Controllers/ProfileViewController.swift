@@ -333,11 +333,11 @@ class ProfileViewController: UIViewController {
         
         profileStorage?.save(profile) { status in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                let window = UIApplication.shared.delegate?.window as? UIWindow
                 self.activityIndicator.stopAnimating()
                 self.cancelButton.isEnabled = true
                 self.setStateOfSaveButtons(to: .enabled)
                 if status {
+                    let window = UIApplication.shared.delegate?.window as? UIWindow
                     window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
                                                                       buttonLeftTitle: "Ок",
                                                                       buttonLeftAction: { _ in },
@@ -346,6 +346,7 @@ class ProfileViewController: UIViewController {
                     self.savedProfile = profile
                     self.profileState = .show
                 } else {
+                    let window = UIApplication.shared.delegate?.window as? UIWindow
                     window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
                                                                       message: "Не удалось сохранить данные",
                                                                       buttonLeftTitle: "Ок",
