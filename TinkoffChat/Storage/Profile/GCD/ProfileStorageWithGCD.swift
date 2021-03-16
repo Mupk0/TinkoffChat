@@ -11,9 +11,9 @@ class ProfileStorageWithGCD: ProfileStorageProtocol {
     
     private let profileStorage = ProfileFileStorage()
     
-    func save(profile: Profile, completionHandler: @escaping (Bool) -> Void) {
+    func save(_ profile: Profile, completionHandler: @escaping (Bool) -> Void) {
         DispatchQueue.global().async {
-            self.profileStorage.save(profile: profile) { completion in
+            self.profileStorage.save(profile) { completion in
                 completionHandler(completion)
             }
         }

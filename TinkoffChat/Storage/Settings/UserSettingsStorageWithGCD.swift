@@ -1,5 +1,5 @@
 //
-//  ThemeStorageWithGCD.swift
+//  UserSettingsStorageWithGCD.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 15.03.2021.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-class ThemeStorageWithGCD: ThemeStorageProtocol {
+class UserSettingsStorageWithGCD: SettingsStorageProtocol {
     
-    private let themeStorage = ThemeFileStorage()
+    private let themeStorage = UserSettingsFileStorage()
     
-    func save(userTheme profile: UserSettings, completionHandler: @escaping (Bool) -> Void) {
+    func save(model: UserSettings, completionHandler: @escaping (Bool) -> Void) {
         DispatchQueue.global().async {
-            self.themeStorage.save(userTheme: profile) { completion in
+            self.themeStorage.save(model: model) { completion in
                 completionHandler(completion)
             }
         }

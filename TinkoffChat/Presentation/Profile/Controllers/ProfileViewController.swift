@@ -331,14 +331,13 @@ class ProfileViewController: UIViewController {
                               photo: userAvatarImageView.image,
                               userName: userNameTextField.text)
         
-        profileStorage?.save(profile: profile) { status in
+        profileStorage?.save(profile) { status in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 let window = UIApplication.shared.delegate?.window as? UIWindow
                 self.activityIndicator.stopAnimating()
                 self.cancelButton.isEnabled = true
                 self.setStateOfSaveButtons(to: .enabled)
                 if status {
-                    
                     window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
                                                                       buttonLeftTitle: "Ок",
                                                                       buttonLeftAction: { _ in },

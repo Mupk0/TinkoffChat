@@ -21,10 +21,12 @@ class SaveProfileOperation: Operation {
     }
     
     override func main() {
+        
         if isCancelled {
             return
         }
-        profileStorage.save(profile: profile) { status in
+        
+        profileStorage.save(profile) { status in
             self.completionHandler(status)
         }
     }

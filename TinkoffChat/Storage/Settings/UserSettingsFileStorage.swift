@@ -1,18 +1,18 @@
 //
-//  ThemeFileStorage.swift
+//  UserSettingsFileStorage.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 15.03.2021.
-// 
+//
 
-import UIKit
+import Foundation
 
-protocol ThemeStorageProtocol {
-    func save(userTheme: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void )
-    func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void)
+protocol SettingsStorageProtocol: class {
+    func save(model: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void)
+    func load(completionHandler: @escaping (_ model: UserSettings?) -> Void)
 }
 
-class ThemeFileStorage {
+class UserSettingsFileStorage {
     
     private let fileManager: FileManager
     private let filePath: URL?
@@ -24,7 +24,7 @@ class ThemeFileStorage {
     }
 }
 
-extension ThemeFileStorage: ThemeStorageProtocol {
+extension UserSettingsFileStorage: SettingsStorageProtocol {
     
     public func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void) {
         guard let filePath = filePath else {
@@ -47,8 +47,8 @@ extension ThemeFileStorage: ThemeStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(userTheme: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void) {
-        let dataDictionary = serialize(model: userTheme)
+    public func save(model: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void) {
+        let dataDictionary = serialize(model: model)
         
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary,
@@ -69,15 +69,13 @@ extension ThemeFileStorage: ThemeStorageProtocol {
     }
 }
 
-extension ThemeFileStorage: SerializeFileProtocol {
+extension UserSettingsFileStorage: FileSerializeProtocol {
     
     func serialize(model userTheme: UserSettings) -> [String: Any?] {
-        
         return [Constants.userThemeKey: userTheme.currentTheme]
     }
     
     func deserialize(from data: Data) throws -> UserSettings? {
-        
         do {
             if let dictionary = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {
                 let currentTheme = dictionary[Constants.userThemeKey] as? String

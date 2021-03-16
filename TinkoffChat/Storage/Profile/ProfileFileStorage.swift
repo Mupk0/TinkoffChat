@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ProfileStorageProtocol: class {
+    func save(_ profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void)
+    func load(completionHandler: @escaping (_ model: Profile?) -> Void)
+}
+
 class ProfileFileStorage {
     
     private let fileManager: FileManager
@@ -43,7 +48,7 @@ extension ProfileFileStorage: ProfileStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
+    public func save(_ profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
         let dataDictionary = serialize(model: profile)
         
         do {
@@ -65,7 +70,7 @@ extension ProfileFileStorage: ProfileStorageProtocol {
     }
 }
 
-extension ProfileFileStorage: SerializeFileProtocol {
+extension ProfileFileStorage: FileSerializeProtocol {
     
     func serialize(model: Profile) -> [String: Any?] {
         

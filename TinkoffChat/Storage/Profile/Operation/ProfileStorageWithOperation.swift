@@ -11,7 +11,7 @@ class ProfileStorageWithOperation: ProfileStorageProtocol {
     private let queue = OperationQueue()
     private let profileStorage = ProfileFileStorage()
     
-    func save(profile: Profile,
+    func save(_ profile: Profile,
               completionHandler: @escaping (Bool) -> Void) {
         let operation = SaveProfileOperation(userProfile: profile,
                                              profileStorage: profileStorage,

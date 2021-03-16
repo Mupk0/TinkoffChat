@@ -18,9 +18,11 @@ class LoadProfileOperation: Operation {
     }
     
     override func main() {
+        
         if isCancelled {
             return
         }
+        
         profileStorage.load { profile in
             self.completionHandler(profile)
         }
