@@ -159,8 +159,19 @@
 		EF7CD0572600A97500EC4F0E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				EFEC1DCE25FE50AD00194752 /* Profile */,
+				EF7CD0592600AA0500EC4F0E /* Settings */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		EF7CD0592600AA0500EC4F0E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */,
+				EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* Services */ = {
@@ -178,8 +189,6 @@
 				EFD1347D25F504BB00C398CE /* Controllers */,
 				EFD1347E25F504C400C398CE /* Views */,
 				EFD1347F25F504E400C398CE /* Entities */,
-				EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */,
-				EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -292,7 +301,6 @@
 			isa = PBXGroup;
 			children = (
 				EFEC1DED25FE915800194752 /* Controllers */,
-				EFEC1DCE25FE50AD00194752 /* Storage */,
 				EFEC1DEE25FE916700194752 /* Entities */,
 			);
 			path = Profile;
@@ -380,7 +388,7 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		EFEC1DCE25FE50AD00194752 /* Storage */ = {
+		EFEC1DCE25FE50AD00194752 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
@@ -388,7 +396,7 @@
 				EFEC1DDD25FE8D7A00194752 /* GCD */,
 				EFEC1DE225FE8F1200194752 /* Operation */,
 			);
-			path = Storage;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		EFEC1DDD25FE8D7A00194752 /* GCD */ = {
