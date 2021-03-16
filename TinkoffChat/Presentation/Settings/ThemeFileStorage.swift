@@ -8,8 +8,8 @@
 import UIKit
 
 protocol ThemeStorageProtocol {
-    func save(userTheme: UserTheme, completionHandler: @escaping (_ success: Bool) -> Void )
-    func load(completionHandler: @escaping (_ userTheme: UserTheme?) -> Void)
+    func save(userTheme: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void )
+    func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void)
 }
 
 class ThemeFileStorage {
@@ -26,7 +26,7 @@ class ThemeFileStorage {
 
 extension ThemeFileStorage: ThemeStorageProtocol {
     
-    public func load(completionHandler: @escaping (_ userTheme: UserTheme?) -> Void) {
+    public func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void) {
         guard let filePath = filePath else {
             print("Error With Url Path")
             completionHandler(nil)
@@ -47,7 +47,7 @@ extension ThemeFileStorage: ThemeStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(userTheme: UserTheme, completionHandler: @escaping (_ success: Bool) -> Void) {
+    public func save(userTheme: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void) {
         let dataDictionary = serialize(model: userTheme)
         
         do {
@@ -71,18 +71,18 @@ extension ThemeFileStorage: ThemeStorageProtocol {
 
 extension ThemeFileStorage: SerializeFileProtocol {
     
-    func serialize(model userTheme: UserTheme) -> [String: Any?] {
+    func serialize(model userTheme: UserSettings) -> [String: Any?] {
         
         return [Constants.userThemeKey: userTheme.currentTheme]
     }
     
-    func deserialize(from data: Data) throws -> UserTheme? {
+    func deserialize(from data: Data) throws -> UserSettings? {
         
         do {
             if let dictionary = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {
                 let currentTheme = dictionary[Constants.userThemeKey] as? String
 
-                return UserTheme(currentTheme: currentTheme)
+                return UserSettings(currentTheme: currentTheme)
             }
         } catch {
             print("Deserialize Error \(error)")
@@ -90,4 +90,3 @@ extension ThemeFileStorage: SerializeFileProtocol {
         return nil
     }
 }
-

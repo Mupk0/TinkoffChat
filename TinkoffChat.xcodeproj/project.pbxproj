@@ -12,7 +12,7 @@
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
 		EF7CD04C25FF979300EC4F0E /* ThemeFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */; };
-		EF7CD04F25FF990E00EC4F0E /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */; };
+		EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */; };
 		EF7CD05225FF9AC100EC4F0E /* ThemeStorageWithGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
 		EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE825DFCB4D00906839 /* ImagePicker.swift */; };
@@ -68,7 +68,7 @@
 		EF08B64B25D59BA80050FBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF08B64D25D59BA80050FBA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF7CD04B25FF979300EC4F0E /* ThemeFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFileStorage.swift; sourceTree = "<group>"; };
-		EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
+		EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EF7CD05125FF9AC100EC4F0E /* ThemeStorageWithGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStorageWithGCD.swift; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EF835BE825DFCB4D00906839 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 		EF08B63E25D59BA70050FBA3 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				EF7CD0572600A97500EC4F0E /* Storage */,
 				EFBF508125F401FB004F16C1 /* Services */,
 				EFDE1BD625D82AC80016BD67 /* App */,
 				EFDE1BE025D82BD90016BD67 /* Presentation */,
@@ -153,6 +154,13 @@
 				EFDE1BD825D82B190016BD67 /* Resources */,
 			);
 			path = TinkoffChat;
+			sourceTree = "<group>";
+		};
+		EF7CD0572600A97500EC4F0E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* Services */ = {
@@ -196,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				EFD1348025F5050600C398CE /* ThemeType.swift */,
-				EF7CD04E25FF990E00EC4F0E /* UserTheme.swift */,
+				EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -499,7 +507,7 @@
 				EFE436E325ED727000869295 /* MessageType.swift in Sources */,
 				EFE436E625ED728A00869295 /* ConversationModel.swift in Sources */,
 				EF9BB93725F4E83E006D013A /* MessageTextView.swift in Sources */,
-				EF7CD04F25FF990E00EC4F0E /* UserTheme.swift in Sources */,
+				EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
 				EFBF508325F40205004F16C1 /* Settings.swift in Sources */,
 				EFBF508B25F4097F004F16C1 /* ThemeSwitcher.swift in Sources */,

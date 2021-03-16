@@ -11,7 +11,7 @@ class ThemeStorageWithGCD: ThemeStorageProtocol {
     
     private let themeStorage = ThemeFileStorage()
     
-    func save(userTheme profile: UserTheme, completionHandler: @escaping (Bool) -> Void) {
+    func save(userTheme profile: UserSettings, completionHandler: @escaping (Bool) -> Void) {
         DispatchQueue.global().async {
             self.themeStorage.save(userTheme: profile) { completion in
                 completionHandler(completion)
@@ -19,7 +19,7 @@ class ThemeStorageWithGCD: ThemeStorageProtocol {
         }
     }
     
-    func load(completionHandler: @escaping (UserTheme?) -> Void) {
+    func load(completionHandler: @escaping (UserSettings?) -> Void) {
         self.themeStorage.load { profile in
             completionHandler(profile)
         }

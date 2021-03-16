@@ -79,7 +79,7 @@ class ThemeSwitcher {
     
     private func updateThemeInStorage(_ themeType: ThemeType) {
         let themeStorage = ThemeStorageWithGCD()
-        themeStorage.save(userTheme: UserTheme(currentTheme: themeType.rawValue),
+        themeStorage.save(userTheme: UserSettings(currentTheme: themeType.rawValue),
                           completionHandler: { status in
                             if !status {
                                 let window = UIApplication.shared.delegate?.window as? UIWindow
