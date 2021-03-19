@@ -18,4 +18,6 @@ class Constants {
     
     static let userThemeFileName = "Theme"
     static let userThemeKey = "currentTheme"
+    
+    static let deviceId = UIDevice.current.identifierForVendor?.uuidString
 }
