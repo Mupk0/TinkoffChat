@@ -119,6 +119,5 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
          retain cycle возникнет при использовании данного замыкания,
          если в контроллере есть ссылка на замыкание, в котором мы используем self сильной ссылкой
          */
-
     }
 }

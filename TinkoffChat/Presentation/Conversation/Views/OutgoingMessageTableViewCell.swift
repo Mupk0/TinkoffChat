@@ -15,7 +15,7 @@ class OutgoingMessageTableViewCell: UITableViewCell, MessageCellProtocol {
     private let messageTextView = MessageTextView()
     
     func setMessageModel(_ model: MessageCellConfiguration) {
-        messageTextView.text = model.text ?? "Unknown Message"
+        messageTextView.text = model.content
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

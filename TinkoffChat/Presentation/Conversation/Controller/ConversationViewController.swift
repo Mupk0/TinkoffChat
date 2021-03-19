@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ConversationViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     
-    private var messages: [ConversationModel] = []
+    private var messages: [Message] = []
     
-    init(userName: String) {
+    private let channelId: String
+    
+    init(userName: String, channelId: String) {
+        self.channelId = channelId
+        
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.title = userName
@@ -29,7 +34,11 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        messages = getData()
+        
+        getData(complition: { [weak self] messages in
+            self?.messages = messages
+            self?.tableView.reloadData()
+        })
     }
     
     private func configureViews() {
@@ -67,9 +76,9 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         
-        let identifier = message.messageType == .incoming
-            ? IncomingMessageTableViewCell.reuseIdentifier
-            : OutgoingMessageTableViewCell.reuseIdentifier
+        let identifier = message.senderId == Constants.deviceId
+            ? OutgoingMessageTableViewCell.reuseIdentifier
+            : IncomingMessageTableViewCell.reuseIdentifier
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier,
                                                        for: indexPath) as? MessageCellProtocol & UITableViewCell
@@ -81,12 +90,24 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 extension ConversationViewController {
-    fileprivate func getData() -> [ConversationModel] {
-        var result: [ConversationModel] = []
-        for _ in 0...Int.random(in: 5...15) {
-            result.append(ConversationModel(text: Randomizer.shared.getText(),
-                                            messageType: MessageType.allCases.randomElement() ?? .outgoing))
+    fileprivate func getData(complition: @escaping ([Message]) -> Void) {
+        var result: [Message] = []
+
+        let db = Firestore.firestore()
+        let reference = db.collection("channels").document(channelId).collection("messages")
+        reference.addSnapshotListener { snapshot, _ in // some code
+            if let documents = snapshot?.documents {
+                for document in documents {
+                    let doc = document.data()
+                    let message = Message(content: doc["content"] as? String,
+                                          created: doc["created"] as? Date,
+                                          senderId: doc["senderId"] as? String,
+                                          senderName: doc["senderName"] as? String)
+                    result.append(message)
+                }
+            }
+            complition(result)
         }
-        return result
+        // reference.addDocument(data: ...)
     }
 }

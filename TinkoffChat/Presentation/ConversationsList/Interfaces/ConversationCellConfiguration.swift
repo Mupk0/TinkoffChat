@@ -9,8 +9,6 @@ import Foundation
 
 protocol ConversationCellConfiguration {
     var name: String? { get set }
-    var message: String? { get set }
-    var date: Date? { get set }
-    var online: Bool { get set }
-    var hasUnreadMessages: Bool { get set }
+    var lastMessage: String? { get set }
+    var lastActivity: Date? { get set }
 }

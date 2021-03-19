@@ -92,16 +92,15 @@ class ConversationsListTableViewCell: UITableViewCell {
     
     func configureCell(model: ConversationCellConfiguration) {
         userNameLabel.text = model.name ?? "Unknown Name"
-        lastMessageDateLabel.text = DateUtils.shared.getStringFromDate(model.date)
-        lastMessageLabel.text = model.message ?? "No messages yet"
+        lastMessageDateLabel.text = DateUtils.shared.getStringFromDate(model.lastActivity)
+        lastMessageLabel.text = model.lastMessage ?? "No messages yet"
         
-        lastMessageLabel.font = model.message != nil
+        lastMessageLabel.font = model.lastMessage != nil
             ? UIFont.systemFont(ofSize: 13,
-                                weight: model.hasUnreadMessages ? .bold : .light)
+                                weight: .light)
             : UIFont(name: "HelveticaNeue-Thin", size: 13.0)
         
-        userStatusView.isHidden = !model.online
-        // backgroundColor = model.online ? UIColor(red: 1.00, green: 0.96, blue: 0.62, alpha: 1.00) : getOfflineBackgroundColor()
+        userStatusView.isHidden = true
     }
     
     private func getOfflineBackgroundColor() -> UIColor {
@@ -115,7 +114,6 @@ class ConversationsListTableViewCell: UITableViewCell {
         userNameLabel.text = nil
         lastMessageDateLabel.text = nil
         lastMessageLabel.text = nil
-        // backgroundColor = getOfflineBackgroundColor()
         lastMessageLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
 }

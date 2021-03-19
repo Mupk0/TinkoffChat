@@ -6,23 +6,26 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
-    var conversations: [ConversationCellModel] = []
+    var conversations: [Channel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
         
-        conversations = getData()
+        getData(complition: { [weak self] channels in
+            self?.conversations = channels
+            self?.tableView.reloadData()
+        })
     }
     
     private func configureViews() {
-        
         navigationItem.title = "Tinkoff Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -73,12 +76,8 @@ class ConversationsListViewController: UIViewController {
 
 extension ConversationsListViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return ConversationsListType.allCases.count
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ConversationsListType(rawValue: section)?.getTitle()
+        return "Channels"
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,13 +85,11 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let isOnlineSection = ConversationsListType(rawValue: section) == .online
-        return isOnlineSection ? conversations.getOnline().count : conversations.getOffline().count
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isOnlineSection = ConversationsListType(rawValue: indexPath.section) == .online
-        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
+        let conversation = conversations[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
                                                        for: indexPath) as? ConversationsListTableViewCell else {
@@ -103,29 +100,39 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isOnlineSection = ConversationsListType(rawValue: indexPath.section) == .online
-        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
+        let conversation = conversations[indexPath.row]
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let chatViewController = ConversationViewController(userName: conversation.name ?? "Unknown Name")
+        let chatViewController = ConversationViewController(userName: conversation.name ?? "Unknown Name",
+                                                            channelId: conversation.identifier)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
     
 }
 
 extension ConversationsListViewController {
-    fileprivate func getData() -> [ConversationCellModel] {
-        var result: [ConversationCellModel] = []
-        for index in (0 ... 30) {
-            let element = ConversationCellModel(name: Randomizer.shared.getName(),
-                                                message: Randomizer.shared.getText(),
-                                                date: Randomizer.shared.getDate(),
-                                                online: index < 15 ? true : false,
-                                                hasUnreadMessages: Bool.random())
-            result.append(element)
-        }
+    fileprivate func getData(complition: @escaping ([Channel]) -> Void) {
+        var result: [Channel] = []
         
-        return result
+        let db = Firestore.firestore()
+        let reference = db.collection("channels")
+        reference.addSnapshotListener { snapshot, _ in // some code
+            if let documents = snapshot?.documents {
+                for document in documents {
+                    let doc = document.data()
+
+                    if doc["name"] != nil {
+                        let dateTimeStamp = doc["lastActivity"] as? Timestamp
+                        let channel = Channel(identifier: document.documentID,
+                                              name: doc["name"] as? String,
+                                              lastMessage: doc["lastMessage"] as? String,
+                                              lastActivity: dateTimeStamp?.dateValue())
+                        result.append(channel)
+                    }
+                }
+            }
+            complition(result)
+        }
     }
 }
