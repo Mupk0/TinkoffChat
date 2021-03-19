@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let themeType = ThemeType(userTheme?.currentTheme)
             ThemeSwitcher.shared.setTheme(themeType)
         })
+        
+        FirebaseApp.configure()
         
         return true
     }
