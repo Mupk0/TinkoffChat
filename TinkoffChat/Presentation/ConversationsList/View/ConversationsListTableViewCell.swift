@@ -101,11 +101,11 @@ class ConversationsListTableViewCell: UITableViewCell {
             : UIFont(name: "HelveticaNeue-Thin", size: 13.0)
         
         userStatusView.isHidden = !model.online
-        //backgroundColor = model.online ? UIColor(red: 1.00, green: 0.96, blue: 0.62, alpha: 1.00) : getOfflineBackgroundColor()
+        // backgroundColor = model.online ? UIColor(red: 1.00, green: 0.96, blue: 0.62, alpha: 1.00) : getOfflineBackgroundColor()
     }
     
     private func getOfflineBackgroundColor() -> UIColor {
-        let theme = ThemeType.init(Settings.shared.themeType)
+        let theme = ThemeType(Settings.shared.themeType)
         return theme.mainBackgroundColor
     }
     
@@ -115,7 +115,7 @@ class ConversationsListTableViewCell: UITableViewCell {
         userNameLabel.text = nil
         lastMessageDateLabel.text = nil
         lastMessageLabel.text = nil
-        //backgroundColor = getOfflineBackgroundColor()
+        // backgroundColor = getOfflineBackgroundColor()
         lastMessageLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
 }

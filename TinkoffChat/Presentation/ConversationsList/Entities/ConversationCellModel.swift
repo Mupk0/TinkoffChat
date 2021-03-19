@@ -18,10 +18,10 @@ struct ConversationCellModel: ConversationCellConfiguration {
 extension Array where Element == ConversationCellModel {
     
     func getOnline() -> [ConversationCellModel] {
-        return self.filter{ $0.online }
+        return self.filter { $0.online }
     }
     
     func getOffline() -> [ConversationCellModel] {
-        return self.filter{ !$0.online }
+        return self.filter { !$0.online }
     }
 }

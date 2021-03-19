@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate let defaultSettingsKey = "TinkoffChatSettingsKey"
+private let defaultSettingsKey = "TinkoffChatSettingsKey"
 
 class Settings: Codable {
     

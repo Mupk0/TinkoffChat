@@ -39,7 +39,7 @@ class ThemeTypeView: UIView {
         }
     }
     
-    public var didTapTheme: (()->())?
+    public var didTapTheme: (() -> Void)?
     
     init(_ themeType: ThemeType) {
         super.init(frame: .zero)
@@ -60,7 +60,7 @@ class ThemeTypeView: UIView {
             themeBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -38),
             themeBackgroundView.heightAnchor.constraint(equalToConstant: 57),
             
-            themeNameLabel.topAnchor.constraint(equalTo: themeBackgroundView.bottomAnchor,constant: 20),
+            themeNameLabel.topAnchor.constraint(equalTo: themeBackgroundView.bottomAnchor, constant: 20),
             themeNameLabel.centerXAnchor.constraint(equalTo: themeBackgroundView.centerXAnchor),
             
             themeIncomingMessageView.topAnchor.constraint(equalTo: themeBackgroundView.topAnchor, constant: 14),
@@ -71,7 +71,7 @@ class ThemeTypeView: UIView {
             themeOutgoingMessageView.topAnchor.constraint(equalTo: themeBackgroundView.topAnchor, constant: 22),
             themeOutgoingMessageView.trailingAnchor.constraint(equalTo: themeBackgroundView.trailingAnchor, constant: -33),
             themeOutgoingMessageView.bottomAnchor.constraint(equalTo: themeBackgroundView.bottomAnchor, constant: -10),
-            themeOutgoingMessageView.leadingAnchor.constraint(equalTo: themeBackgroundView.centerXAnchor, constant: 3),
+            themeOutgoingMessageView.leadingAnchor.constraint(equalTo: themeBackgroundView.centerXAnchor, constant: 3)
         ])
         
         themeBackgroundView.backgroundColor = themeType.mainBackgroundColor
@@ -84,7 +84,7 @@ class ThemeTypeView: UIView {
         themeNameLabel.textColor = .white
         themeNameLabel.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         
-        addGestureRecognizer(UITapGestureRecognizer(target:self,
+        addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                     action: #selector(didSelectTheme)))
     }
     

@@ -10,7 +10,7 @@ import UIKit
 class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
-
+    
     var conversations: [ConversationCellModel] = []
     
     override func viewDidLoad() {
@@ -27,14 +27,14 @@ class ConversationsListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        let profileButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "profileIcon"),
-                                                 style: .plain,
-                                                 target: self, action: #selector(didTapProfileButton))
+        let profileButton = UIBarButtonItem(image: #imageLiteral(resourceName: "profileIcon"),
+                                            style: .plain,
+                                            target: self, action: #selector(didTapProfileButton))
         navigationItem.rightBarButtonItem = profileButton
         
-        let settingsButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "settings"),
-                                                 style: .plain,
-                                                 target: self, action: #selector(didTapSettingsButton))
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
+                                             style: .plain,
+                                             target: self, action: #selector(didTapSettingsButton))
         navigationItem.leftBarButtonItem = settingsButton
         
         view.addSubview(tableView)
@@ -45,7 +45,7 @@ class ConversationsListViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
         tableView.delegate = self
@@ -63,7 +63,6 @@ class ConversationsListViewController: UIViewController {
     
     @objc private func didTapSettingsButton() {
         let themesViewController = ThemesViewController()
-        //themesViewController.delegate = self
         navigationController?.pushViewController(themesViewController, animated: true)
         
         themesViewController.didSelectThemeType = { themeType in
@@ -79,7 +78,7 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ConversationsListType.init(rawValue: section)?.getTitle()
+        return ConversationsListType(rawValue: section)?.getTitle()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,12 +86,12 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let isOnlineSection = ConversationsListType.init(rawValue: section) == .online
+        let isOnlineSection = ConversationsListType(rawValue: section) == .online
         return isOnlineSection ? conversations.getOnline().count : conversations.getOffline().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
+        let isOnlineSection = ConversationsListType(rawValue: indexPath.section) == .online
         let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
@@ -104,28 +103,21 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
+        let isOnlineSection = ConversationsListType(rawValue: indexPath.section) == .online
         let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let chatViewController =  ConversationViewController(userName: conversation.name ?? "Unknown Name")
+        let chatViewController = ConversationViewController(userName: conversation.name ?? "Unknown Name")
         navigationController?.pushViewController(chatViewController, animated: true)
     }
-
+    
 }
-
-
-//extension ConversationsListViewController: ThemesViewControllerDelegate {
-//    func didSelectTheme(_ themeType: ThemeType) {
-//        print("Selected \(themeType.rawValue) Theme")
-//    }
-//}
 
 extension ConversationsListViewController {
     fileprivate func getData() -> [ConversationCellModel] {
         var result: [ConversationCellModel] = []
-        for (_, index) in (0 ... 30).enumerated() {
+        for index in (0 ... 30) {
             let element = ConversationCellModel(name: Randomizer.shared.getName(),
                                                 message: Randomizer.shared.getText(),
                                                 date: Randomizer.shared.getDate(),
