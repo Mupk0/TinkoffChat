@@ -37,7 +37,7 @@ extension Array where Element == Channel {
         result.sort { (first, second) -> Bool in
             guard let firstDate = first.lastActivity else { return false }
             guard let secondDate = second.lastActivity else { return true }
-            return firstDate < secondDate
+            return firstDate > secondDate
         }
         return result
     }

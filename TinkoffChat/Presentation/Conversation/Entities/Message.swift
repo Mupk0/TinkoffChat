@@ -41,7 +41,7 @@ extension Array where Element == Message {
         result.sort { (first, second) -> Bool in
             guard let firstDate = first.created else { return false }
             guard let secondDate = second.created else { return true }
-            return firstDate > secondDate
+            return firstDate < secondDate
         }
         return result
     }
