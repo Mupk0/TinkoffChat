@@ -13,13 +13,45 @@ class ConversationViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .plain)
     
     private let messageView = MessageView()
-    private let messageTextView = UITextView()
-    private let placeholderLabel = UILabel()
-    private let sendIconImageView = UIImageView()
     
-    private let textViewFont: UIFont = .systemFont(ofSize: 16, weight: .regular)
+    private let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.sizeToFit()
+        textView.layer.cornerRadius = 16
+        textView.textContainerInset = UIEdgeInsets(top: 5, left: 17, bottom: 5, right: 30)
+        textView.font = Constants.TEXT_VIEW_FONT
+        return textView
+    }()
     
-    private var messages: [Message] = []
+    private let placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Your message here..."
+        label.font = Constants.TEXT_VIEW_FONT
+        label.sizeToFit()
+        label.frame.origin = CGPoint(x: 22, y: (Constants.TEXT_VIEW_FONT.pointSize) / 2)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    private let sendIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.isHidden = true
+        imageView.image = #imageLiteral(resourceName: "icon_send")
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
+    
+    private var messages: [Message] = [] {
+        didSet {
+            tableView.reloadData()
+            if messages.count > 0 {
+                let index = IndexPath(row: messages.count - 1, section: 0)
+                tableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }
+        }
+    }
     
     private let channelId: String
     
@@ -53,6 +85,7 @@ class ConversationViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillShowNotification,
                                                   object: nil)
@@ -121,27 +154,11 @@ class ConversationViewController: UIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-
-        messageTextView.delegate = self
         
-        messageTextView.isScrollEnabled = false
-        messageTextView.sizeToFit()
-        messageTextView.layer.cornerRadius = 16
-        messageTextView.textContainerInset = UIEdgeInsets(top: 5, left: 17, bottom: 5, right: 30)
-        messageTextView.font = textViewFont
-
-        placeholderLabel.text = "Your message here..."
-        placeholderLabel.font = textViewFont
-        placeholderLabel.sizeToFit()
-        placeholderLabel.frame.origin = CGPoint(x: 22, y: (textViewFont.pointSize) / 2)
-        placeholderLabel.textColor = .lightGray
-        
-        sendIconImageView.isHidden = true
-        sendIconImageView.image = #imageLiteral(resourceName: "icon_send")
-        sendIconImageView.contentMode = .scaleAspectFit
-        sendIconImageView.isUserInteractionEnabled = true
         sendIconImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                    action: #selector(didTapAddMessageButton)))
+                                                                      action: #selector(didTapAddMessageButton)))
+        
+        messageTextView.delegate = self
         
         hideKeyboardWhenTappedAround()
     }
@@ -149,9 +166,9 @@ class ConversationViewController: UIViewController {
     @objc private func didTapAddMessageButton() {
         if let message = messageTextView.text {
             self.addMessage(messageText: message,
-                            complition: { status in
+                            complition: { [weak self] status in
                                 if status {
-                                    self.messageTextView.text = ""
+                                    self?.messageTextView.text = ""
                                 }
                             })
         }
@@ -208,7 +225,6 @@ extension ConversationViewController {
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
-                    print(doc)
                     let messageDate = doc["created"] as? Timestamp
                     let message = Message(content: doc["content"] as? String,
                                           created: messageDate?.dateValue(),
@@ -218,7 +234,6 @@ extension ConversationViewController {
                 }
             }
             self?.messages = result.sort()
-            self?.tableView.reloadData()
         }
     }
     
