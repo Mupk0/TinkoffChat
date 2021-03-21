@@ -18,11 +18,7 @@ class ConversationsListViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        
-        getData(complition: { [weak self] channels in
-            self?.conversations = channels
-            self?.tableView.reloadData()
-        })
+        loadChannels()
     }
     
     private func configureViews() {
@@ -32,13 +28,19 @@ class ConversationsListViewController: UIViewController {
         
         let profileButton = UIBarButtonItem(image: #imageLiteral(resourceName: "profileIcon"),
                                             style: .plain,
-                                            target: self, action: #selector(didTapProfileButton))
+                                            target: self,
+                                            action: #selector(didTapProfileButton))
         navigationItem.rightBarButtonItem = profileButton
         
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
                                              style: .plain,
-                                             target: self, action: #selector(didTapSettingsButton))
-        navigationItem.leftBarButtonItem = settingsButton
+                                             target: self,
+                                             action: #selector(didTapSettingsButton))
+        let addChannelButton = UIBarButtonItem(title: "+",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(didTapAddChannelButton))
+        navigationItem.leftBarButtonItems = [settingsButton, addChannelButton]
         
         view.addSubview(tableView)
         
@@ -71,6 +73,39 @@ class ConversationsListViewController: UIViewController {
         themesViewController.didSelectThemeType = { themeType in
             print("Selected \(themeType.rawValue) Theme")
         }
+    }
+    
+    @objc private func didTapAddChannelButton() {
+        let alertController = UIAlertController(title: "Enter Channel Name",
+                                   message: nil,
+                                   preferredStyle: .alert)
+        alertController.addTextField()
+
+        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController] _ in
+            if let textField = alertController.textFields?[0], let channelName = textField.text {
+                self.addChannel(channelName: channelName,
+                                complition: { status in
+                                    if status {
+                                        self.loadChannels()
+                                    }
+                                })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: { _ in })
+
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true)
+    }
+    
+    private func loadChannels() {
+        getData(complition: { [weak self] channels in
+            self?.conversations = channels
+            self?.tableView.reloadData()
+        })
     }
 }
 
@@ -117,11 +152,10 @@ extension ConversationsListViewController {
         
         let db = Firestore.firestore()
         let reference = db.collection("channels")
-        reference.addSnapshotListener { snapshot, _ in // some code
+        reference.addSnapshotListener { snapshot, _ in
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
-
                     if doc["name"] != nil {
                         let dateTimeStamp = doc["lastActivity"] as? Timestamp
                         let channel = Channel(identifier: document.documentID,
@@ -132,7 +166,27 @@ extension ConversationsListViewController {
                     }
                 }
             }
-            complition(result)
+            complition(result.sort())
         }
+    }
+    
+    fileprivate func addChannel(channelName: String,
+                                complition: @escaping (Bool) -> Void) {
+        
+        let db = Firestore.firestore()
+        let reference = db.collection("channels").document()
+        let channel: [String: Any] = [
+            "identifier": reference.documentID,
+            "name": channelName
+        ]
+        reference.setData(channel,
+                          completion: { error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                                complition(false)
+                            } else {
+                                complition(true)
+                            }
+                          })
     }
 }
