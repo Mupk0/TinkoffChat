@@ -76,19 +76,19 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc private func didTapAddChannelButton() {
-        let alertController = UIAlertController(title: "Enter Channel Name",
+        let alertController = UIAlertController(title: "Введите название канала",
                                    message: nil,
                                    preferredStyle: .alert)
         alertController.addTextField()
         let textField = alertController.textFields?[0]
         textField?.textColor = .black
 
-        let submitAction = UIAlertAction(title: "Add", style: .default) { _ in
+        let submitAction = UIAlertAction(title: "Создать", style: .default) { _ in
             if let textField = textField, let channelName = textField.text {
                 self.addChannel(channelName: channelName)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: "Отмена",
                                          style: .cancel,
                                          handler: { _ in })
 
