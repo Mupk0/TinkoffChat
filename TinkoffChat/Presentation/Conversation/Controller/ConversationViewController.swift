@@ -112,7 +112,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         
-        let identifier = message.senderId == Constants.deviceId
+        let identifier = message.senderId == Settings.shared.deviceId
             ? OutgoingMessageTableViewCell.reuseIdentifier
             : IncomingMessageTableViewCell.reuseIdentifier
         
@@ -153,7 +153,7 @@ extension ConversationViewController {
         let db = Firestore.firestore()
         let reference = db.collection("channels").document(channelId).collection("messages")
 
-        if let deviceId = Constants.deviceId {
+        if let deviceId = Settings.shared.deviceId {
             let message: [String: Any] = [
                 "content": messageText,
                 "created": Date(),

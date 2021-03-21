@@ -30,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ThemeSwitcher.shared.setTheme(themeType)
         })
         
+        if Settings.shared.deviceId == nil {
+            if let deviceId = UIDevice.current.identifierForVendor?.uuidString {
+                Settings.shared.deviceId = deviceId
+                Settings.shared.save()
+            }
+        }
+        
         FirebaseApp.configure()
         
         return true

@@ -14,9 +14,10 @@ class Settings: Codable {
     static let shared = Settings.load()
     
     var themeType: String?
+    var deviceId: String?
     
     enum CodingKeys: String, CodingKey {
-        case themeType
+        case themeType, deviceId
     }
 }
 
