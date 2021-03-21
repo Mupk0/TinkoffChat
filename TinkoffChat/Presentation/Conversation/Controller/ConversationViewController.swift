@@ -24,6 +24,12 @@ class ConversationViewController: UIViewController {
         navigationItem.title = userName
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
+        
+        let addMessageButton = UIBarButtonItem(title: "+",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(didTapAddChannelButton))
+        navigationItem.rightBarButtonItem = addMessageButton
     }
     
     required init?(coder: NSCoder) {
@@ -34,11 +40,7 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        
-        getData(complition: { [weak self] messages in
-            self?.messages = messages
-            self?.tableView.reloadData()
-        })
+        loadMessages()
     }
     
     private func configureViews() {
@@ -64,6 +66,40 @@ class ConversationViewController: UIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+    }
+    
+    @objc private func didTapAddChannelButton() {
+        print("didTapAddChannelButton")
+        let alertController = UIAlertController(title: "Enter Message",
+                                   message: nil,
+                                   preferredStyle: .alert)
+        alertController.addTextField()
+
+        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController] _ in
+            if let textField = alertController.textFields?[0], let message = textField.text {
+                self.addMessage(messageText: message,
+                                complition: { status in
+                                    if status {
+                                        self.loadMessages()
+                                    }
+                                })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: { _ in })
+
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true)
+    }
+    
+    private func loadMessages() {
+        getData(complition: { [weak self] messages in
+            self?.messages = messages
+            self?.tableView.reloadData()
+        })
     }
 }
 
@@ -99,15 +135,41 @@ extension ConversationViewController {
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
+                    print(doc)
+                    let messageDate = doc["created"] as? Timestamp
                     let message = Message(content: doc["content"] as? String,
-                                          created: doc["created"] as? Date,
+                                          created: messageDate?.dateValue(),
                                           senderId: doc["senderId"] as? String,
                                           senderName: doc["senderName"] as? String)
                     result.append(message)
                 }
             }
-            complition(result)
+            complition(result.sort())
         }
-        // reference.addDocument(data: ...)
+    }
+    
+    fileprivate func addMessage(messageText: String,
+                                complition: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        let reference = db.collection("channels").document(channelId).collection("messages")
+
+        if let deviceId = Constants.deviceId {
+            let message: [String: Any] = [
+                "content": messageText,
+                "created": Date(),
+                "senderId": deviceId,
+                "senderName": "Кулагин Дмитрий"
+            ]
+            
+            reference.addDocument(data: message,
+                              completion: { error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                    complition(false)
+                                } else {
+                                    complition(true)
+                                }
+                              })
+        }
     }
 }
