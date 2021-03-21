@@ -55,8 +55,11 @@ class ConversationViewController: UIViewController {
     
     private let channelId: String
     
+    private let networkService: NetworkService
+    
     init(userName: String, channelId: String) {
         self.channelId = channelId
+        self.networkService = NetworkService.shared
         
         super.init(nibName: nil, bundle: nil)
         
@@ -73,7 +76,7 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        getData()
+        configureNetworkService()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -165,13 +168,21 @@ class ConversationViewController: UIViewController {
     
     @objc private func didTapAddMessageButton() {
         if let message = messageTextView.text {
-            self.addMessage(messageText: message,
-                            complition: { [weak self] status in
-                                if status {
-                                    self?.messageTextView.text = ""
-                                }
-                            })
+            networkService.addMessage(channelId: channelId,
+                                      messageText: message,
+                                      complition: { [weak self] status in
+                                        if status {
+                                            self?.messageTextView.text = ""
+                                        }
+                                    })
         }
+    }
+    
+    private func configureNetworkService() {
+        networkService.didGetMessages = { [weak self] messages in
+            self?.messages = messages
+        }
+        networkService.addMessageUpdateListener(for: channelId)
     }
 }
 
@@ -211,54 +222,5 @@ extension ConversationViewController: UITextViewDelegate {
             textView.frame = newFrame
         }
         textView.isScrollEnabled = newSize.height > view.frame.height * 0.3
-    }
-}
-
-extension ConversationViewController {
-    fileprivate func getData() {
-        var result: [Message] = []
-        
-        let db = Firestore.firestore()
-        let reference = db.collection("channels").document(channelId).collection("messages")
-        
-        reference.addSnapshotListener { [weak self] snapshot, _ in
-            if let documents = snapshot?.documents {
-                for document in documents {
-                    let doc = document.data()
-                    let messageDate = doc["created"] as? Timestamp
-                    let message = Message(content: doc["content"] as? String,
-                                          created: messageDate?.dateValue(),
-                                          senderId: doc["senderId"] as? String,
-                                          senderName: doc["senderName"] as? String)
-                    result.append(message)
-                }
-            }
-            self?.messages = result.sort()
-        }
-    }
-    
-    fileprivate func addMessage(messageText: String,
-                                complition: @escaping (Bool) -> Void) {
-        let db = Firestore.firestore()
-        let reference = db.collection("channels").document(channelId).collection("messages")
-
-        if let deviceId = Settings.shared.deviceId {
-            let message: [String: Any] = [
-                "content": messageText,
-                "created": Date(),
-                "senderId": deviceId,
-                "senderName": "Кулагин Дмитрий"
-            ]
-            
-            reference.addDocument(data: message,
-                                  completion: { error in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                        complition(false)
-                                    } else {
-                                        complition(true)
-                                    }
-                                  })
-        }
     }
 }

@@ -28,6 +28,7 @@ extension Message: Hashable {
         hasher.combine(content)
         hasher.combine(created)
         hasher.combine(senderId)
+        hasher.combine(senderName)
     }
 }
 

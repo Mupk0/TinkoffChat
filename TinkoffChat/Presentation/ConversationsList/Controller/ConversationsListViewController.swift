@@ -12,13 +12,29 @@ class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
-    var conversations: [Channel] = []
+    var conversations: [Channel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private let networkService: NetworkService
+    
+    init() {
+        self.networkService = NetworkService.shared
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
-        getData()
+        configureNetworkService()
     }
     
     private func configureViews() {
@@ -83,9 +99,9 @@ class ConversationsListViewController: UIViewController {
         let textField = alertController.textFields?[0]
         textField?.textColor = .black
 
-        let submitAction = UIAlertAction(title: "Создать", style: .default) { _ in
+        let submitAction = UIAlertAction(title: "Создать", style: .default) { [weak self] _ in
             if let textField = textField, let channelName = textField.text {
-                self.addChannel(channelName: channelName)
+                self?.networkService.addChannel(channelName: channelName)
             }
         }
         let cancelAction = UIAlertAction(title: "Отмена",
@@ -96,6 +112,13 @@ class ConversationsListViewController: UIViewController {
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true)
+    }
+    
+    private func configureNetworkService() {
+        networkService.didGetChannels = { [weak self] channels in
+            self?.conversations = channels
+        }
+        networkService.addChannelUpdateListener()
     }
 }
 
@@ -132,47 +155,5 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
         let chatViewController = ConversationViewController(userName: conversation.name ?? "Unknown Name",
                                                             channelId: conversation.identifier)
         navigationController?.pushViewController(chatViewController, animated: true)
-    }
-    
-}
-
-extension ConversationsListViewController {
-    fileprivate func getData() {
-        var result: [Channel] = []
-        
-        let db = Firestore.firestore()
-        let reference = db.collection("channels")
-        reference.addSnapshotListener { [weak self] snapshot, _ in
-            if let documents = snapshot?.documents {
-                for document in documents {
-                    let doc = document.data()
-                    if doc["name"] != nil {
-                        let dateTimeStamp = doc["lastActivity"] as? Timestamp
-                        let channel = Channel(identifier: document.documentID,
-                                              name: doc["name"] as? String,
-                                              lastMessage: doc["lastMessage"] as? String,
-                                              lastActivity: dateTimeStamp?.dateValue())
-                        result.append(channel)
-                    }
-                }
-            }
-            self?.conversations = result.sort()
-            self?.tableView.reloadData()
-        }
-    }
-    
-    fileprivate func addChannel(channelName: String) {
-        let db = Firestore.firestore()
-        let reference = db.collection("channels").document()
-        let channel: [String: Any] = [
-            "identifier": reference.documentID,
-            "name": channelName
-        ]
-        reference.setData(channel,
-                          completion: { error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            }
-                          })
     }
 }

@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Log.show(message: "\(getTransitionInfo()), calls")
         
+        FirebaseApp.configure()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let chatListViewController = ConversationsListViewController()
@@ -36,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Settings.shared.save()
             }
         }
-        
-        FirebaseApp.configure()
         
         return true
     }
