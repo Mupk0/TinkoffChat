@@ -18,7 +18,7 @@ class ConversationsListViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        loadChannels()
+        getData()
     }
     
     private func configureViews() {
@@ -80,15 +80,12 @@ class ConversationsListViewController: UIViewController {
                                    message: nil,
                                    preferredStyle: .alert)
         alertController.addTextField()
+        let textField = alertController.textFields?[0]
+        textField?.textColor = .black
 
-        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController] _ in
-            if let textField = alertController.textFields?[0], let channelName = textField.text {
-                self.addChannel(channelName: channelName,
-                                complition: { status in
-                                    if status {
-                                        self.loadChannels()
-                                    }
-                                })
+        let submitAction = UIAlertAction(title: "Add", style: .default) { _ in
+            if let textField = textField, let channelName = textField.text {
+                self.addChannel(channelName: channelName)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -99,13 +96,6 @@ class ConversationsListViewController: UIViewController {
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true)
-    }
-    
-    private func loadChannels() {
-        getData(complition: { [weak self] channels in
-            self?.conversations = channels
-            self?.tableView.reloadData()
-        })
     }
 }
 
@@ -147,12 +137,12 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
 }
 
 extension ConversationsListViewController {
-    fileprivate func getData(complition: @escaping ([Channel]) -> Void) {
+    fileprivate func getData() {
         var result: [Channel] = []
         
         let db = Firestore.firestore()
         let reference = db.collection("channels")
-        reference.addSnapshotListener { snapshot, _ in
+        reference.addSnapshotListener { [weak self] snapshot, _ in
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
@@ -166,13 +156,12 @@ extension ConversationsListViewController {
                     }
                 }
             }
-            complition(result.sort())
+            self?.conversations = result.sort()
+            self?.tableView.reloadData()
         }
     }
     
-    fileprivate func addChannel(channelName: String,
-                                complition: @escaping (Bool) -> Void) {
-        
+    fileprivate func addChannel(channelName: String) {
         let db = Firestore.firestore()
         let reference = db.collection("channels").document()
         let channel: [String: Any] = [
@@ -183,9 +172,6 @@ extension ConversationsListViewController {
                           completion: { error in
                             if let error = error {
                                 print(error.localizedDescription)
-                                complition(false)
-                            } else {
-                                complition(true)
                             }
                           })
     }
