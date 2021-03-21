@@ -12,6 +12,13 @@ class ConversationViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     
+    private let messageView = MessageView()
+    private let messageTextView = UITextView()
+    private let placeholderLabel = UILabel()
+    private let sendIconImageView = UIImageView()
+    
+    private let textViewFont: UIFont = .systemFont(ofSize: 16, weight: .regular)
+    
     private var messages: [Message] = []
     
     private let channelId: String
@@ -24,12 +31,6 @@ class ConversationViewController: UIViewController {
         navigationItem.title = userName
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
-        
-        let addMessageButton = UIBarButtonItem(title: "+",
-                                               style: .plain,
-                                               target: self,
-                                               action: #selector(didTapAddChannelButton))
-        navigationItem.rightBarButtonItem = addMessageButton
     }
     
     required init?(coder: NSCoder) {
@@ -40,20 +41,74 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-        loadMessages()
+        getData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y == 0 {
+                view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
     }
     
     private func configureViews() {
         
         view.addSubview(tableView)
+        view.addSubview(messageView)
+        messageView.addSubview(messageTextView)
+        messageView.addSubview(sendIconImageView)
+        messageTextView.addSubview(placeholderLabel)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        messageTextView.translatesAutoresizingMaskIntoConstraints = false
+        sendIconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: messageView.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            messageView.heightAnchor.constraint(lessThanOrEqualToConstant: view.frame.height * 0.35),
+            messageView.topAnchor.constraint(equalTo: messageTextView.topAnchor, constant: -17),
+            messageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            messageTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 32),
+            messageTextView.bottomAnchor.constraint(equalTo: messageView.bottomAnchor, constant: -30),
+            messageTextView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -19),
+            messageTextView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: 50),
+            
+            sendIconImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 19),
+            sendIconImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: 19),
+            sendIconImageView.trailingAnchor.constraint(equalTo: messageTextView.trailingAnchor, constant: -10),
+            sendIconImageView.centerYAnchor.constraint(equalTo: messageTextView.centerYAnchor)
         ])
         
         tableView.delegate = self
@@ -66,40 +121,40 @@ class ConversationViewController: UIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+
+        messageTextView.delegate = self
+        
+        messageTextView.isScrollEnabled = false
+        messageTextView.sizeToFit()
+        messageTextView.layer.cornerRadius = 16
+        messageTextView.textContainerInset = UIEdgeInsets(top: 5, left: 17, bottom: 5, right: 30)
+        messageTextView.font = textViewFont
+
+        placeholderLabel.text = "Your message here..."
+        placeholderLabel.font = textViewFont
+        placeholderLabel.sizeToFit()
+        placeholderLabel.frame.origin = CGPoint(x: 22, y: (textViewFont.pointSize) / 2)
+        placeholderLabel.textColor = .lightGray
+        
+        sendIconImageView.isHidden = true
+        sendIconImageView.image = #imageLiteral(resourceName: "icon_send")
+        sendIconImageView.contentMode = .scaleAspectFit
+        sendIconImageView.isUserInteractionEnabled = true
+        sendIconImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                    action: #selector(didTapAddMessageButton)))
+        
+        hideKeyboardWhenTappedAround()
     }
     
-    @objc private func didTapAddChannelButton() {
-        print("didTapAddChannelButton")
-        let alertController = UIAlertController(title: "Enter Message",
-                                   message: nil,
-                                   preferredStyle: .alert)
-        alertController.addTextField()
-
-        let submitAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController] _ in
-            if let textField = alertController.textFields?[0], let message = textField.text {
-                self.addMessage(messageText: message,
-                                complition: { status in
-                                    if status {
-                                        self.loadMessages()
-                                    }
-                                })
-            }
+    @objc private func didTapAddMessageButton() {
+        if let message = messageTextView.text {
+            self.addMessage(messageText: message,
+                            complition: { status in
+                                if status {
+                                    self.messageTextView.text = ""
+                                }
+                            })
         }
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel,
-                                         handler: { _ in })
-
-        alertController.addAction(submitAction)
-        alertController.addAction(cancelAction)
-
-        present(alertController, animated: true)
-    }
-    
-    private func loadMessages() {
-        getData(complition: { [weak self] messages in
-            self?.messages = messages
-            self?.tableView.reloadData()
-        })
     }
 }
 
@@ -125,13 +180,31 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension ConversationViewController {
-    fileprivate func getData(complition: @escaping ([Message]) -> Void) {
-        var result: [Message] = []
+extension ConversationViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+        sendIconImageView.isHidden = textView.text.isEmpty
+        
+        let fixedWidth = textView.frame.size.width
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: .greatestFiniteMagnitude))
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: .greatestFiniteMagnitude))
+        if newSize.height < view.frame.height * 0.3 {
+            var newFrame = textView.frame
+            newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+            textView.frame = newFrame
+        }
+        textView.isScrollEnabled = newSize.height > view.frame.height * 0.3
+    }
+}
 
+extension ConversationViewController {
+    fileprivate func getData() {
+        var result: [Message] = []
+        
         let db = Firestore.firestore()
         let reference = db.collection("channels").document(channelId).collection("messages")
-        reference.addSnapshotListener { snapshot, _ in // some code
+        
+        reference.addSnapshotListener { [weak self] snapshot, _ in
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
@@ -144,7 +217,8 @@ extension ConversationViewController {
                     result.append(message)
                 }
             }
-            complition(result.sort())
+            self?.messages = result.sort()
+            self?.tableView.reloadData()
         }
     }
     
@@ -162,14 +236,14 @@ extension ConversationViewController {
             ]
             
             reference.addDocument(data: message,
-                              completion: { error in
-                                if let error = error {
-                                    print(error.localizedDescription)
-                                    complition(false)
-                                } else {
-                                    complition(true)
-                                }
-                              })
+                                  completion: { error in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                        complition(false)
+                                    } else {
+                                        complition(true)
+                                    }
+                                  })
         }
     }
 }
