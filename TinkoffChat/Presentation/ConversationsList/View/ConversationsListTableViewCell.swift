@@ -91,7 +91,7 @@ class ConversationsListTableViewCell: UITableViewCell {
     }
     
     func configureCell(model: ConversationCellConfiguration) {
-        userNameLabel.text = model.name ?? "Unknown Name"
+        userNameLabel.text = model.name
         lastMessageDateLabel.text = DateUtils.shared.getStringFromDate(model.lastActivity)
         lastMessageLabel.text = model.lastMessage ?? "No messages yet"
         

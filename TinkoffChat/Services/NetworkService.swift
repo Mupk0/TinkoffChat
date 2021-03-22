@@ -38,12 +38,12 @@ class NetworkService: NSObject {
             if let documents = snapshot?.documents {
                 var result: [Channel] = []
                 for document in documents {
-                    let doc = document.data()
-                    if doc["name"] != nil {
-                        let dateTimeStamp = doc["lastActivity"] as? Timestamp
+                    let documentData = document.data()
+                    if documentData["name"] != nil {
+                        let dateTimeStamp = documentData["lastActivity"] as? Timestamp
                         let channel = Channel(identifier: document.documentID,
-                                              name: doc["name"] as? String,
-                                              lastMessage: doc["lastMessage"] as? String,
+                                              name: documentData["name"] as? String ?? "Unknown Name",
+                                              lastMessage: documentData["lastMessage"] as? String,
                                               lastActivity: dateTimeStamp?.dateValue())
                         result.append(channel)
                     }
@@ -60,12 +60,12 @@ class NetworkService: NSObject {
             if let documents = snapshot?.documents {
                 var result: [Message] = []
                 for document in documents {
-                    let doc = document.data()
-                    let messageDate = doc["created"] as? Timestamp
-                    let message = Message(content: doc["content"] as? String,
-                                          created: messageDate?.dateValue(),
-                                          senderId: doc["senderId"] as? String,
-                                          senderName: doc["senderName"] as? String)
+                    let documentData = document.data()
+                    let messageDate = documentData["created"] as? Timestamp
+                    let message = Message(content: documentData["content"] as? String ?? "",
+                                          created: messageDate?.dateValue() ?? Date(),
+                                          senderId: documentData["senderId"] as? String ?? "",
+                                          senderName: documentData["senderName"] as? String ?? "Unknown Name")
                     result.append(message)
                 }
                 completion(result.sort())

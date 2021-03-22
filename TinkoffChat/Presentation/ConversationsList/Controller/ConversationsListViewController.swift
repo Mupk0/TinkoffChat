@@ -158,7 +158,7 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let chatViewController = ConversationViewController(userName: conversation.name ?? "Unknown Name",
+        let chatViewController = ConversationViewController(userName: conversation.name,
                                                             channelId: conversation.identifier)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
