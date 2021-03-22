@@ -8,5 +8,8 @@
 import Foundation
 
 protocol MessageCellConfiguration {
-    var text: String? { get set }
+    var content: String { get }
+    var created: Date { get }
+    var senderId: String { get }
+    var senderName: String { get }
 }

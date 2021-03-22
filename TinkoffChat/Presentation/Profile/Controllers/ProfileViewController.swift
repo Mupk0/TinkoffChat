@@ -148,7 +148,7 @@ class ProfileViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         
-        navigationItem.title =  "Profile"
+        navigationItem.title = "Profile"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close",
                                                            style: .plain,
                                                            target: self,
@@ -243,27 +243,27 @@ class ProfileViewController: UIViewController {
             activityIndicator.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -45),
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.heightAnchor.constraint(equalToConstant: 90),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 90),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 90)
         ])
         
         userAvatarView.layoutIfNeeded()
         
         userAvatarView.layer.cornerRadius = userAvatarView.frame.height / 2
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.height / 2
-        userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target:self,
+        userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                         action: #selector(showImagePickerAlert)))
         
         editProfileStackView.addArrangedSubview(gcdButton)
         editProfileStackView.addArrangedSubview(operationButton)
         
-        editButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+        editButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(didTapEditButton)))
-        cancelButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+        cancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                  action: #selector(didTapCancelButton)))
         
-        gcdButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+        gcdButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(didTapButtonSaveUsingGSD)))
-        operationButton.addGestureRecognizer(UITapGestureRecognizer(target:self,
+        operationButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                     action: #selector(didTapButtonSaveUsingOperation)))
     }
     

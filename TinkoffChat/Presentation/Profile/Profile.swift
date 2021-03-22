@@ -22,7 +22,7 @@ struct Profile {
 }
 
 extension Profile: Equatable {
-    static func ==(lhs: Profile, rhs: Profile) -> Bool {
+    static func == (lhs: Profile, rhs: Profile) -> Bool {
         return lhs.about == rhs.about && lhs.photo == rhs.photo && lhs.userName == rhs.userName
     }
 }

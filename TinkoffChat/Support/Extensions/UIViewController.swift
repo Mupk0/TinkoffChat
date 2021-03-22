@@ -9,10 +9,8 @@ import UIKit
 
 extension UIViewController {
     
-    var visibleVC: UIViewController? {
-        get {
-            return UIApplication.shared.keyWindow?.visibleViewController
-        }
+    func getVisibleVC() -> UIViewController? {
+        return UIApplication.shared.keyWindow?.visibleViewController
     }
     
     @objc func hideKeyboardWhenTappedAround() {

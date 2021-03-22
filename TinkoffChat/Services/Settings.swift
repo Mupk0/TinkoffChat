@@ -7,16 +7,17 @@
 
 import Foundation
 
-fileprivate let defaultSettingsKey = "TinkoffChatSettingsKey"
+private let defaultSettingsKey = "TinkoffChatSettingsKey"
 
 class Settings: Codable {
     
     static let shared = Settings.load()
     
     var themeType: String?
+    var deviceId: String?
     
     enum CodingKeys: String, CodingKey {
-        case themeType
+        case themeType, deviceId
     }
 }
 

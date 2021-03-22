@@ -67,6 +67,9 @@ class ThemeSwitcher {
         
         let activityIndicatorAppearance = UIActivityIndicatorView.appearance()
         activityIndicatorAppearance.color = themeType.mainTitleLabelColor
+        
+        let messageViewAppearance = MessageView.appearance()
+        messageViewAppearance.backgroundColor = themeType.navigationBackgroundColor
     }
     
     private func resetSubviews() {

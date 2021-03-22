@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,19 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Log.show(message: "\(getTransitionInfo()), calls")
         
+        FirebaseApp.configure()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
 
-
-        
         let chatListViewController = ConversationsListViewController()
         window?.rootViewController = UINavigationController(rootViewController: chatListViewController)
         window?.makeKeyAndVisible()
         
         let themeStorage = UserSettingsStorageWithGCD()
         themeStorage.load(completionHandler: { userTheme in
-            let themeType = ThemeType.init(userTheme?.currentTheme)
+            let themeType = ThemeType(userTheme?.currentTheme)
             ThemeSwitcher.shared.setTheme(themeType)
         })
+        
+        if Settings.shared.deviceId == nil {
+            if let deviceId = UIDevice.current.identifierForVendor?.uuidString {
+                Settings.shared.deviceId = deviceId
+                Settings.shared.save()
+            }
+        }
         
         return true
     }

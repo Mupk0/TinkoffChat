@@ -6,36 +6,64 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ConversationsListViewController: UIViewController {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
-
-    var conversations: [ConversationCellModel] = []
+    private let tableView = UITableView(frame: .zero, style: .plain)
+    
+    var conversations: [Channel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private let networkService: NetworkService
+    private weak var channelUpdateListener: ListenerRegistration?
+    
+    init() {
+        self.networkService = NetworkService.shared
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
+        configureNetworkService()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        conversations = getData()
+        channelUpdateListener?.remove()
     }
     
     private func configureViews() {
-        
-        navigationItem.title = "Tinkoff Chat"
+        navigationItem.title = "Channels"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        let profileButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "profileIcon"),
-                                                 style: .plain,
-                                                 target: self, action: #selector(didTapProfileButton))
+        let profileButton = UIBarButtonItem(image: #imageLiteral(resourceName: "profileIcon"),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(didTapProfileButton))
         navigationItem.rightBarButtonItem = profileButton
         
-        let settingsButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "settings"),
-                                                 style: .plain,
-                                                 target: self, action: #selector(didTapSettingsButton))
-        navigationItem.leftBarButtonItem = settingsButton
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(didTapSettingsButton))
+        let addChannelButton = UIBarButtonItem(title: "+",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(didTapAddChannelButton))
+        navigationItem.leftBarButtonItems = [settingsButton, addChannelButton]
         
         view.addSubview(tableView)
         
@@ -45,7 +73,7 @@ class ConversationsListViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
         tableView.delegate = self
@@ -63,37 +91,55 @@ class ConversationsListViewController: UIViewController {
     
     @objc private func didTapSettingsButton() {
         let themesViewController = ThemesViewController()
-        //themesViewController.delegate = self
         navigationController?.pushViewController(themesViewController, animated: true)
         
         themesViewController.didSelectThemeType = { themeType in
             print("Selected \(themeType.rawValue) Theme")
         }
     }
+    
+    @objc private func didTapAddChannelButton() {
+        let alertController = UIAlertController(title: "Введите название канала",
+                                   message: nil,
+                                   preferredStyle: .alert)
+        alertController.addTextField()
+        let textField = alertController.textFields?[0]
+        textField?.textColor = .black
+
+        let submitAction = UIAlertAction(title: "Создать", style: .default) { [weak self] _ in
+            if let textField = textField, let channelName = textField.text {
+                self?.networkService.addChannel(channelName: channelName)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Отмена",
+                                         style: .cancel,
+                                         handler: { _ in })
+
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true)
+    }
+    
+    private func configureNetworkService() {
+        channelUpdateListener = networkService.getChannelUpdateListener(completion: { [weak self] channels in
+            self?.conversations = channels
+        })
+    }
 }
 
 extension ConversationsListViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return ConversationsListType.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ConversationsListType.init(rawValue: section)?.getTitle()
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let isOnlineSection = ConversationsListType.init(rawValue: section) == .online
-        return isOnlineSection ? conversations.getOnline().count : conversations.getOffline().count
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
-        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
+        let conversation = conversations[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
                                                        for: indexPath) as? ConversationsListTableViewCell else {
@@ -104,36 +150,12 @@ extension ConversationsListViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isOnlineSection = ConversationsListType.init(rawValue: indexPath.section) == .online
-        let conversation = isOnlineSection ? conversations.getOnline()[indexPath.row] : conversations.getOffline()[indexPath.row]
+        let conversation = conversations[indexPath.row]
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let chatViewController =  ConversationViewController(userName: conversation.name ?? "Unknown Name")
+        let chatViewController = ConversationViewController(userName: conversation.name,
+                                                            channelId: conversation.identifier)
         navigationController?.pushViewController(chatViewController, animated: true)
-    }
-
-}
-
-
-//extension ConversationsListViewController: ThemesViewControllerDelegate {
-//    func didSelectTheme(_ themeType: ThemeType) {
-//        print("Selected \(themeType.rawValue) Theme")
-//    }
-//}
-
-extension ConversationsListViewController {
-    fileprivate func getData() -> [ConversationCellModel] {
-        var result: [ConversationCellModel] = []
-        for (_, index) in (0 ... 30).enumerated() {
-            let element = ConversationCellModel(name: Randomizer.shared.getName(),
-                                                message: Randomizer.shared.getText(),
-                                                date: Randomizer.shared.getDate(),
-                                                online: index < 15 ? true : false,
-                                                hasUnreadMessages: Bool.random())
-            result.append(element)
-        }
-        
-        return result
     }
 }

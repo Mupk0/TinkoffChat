@@ -14,9 +14,8 @@ class OutgoingMessageTableViewCell: UITableViewCell, MessageCellProtocol {
     private let messageContainerView = OutgoingMessageImageView()
     private let messageTextView = MessageTextView()
     
-    
     func setMessageModel(_ model: MessageCellConfiguration) {
-        messageTextView.text = model.text ?? "Unknown Message"
+        messageTextView.text = model.content
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,7 +40,7 @@ class OutgoingMessageTableViewCell: UITableViewCell, MessageCellProtocol {
             messageContainerView.topAnchor.constraint(equalTo: messageTextView.topAnchor),
             messageContainerView.bottomAnchor.constraint(equalTo: messageTextView.bottomAnchor),
             messageContainerView.leadingAnchor.constraint(equalTo: messageTextView.leadingAnchor),
-            messageContainerView.trailingAnchor.constraint(equalTo: messageTextView.trailingAnchor),
+            messageContainerView.trailingAnchor.constraint(equalTo: messageTextView.trailingAnchor)
          ])
     }
     

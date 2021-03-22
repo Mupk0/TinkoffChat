@@ -9,7 +9,7 @@ import UIKit
 
 protocol ThemesViewControllerProtocol {
     var delegate: ThemesViewControllerDelegate? { get set }
-    var didSelectThemeType: ((ThemeType) -> ())? { get set }
+    var didSelectThemeType: ((ThemeType) -> Void)? { get set }
 }
 
 protocol ThemesViewControllerDelegate: class {
@@ -29,7 +29,7 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
      retain cycle при использовании данного делегата может возникнуть в том случае,
      когда он указан сильной ссылкой (без weak)
      */
-    var didSelectThemeType: ((ThemeType) -> ())?
+    var didSelectThemeType: ((ThemeType) -> Void)?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -82,7 +82,7 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
             nightThemeView.topAnchor.constraint(equalTo: dayThemeView.bottomAnchor, constant: 80),
             nightThemeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
             nightThemeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
-            nightThemeView.heightAnchor.constraint(equalToConstant: 57),
+            nightThemeView.heightAnchor.constraint(equalToConstant: 57)
         ])
     }
     
@@ -101,7 +101,7 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     private func updateCurrentTheme() {
         let themeStorage = UserSettingsStorageWithGCD()
         themeStorage.load(completionHandler: { userTheme in
-            let themeType = ThemeType.init(userTheme?.currentTheme)
+            let themeType = ThemeType(userTheme?.currentTheme)
             self.didSelectTheme(themeType)
         })
     }
@@ -119,6 +119,5 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
          retain cycle возникнет при использовании данного замыкания,
          если в контроллере есть ссылка на замыкание, в котором мы используем self сильной ссылкой
          */
-
     }
 }

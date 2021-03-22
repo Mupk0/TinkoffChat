@@ -5,7 +5,6 @@
 //  Created by Dmitry Kulagin on 14.03.2021.
 //
 
-
 import UIKit
 
 protocol ProfileStorageProtocol: class {
