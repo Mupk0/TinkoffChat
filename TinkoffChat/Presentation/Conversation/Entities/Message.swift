@@ -38,7 +38,7 @@ extension Array where Element == Message {
     }
     
     func sort() -> [Message] {
-        var result = self.getUniqueValues()
+        var result = self
         result.sort { (first, second) -> Bool in
             guard let firstDate = first.created else { return false }
             guard let secondDate = second.created else { return true }

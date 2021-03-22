@@ -33,7 +33,7 @@ extension Array where Element == Channel {
     }
     
     func sort() -> [Channel] {
-        var result = self.getUniqueValues()
+        var result = self
         result.sort { (first, second) -> Bool in
             guard let firstDate = first.lastActivity else { return false }
             guard let secondDate = second.lastActivity else { return true }
