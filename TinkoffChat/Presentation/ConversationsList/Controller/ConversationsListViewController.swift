@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 class ConversationsListViewController: UIViewController {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView(frame: .zero, style: .plain)
     
     var conversations: [Channel] = [] {
         didSet {
@@ -45,7 +45,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureViews() {
-        navigationItem.title = "Tinkoff Chat"
+        navigationItem.title = "Channels"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -129,10 +129,6 @@ class ConversationsListViewController: UIViewController {
 }
 
 extension ConversationsListViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Channels"
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
