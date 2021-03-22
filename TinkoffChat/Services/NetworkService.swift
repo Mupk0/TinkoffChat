@@ -40,6 +40,7 @@ class NetworkService: NSObject {
         
         let reference = getReference(for: .allChannels)
         reference.addSnapshotListener { [weak self] snapshot, _ in
+            result.removeAll()
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
@@ -59,10 +60,11 @@ class NetworkService: NSObject {
     
     public func addMessageUpdateListener(for channelId: String) {
         var result: [Message] = []
-    
+        
         let reference = getReference(for: .channel(channelId))
         
         reference.addSnapshotListener { [weak self] snapshot, _ in
+            result.removeAll()
             if let documents = snapshot?.documents {
                 for document in documents {
                     let doc = document.data()
@@ -79,17 +81,16 @@ class NetworkService: NSObject {
     }
     
     public func addChannel(channelName: String) {
-        let reference = getReference(for: .allChannels).document()
+        let reference = getReference(for: .allChannels)
         let channel: [String: Any] = [
-            "identifier": reference.documentID,
             "name": channelName
         ]
-        reference.setData(channel,
-                          completion: { error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            }
-                          })
+        reference.addDocument(data: channel,
+                              completion: { error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                              })
     }
     
     public func addMessage(channelId: String,
@@ -97,7 +98,7 @@ class NetworkService: NSObject {
                            complition: @escaping (Bool) -> Void) {
         
         let reference = getReference(for: .channel(channelId))
-
+        
         if let deviceId = Settings.shared.deviceId {
             ProfileFileStorage().load { profile in
                 let message: [String: Any] = [
