@@ -19,6 +19,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private let networkService: NetworkService
+    private weak var channelUpdateListener: ListenerRegistration?
     
     init() {
         self.networkService = NetworkService.shared
@@ -35,6 +36,12 @@ class ConversationsListViewController: UIViewController {
         
         configureViews()
         configureNetworkService()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        channelUpdateListener?.remove()
     }
     
     private func configureViews() {
@@ -115,10 +122,9 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNetworkService() {
-        networkService.didGetChannels = { [weak self] channels in
+        channelUpdateListener = networkService.getChannelUpdateListener(completion: { [weak self] channels in
             self?.conversations = channels
-        }
-        networkService.addChannelUpdateListener()
+        })
     }
 }
 

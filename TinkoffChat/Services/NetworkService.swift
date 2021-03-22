@@ -14,9 +14,6 @@ class NetworkService: NSObject {
     
     private let db: Firestore
     
-    var didGetChannels: (([Channel]) -> Void)?
-    var didGetMessages: (([Message]) -> Void)?
-    
     override init() {
         self.db = Firestore.firestore()
     }
@@ -35,13 +32,11 @@ class NetworkService: NSObject {
         }
     }
     
-    public func addChannelUpdateListener() {
-        var result: [Channel] = []
-        
+    public func getChannelUpdateListener(completion: @escaping ([Channel]) -> Void) -> ListenerRegistration? {
         let reference = getReference(for: .allChannels)
-        reference.addSnapshotListener { [weak self] snapshot, _ in
-            result.removeAll()
+        return reference.addSnapshotListener { snapshot, _ in
             if let documents = snapshot?.documents {
+                var result: [Channel] = []
                 for document in documents {
                     let doc = document.data()
                     if doc["name"] != nil {
@@ -53,19 +48,17 @@ class NetworkService: NSObject {
                         result.append(channel)
                     }
                 }
+                completion(result.sort())
             }
-            self?.didGetChannels?(result.sort())
         }
     }
     
-    public func addMessageUpdateListener(for channelId: String) {
-        var result: [Message] = []
-        
+    public func getMessageUpdateListener(for channelId: String,
+                                         completion: @escaping ([Message]) -> Void) -> ListenerRegistration? {
         let reference = getReference(for: .channel(channelId))
-        
-        reference.addSnapshotListener { [weak self] snapshot, _ in
-            result.removeAll()
+        return reference.addSnapshotListener { snapshot, _ in
             if let documents = snapshot?.documents {
+                var result: [Message] = []
                 for document in documents {
                     let doc = document.data()
                     let messageDate = doc["created"] as? Timestamp
@@ -75,8 +68,8 @@ class NetworkService: NSObject {
                                           senderName: doc["senderName"] as? String)
                     result.append(message)
                 }
+                completion(result.sort())
             }
-            self?.didGetMessages?(result.sort())
         }
     }
     

@@ -56,6 +56,7 @@ class ConversationViewController: UIViewController {
     private let channelId: String
     
     private let networkService: NetworkService
+    private weak var messageUpdateListener: ListenerRegistration?
     
     init(userName: String, channelId: String) {
         self.channelId = channelId
@@ -77,7 +78,6 @@ class ConversationViewController: UIViewController {
         
         configureViews()
         configureNetworkService()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
@@ -89,6 +89,7 @@ class ConversationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        messageUpdateListener?.remove()
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillShowNotification,
                                                   object: nil)
@@ -174,15 +175,15 @@ class ConversationViewController: UIViewController {
                                         if status {
                                             self?.messageTextView.text = ""
                                         }
-                                    })
+                                      })
         }
     }
     
     private func configureNetworkService() {
-        networkService.didGetMessages = { [weak self] messages in
-            self?.messages = messages
-        }
-        networkService.addMessageUpdateListener(for: channelId)
+        messageUpdateListener = networkService.getMessageUpdateListener(for: channelId,
+                                                                        completion: { [weak self] messages in
+                                                                            self?.messages = messages
+                                                                        })
     }
 }
 
