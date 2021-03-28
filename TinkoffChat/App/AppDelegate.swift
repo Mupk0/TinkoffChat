@@ -12,6 +12,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
+    var coreDataStack = CoreDataStack()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -38,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Settings.shared.save()
             }
         }
+        
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDatabaseStatistice()
+        }
+        
+        coreDataStack.enableObservers()
         
         return true
     }

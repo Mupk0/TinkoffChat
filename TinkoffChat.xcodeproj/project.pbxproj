@@ -20,6 +20,8 @@
 		EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE825DFCB4D00906839 /* ImagePicker.swift */; };
 		EF835BEC25E0362000906839 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BEB25E0362000906839 /* String.swift */; };
 		EF97C8DB260496520049B00C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF97C8DA260496520049B00C /* GoogleService-Info.plist */; };
+		EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */; };
+		EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */; };
 		EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9BB92D25F4DEF3006D013A /* UIColor.swift */; };
 		EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9BB93025F4E773006D013A /* IncomingMessageImageView.swift */; };
 		EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9BB93325F4E803006D013A /* OutgoingMessageImageView.swift */; };
@@ -82,6 +84,8 @@
 		EF835BE825DFCB4D00906839 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EF835BEB25E0362000906839 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EF97C8DA260496520049B00C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
+		EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EF9BB92D25F4DEF3006D013A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		EF9BB93025F4E773006D013A /* IncomingMessageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageImageView.swift; sourceTree = "<group>"; };
 		EF9BB93325F4E803006D013A /* OutgoingMessageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageImageView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 		EF7CD0572600A97500EC4F0E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				EF9A27942610F4BF006E0CF8 /* CoreData */,
 				EFEC1DCE25FE50AD00194752 /* Profile */,
 				EF7CD0592600AA0500EC4F0E /* Settings */,
 				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
@@ -204,6 +209,15 @@
 				EF7CD05125FF9AC100EC4F0E /* UserSettingsStorageWithGCD.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		EF9A27942610F4BF006E0CF8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */,
+				EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* Services */ = {
@@ -612,7 +626,9 @@
 				EFE436E325ED727000869295 /* MessageType.swift in Sources */,
 				EFE436E625ED728A00869295 /* Message.swift in Sources */,
 				EF9BB93725F4E83E006D013A /* MessageTextView.swift in Sources */,
+				EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */,
 				EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */,
+				EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
 				EFBF508325F40205004F16C1 /* Settings.swift in Sources */,
 				EFBF508B25F4097F004F16C1 /* ThemeSwitcher.swift in Sources */,
@@ -849,6 +865,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */,
+			);
+			currentVersion = EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */;
+			path = Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EF08B63425D59BA70050FBA3 /* Project object */;
 }

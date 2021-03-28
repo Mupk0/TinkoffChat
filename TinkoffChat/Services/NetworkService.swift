@@ -14,8 +14,13 @@ class NetworkService: NSObject {
     
     private let db: Firestore
     
+    private var coreDataStack: CoreDataStack?
+    
     override init() {
         self.db = Firestore.firestore()
+        if let app = UIApplication.shared.delegate as? AppDelegate {
+            self.coreDataStack = app.coreDataStack
+        }
     }
     
     private enum NetworkCollection {
@@ -46,6 +51,14 @@ class NetworkService: NSObject {
                                               lastMessage: documentData["lastMessage"] as? String,
                                               lastActivity: dateTimeStamp?.dateValue())
                         result.append(channel)
+                        
+                        self.coreDataStack?.performSave { context in
+                            let ch = ChannelDb(context: context)
+                            ch.identifier = document.documentID
+                            ch.name = documentData["name"] as? String ?? "Unknown Name"
+                            ch.lastMessage = documentData["lastMessage"] as? String
+                            ch.lastActivity = dateTimeStamp?.dateValue()
+                        }
                     }
                 }
                 completion(result.sort())
