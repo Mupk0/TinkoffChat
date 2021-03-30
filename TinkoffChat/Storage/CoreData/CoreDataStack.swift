@@ -130,8 +130,24 @@ class CoreDataStack {
     func printDatabaseStatistice() {
         mainContext.perform {
             do {
-                let count = try self.mainContext.count(for: ChannelDb.fetchRequest())
-                print("\(count) каналов")
+                let channelsCount = try self.mainContext.count(for: ChannelDb.fetchRequest())
+                print("Всего в БД: \(channelsCount) каналов")
+                
+                let messagesCount = try self.mainContext.count(for: MessageDb.fetchRequest())
+                print("Всего в БД: \(messagesCount) сообщений")
+                
+                let channels = try self.mainContext.fetch(ChannelDb.fetchRequest()) as? [ChannelDb] ?? []
+                channels.forEach {
+                    print("В канале: \($0.name ?? "Unknown Chat Name") с идентификатором: \($0.identifier ?? "Unknown Chat Id")")
+                    if let channelMessages = $0.messages?.allObjects as? [MessageDb] {
+                        print("Кол-во сообщений в данного чата сохраненных в БД: \(channelMessages.count)")
+                        channelMessages.forEach {
+                            print("Сообщение от: \($0.senderName ?? "Unknown Sender Name") с текстом: \($0.content ?? "Unknown Content")")
+                            print("***")
+                        }
+                    }
+                    print("-----")
+                }
             } catch {
                 fatalError(error.localizedDescription)
             }
