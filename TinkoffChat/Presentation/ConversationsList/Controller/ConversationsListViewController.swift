@@ -12,7 +12,22 @@ class ConversationsListViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     
+    private let coreDataStack = CoreDataStack.shared
+    
     var conversations: [Channel] = [] {
+        willSet {
+            if conversations != newValue {
+                coreDataStack.performSave { context in
+                    for channel in newValue {
+                        let channelDb = ChannelDb(context: context)
+                        channelDb.identifier = channel.identifier
+                        channelDb.name = channel.name
+                        channelDb.lastMessage = channel.lastMessage
+                        channelDb.lastActivity = channel.lastActivity
+                    }
+                }
+            }
+        }
         didSet {
             tableView.reloadData()
         }
