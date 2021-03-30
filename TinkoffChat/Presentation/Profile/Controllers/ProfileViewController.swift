@@ -92,15 +92,9 @@ class ProfileViewController: UIViewController {
         return stackView
     }()
     
-    private let gcdButton: CustomButton = {
+    private let saveButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("Save GCD", for: .normal)
-        return button
-    }()
-    
-    private let operationButton: CustomButton = {
-        let button = CustomButton()
-        button.setTitle("Save Operations", for: .normal)
+        button.setTitle("Save", for: .normal)
         return button
     }()
     
@@ -253,18 +247,15 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                         action: #selector(showImagePickerAlert)))
         
-        editProfileStackView.addArrangedSubview(gcdButton)
-        editProfileStackView.addArrangedSubview(operationButton)
+        editProfileStackView.addArrangedSubview(saveButton)
         
         editButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(didTapEditButton)))
         cancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                  action: #selector(didTapCancelButton)))
         
-        gcdButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
+        saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(didTapButtonSaveUsingGSD)))
-        operationButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                    action: #selector(didTapButtonSaveUsingOperation)))
     }
     
     private func updateViewsByProfile(_ profile: Profile?) {
@@ -275,12 +266,13 @@ class ProfileViewController: UIViewController {
     }
     
     private func setStateOfSaveButtons(to state: SaveButtonsState) {
-        gcdButton.isEnabled = state == .enabled
-        operationButton.isEnabled = state == .enabled
+        saveButton.isEnabled = state == .enabled
     }
     // MARK: - Click Action Methods
     @objc private func showImagePickerAlert() {
         profileState = .edit
+        userNameTextField.endEditing(true)
+        userDescriptionTextView.endEditing(true)
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         imagePicker?.present()
     }
@@ -303,9 +295,6 @@ class ProfileViewController: UIViewController {
         saveProfile(type: .GCD)
     }
     
-    @objc private func didTapButtonSaveUsingOperation() {
-        saveProfile(type: .operation)
-    }
     // MARK: - Storage methods
     private func loadProfile() {
         profileStorage = ProfileFileStorage()
@@ -371,7 +360,8 @@ extension ProfileViewController: ImagePickerDelegate {
             userAvatarImageView.image = image
             setStateOfSaveButtons(to: .enabled)
         } else {
-            profileState = .show
+            profileState = hasUnsavedChanges ? .edit : .show
+            setStateOfSaveButtons(to: hasUnsavedChanges ? .enabled : .disabled)
         }
         imagePicker = nil
     }
