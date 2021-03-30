@@ -138,3 +138,18 @@ class CoreDataStack {
         }
     }
 }
+
+extension CoreDataStack {
+    
+    @objc
+    func getChannel(for id: String, with context: NSManagedObjectContext) -> ChannelDb? {
+        let fetchChannel: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        fetchChannel.predicate = NSPredicate(format: "identifier = %@", id as String)
+        
+        guard let results = try? context.fetch(fetchChannel),
+              results.count != 0,
+              let channel = results.first else { return nil }
+        
+        return channel
+    }
+}
