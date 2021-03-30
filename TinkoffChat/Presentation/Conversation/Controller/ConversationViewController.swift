@@ -44,6 +44,21 @@ class ConversationViewController: UIViewController {
     }()
     
     private var messages: [Message] = [] {
+        willSet {
+            if messages != newValue {
+                coreDataStack.performSave { context in
+                    guard let channel = coreDataStack.getChannel(for: channelId, with: context) else { return }
+                    for message in newValue {
+                        let messageDb = MessageDb(context: context)
+                        messageDb.content = message.content
+                        messageDb.created = message.created
+                        messageDb.senderId = message.senderId
+                        messageDb.senderName = message.senderName
+                        channel.addToMessages(messageDb)
+                    }
+                }
+            }
+        }
         didSet {
             tableView.reloadData()
             if messages.count > 0 {
@@ -57,6 +72,8 @@ class ConversationViewController: UIViewController {
     
     private let networkService: NetworkService
     private weak var messageUpdateListener: ListenerRegistration?
+    
+    private let coreDataStack = CoreDataStack.shared
     
     init(userName: String, channelId: String) {
         self.channelId = channelId
