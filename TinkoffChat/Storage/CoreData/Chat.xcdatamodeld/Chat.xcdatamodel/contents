@@ -5,6 +5,7 @@
         <attribute name="lastActivity" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastMessage" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MessageDb" inverseName="channel" inverseEntity="MessageDb"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="identifier"/>
@@ -16,6 +17,7 @@
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="senderId" attributeType="String"/>
         <attribute name="senderName" attributeType="String"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChannelDb" inverseName="messages" inverseEntity="ChannelDb"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="created"/>
@@ -23,7 +25,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="ChannelDb" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="MessageDb" positionX="-45" positionY="27" width="128" height="89"/>
+        <element name="ChannelDb" positionX="-298.53125" positionY="23.71484375" width="128" height="118"/>
+        <element name="MessageDb" positionX="-45" positionY="27" width="128" height="118"/>
     </elements>
 </model>
