@@ -10,6 +10,8 @@ import CoreData
 
 class CoreDataStack {
     
+    static let shared = CoreDataStack()
+    
     var didUpdateDataBase: ((CoreDataStack) -> Void)?
     
     private var storeUrl: URL = {
@@ -74,7 +76,7 @@ class CoreDataStack {
         return context
     }
     
-    func performSave(_ block: (NSManagedObjectContext) -> Void) {
+    public func performSave(_ block: (NSManagedObjectContext) -> Void) {
         let context = saveContext()
         context.performAndWait {
             block(context)
@@ -95,7 +97,7 @@ class CoreDataStack {
         if let parent = context.parent { performSave(in: parent) }
     }
     
-    func enableObservers() {
+    public func enableObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(managedObjectContextObjectsDidChange(notification:)),
