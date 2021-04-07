@@ -10,6 +10,7 @@ import CoreData
 
 protocol ConversationListTableViewDataSourceProtocol: UITableViewDataSource {
     func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb
+    func getConversations() -> [ChannelDb]
 }
 
 class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDataSourceProtocol {
@@ -25,6 +26,10 @@ class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDa
         } catch {
             print(error)
         }
+    }
+    
+    func getConversations() -> [ChannelDb] {
+        return fetchedResultsController.fetchedObjects ?? []
     }
     
     public func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb {

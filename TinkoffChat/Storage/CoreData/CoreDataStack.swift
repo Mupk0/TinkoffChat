@@ -206,4 +206,14 @@ extension CoreDataStack {
         
         return channel
     }
+    
+    @objc
+    func getMessages(for id: String, with context: NSManagedObjectContext) -> [MessageDb] {
+        let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+        request.predicate = NSPredicate(format: "channel.identifier = %@", id as String)
+        
+        guard let results = try? context.fetch(request), results.count != 0 else { return [] }
+        
+        return results
+    }
 }

@@ -8,7 +8,11 @@
 import UIKit
 import CoreData
 
-class ConversationTableViewDataSource: NSObject, UITableViewDataSource {
+protocol ConversationTableViewDataSourceProtocol: UITableViewDataSource {
+    func getMessages() -> [MessageDb]
+}
+
+class ConversationTableViewDataSource: NSObject, ConversationTableViewDataSourceProtocol {
     
     let fetchedResultsController: NSFetchedResultsController<MessageDb>
     
@@ -19,6 +23,10 @@ class ConversationTableViewDataSource: NSObject, UITableViewDataSource {
         } catch {
             print(error)
         }
+    }
+    
+    func getMessages() -> [MessageDb] {
+        return fetchedResultsController.fetchedObjects ?? []
     }
     
     func tableView(_ tableView: UITableView,

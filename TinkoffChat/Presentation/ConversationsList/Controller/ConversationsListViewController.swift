@@ -132,14 +132,28 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNetworkService() {
+        let oldChannels = tableViewDataSource.getConversations()
         channelUpdateListener = networkService.getChannelUpdateListener(completion: { [weak self] channels in
             self?.coreDataStack.performSave { context in
                 for channel in channels {
-                    let channelDb = ChannelDb(context: context)
-                    channelDb.identifier = channel.identifier
-                    channelDb.name = channel.name
-                    channelDb.lastMessage = channel.lastMessage
-                    channelDb.lastActivity = channel.lastActivity
+                    if oldChannels.contains(where: { $0.identifier == channel.identifier }) {
+                        let ch = self?.coreDataStack.getChannel(for: channel.identifier, with: context)
+                        ch?.setValue(channel.lastMessage, forKey: "lastMessage")
+                        ch?.setValue(channel.lastActivity, forKey: "lastActivity")
+                    } else {
+                        let channelDb = ChannelDb(context: context)
+                        channelDb.identifier = channel.identifier
+                        channelDb.name = channel.name
+                        channelDb.lastMessage = channel.lastMessage
+                        channelDb.lastActivity = channel.lastActivity
+                    }
+                }
+            }
+            self?.coreDataStack.performDelete { context in
+                for oldChannel in oldChannels {
+                    if !channels.contains(where: { $0.identifier == oldChannel.identifier }) {
+                        context.delete(oldChannel)
+                    }
                 }
             }
         })

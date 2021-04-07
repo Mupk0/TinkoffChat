@@ -51,7 +51,7 @@ class ConversationViewController: UIViewController {
     
     private let coreDataStack = CoreDataStack.shared
     
-    private lazy var tableViewDataSource: UITableViewDataSource = {
+    private lazy var tableViewDataSource: ConversationTableViewDataSourceProtocol = {
         let fetchedResultsController = coreDataStack.getFetchedResultController(id: channelId)
         fetchedResultsController.delegate = self
         return ConversationTableViewDataSource(fetchedResultsController: fetchedResultsController)
@@ -185,15 +185,18 @@ class ConversationViewController: UIViewController {
     }
     
     private func saveMessagesToCoreData(_ messages: [Message]) {
+        let oldMessages = tableViewDataSource.getMessages()
         coreDataStack.performSave { context in
             guard let channel = coreDataStack.getChannel(for: channelId, with: context) else { return }
             for message in messages {
-                let messageDb = MessageDb(context: context)
-                messageDb.content = message.content
-                messageDb.created = message.created
-                messageDb.senderId = message.senderId
-                messageDb.senderName = message.senderName
-                channel.addToMessages(messageDb)
+                if !oldMessages.contains(where: { $0.content == message.content && $0.senderId == message.senderId }) {
+                    let messageDb = MessageDb(context: context)
+                    messageDb.content = message.content
+                    messageDb.created = message.created
+                    messageDb.senderId = message.senderId
+                    messageDb.senderName = message.senderName
+                    channel.addToMessages(messageDb)
+                }
             }
         }
     }
@@ -235,9 +238,6 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-        
-//        let index = IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0)
-//        tableView.scrollToRow(at: index, at: .bottom, animated: true)
     }
 }
 

@@ -48,7 +48,7 @@ class NetworkService: NSObject {
                         result.append(channel)
                     }
                 }
-                completion(result.sort())
+                completion(result)
             }
         }
     }
@@ -68,7 +68,7 @@ class NetworkService: NSObject {
                                           senderName: documentData["senderName"] as? String ?? "Unknown Name")
                     result.append(message)
                 }
-                completion(result.sort())
+                completion(result)
             }
         }
     }
