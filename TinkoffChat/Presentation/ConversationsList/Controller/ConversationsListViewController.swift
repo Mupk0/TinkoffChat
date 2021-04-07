@@ -117,7 +117,13 @@ class ConversationsListViewController: UIViewController {
         let alertController = UIAlertController(title: "Введите название канала",
                                    message: nil,
                                    preferredStyle: .alert)
-        alertController.addTextField()
+        alertController.addTextField(configurationHandler: { textField in
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification,
+                                                   object: textField,
+                                                   queue: OperationQueue.main) { _ in
+                alertController.actions.first?.isEnabled = !(textField.text?.isBlank ?? false)
+            }
+        })
         let textField = alertController.textFields?[0]
         textField?.textColor = .black
 
@@ -129,6 +135,7 @@ class ConversationsListViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена",
                                          style: .cancel,
                                          handler: { _ in })
+        submitAction.isEnabled = false
 
         alertController.addAction(submitAction)
         alertController.addAction(cancelAction)

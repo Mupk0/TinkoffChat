@@ -185,7 +185,7 @@ class ConversationViewController: UIViewController {
     }
     
     @objc private func didTapAddMessageButton() {
-        if let message = messageTextView.text {
+        if let message = messageTextView.text, !message.isBlank {
             networkService.addMessage(channelId: channelId,
                                       messageText: message,
                                       complition: { [weak self] status in
@@ -229,7 +229,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
 extension ConversationViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
-        sendIconImageView.isHidden = textView.text.isEmpty
+        sendIconImageView.isHidden = textView.text.isBlank
         
         let fixedWidth = textView.frame.size.width
         textView.sizeThatFits(CGSize(width: fixedWidth, height: .greatestFiniteMagnitude))
