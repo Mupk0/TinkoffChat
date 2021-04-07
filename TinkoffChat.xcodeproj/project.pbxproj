@@ -12,6 +12,8 @@
 		EF08B64425D59BA70050FBA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B64325D59BA70050FBA3 /* ViewController.swift */; };
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
+		EF5CB632261DE165009E0EC1 /* ConversationTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB631261DE165009E0EC1 /* ConversationTableViewDataSource.swift */; };
+		EF5CB785261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */; };
 		EF7CD04C25FF979300EC4F0E /* UserSettingsFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */; };
 		EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */; };
 		EF7CD05225FF9AC100EC4F0E /* UserSettingsStorageWithGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD05125FF9AC100EC4F0E /* UserSettingsStorageWithGCD.swift */; };
@@ -76,6 +78,8 @@
 		EF08B64825D59BA80050FBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF08B64B25D59BA80050FBA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF08B64D25D59BA80050FBA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF5CB631261DE165009E0EC1 /* ConversationTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewDataSource.swift; sourceTree = "<group>"; };
+		EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageDb&MessageCellConfiguration.swift"; sourceTree = "<group>"; };
 		EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsFileStorage.swift; sourceTree = "<group>"; };
 		EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EF7CD05125FF9AC100EC4F0E /* UserSettingsStorageWithGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsStorageWithGCD.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 			children = (
 				EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */,
 				EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */,
+				EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				EFE436C125EC2BFD00869295 /* ConversationViewController.swift */,
+				EF5CB631261DE165009E0EC1 /* ConversationTableViewDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -638,6 +644,7 @@
 				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EFCB11612607C7C0004389F4 /* NetworkService.swift in Sources */,
+				EF5CB632261DE165009E0EC1 /* ConversationTableViewDataSource.swift in Sources */,
 				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
 				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,
 				EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */,
@@ -649,6 +656,7 @@
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
 				EFEC1DC925FE373600194752 /* Profile.swift in Sources */,
+				EF5CB785261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift in Sources */,
 				EFE436CA25ECE04C00869295 /* Channel.swift in Sources */,
 				EFD1348725F517D900C398CE /* MainTitleLabel.swift in Sources */,
 				EFD1349225F51D6000C398CE /* CustomButton.swift in Sources */,
