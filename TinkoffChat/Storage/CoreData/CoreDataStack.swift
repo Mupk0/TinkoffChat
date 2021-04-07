@@ -171,6 +171,20 @@ extension CoreDataStack {
         return fetchedResultsController
     }
     
+    func getFetchedResultController() -> NSFetchedResultsController<ChannelDb> {
+        let request: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let sortActivityDescriptor = NSSortDescriptor(key: "lastActivity", ascending: false)
+        let sortNameDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortActivityDescriptor, sortNameDescriptor]
+        request.returnsDistinctResults = true
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: writterContext,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        return fetchedResultsController
+    }
+    
     @objc
     func getChannel(for id: String, with context: NSManagedObjectContext) -> ChannelDb? {
         let fetchChannel: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()

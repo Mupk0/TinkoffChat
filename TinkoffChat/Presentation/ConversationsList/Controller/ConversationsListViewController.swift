@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import CoreData
 
 class ConversationsListViewController: UIViewController {
     
@@ -14,24 +15,11 @@ class ConversationsListViewController: UIViewController {
     
     private let coreDataStack = CoreDataStack.shared
     
-    var conversations: [Channel] = [] {
-        willSet {
-            if conversations != newValue {
-                coreDataStack.performSave { context in
-                    for channel in newValue {
-                        let channelDb = ChannelDb(context: context)
-                        channelDb.identifier = channel.identifier
-                        channelDb.name = channel.name
-                        channelDb.lastMessage = channel.lastMessage
-                        channelDb.lastActivity = channel.lastActivity
-                    }
-                }
-            }
-        }
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private lazy var tableViewDataSource: ConversationListTableViewDataSourceProtocol = {
+        let fetchedResultsController = coreDataStack.getFetchedResultController()
+        fetchedResultsController.delegate = self
+        return ConversationListTableViewDataSource(fetchedResultsController: fetchedResultsController)
+    }()
     
     private let networkService: NetworkService
     private weak var channelUpdateListener: ListenerRegistration?
@@ -92,7 +80,7 @@ class ConversationsListViewController: UIViewController {
         ])
         
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = tableViewDataSource
         
         tableView.register(ConversationsListTableViewCell.self,
                            forCellReuseIdentifier: ConversationsListTableViewCell.reuseIdentifier)
@@ -145,39 +133,71 @@ class ConversationsListViewController: UIViewController {
     
     private func configureNetworkService() {
         channelUpdateListener = networkService.getChannelUpdateListener(completion: { [weak self] channels in
-            self?.conversations = channels
+            self?.coreDataStack.performSave { context in
+                for channel in channels {
+                    let channelDb = ChannelDb(context: context)
+                    channelDb.identifier = channel.identifier
+                    channelDb.name = channel.name
+                    channelDb.lastMessage = channel.lastMessage
+                    channelDb.lastActivity = channel.lastActivity
+                }
+            }
         })
     }
 }
 
-extension ConversationsListViewController: UITableViewDelegate, UITableViewDataSource {
-    
+extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let conversation = conversations[indexPath.row]
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationsListTableViewCell.reuseIdentifier,
-                                                       for: indexPath) as? ConversationsListTableViewCell else {
-            fatalError("dequeueReusableCell ConversationsListTableViewCell not found")
-        }
-        cell.configureCell(model: conversation)
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let conversation = conversations[indexPath.row]
-        
+        let conversation = tableViewDataSource.getConversationForIndexPath(indexPath)
+
         tableView.deselectRow(at: indexPath, animated: false)
-        
-        let chatViewController = ConversationViewController(userName: conversation.name,
-                                                            channelId: conversation.identifier)
+
+        guard let name = conversation.name, let id = conversation.identifier else { return }
+        let chatViewController = ConversationViewController(userName: name,
+                                                            channelId: id)
         navigationController?.pushViewController(chatViewController, animated: true)
+    }
+}
+
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        @unknown default:
+            fatalError("Unknown type for NSFetchedResultsController didChange")
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
 }
