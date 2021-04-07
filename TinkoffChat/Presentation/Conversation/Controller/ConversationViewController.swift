@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import CoreData
 
 class ConversationViewController: UIViewController {
     
@@ -43,37 +44,18 @@ class ConversationViewController: UIViewController {
         return imageView
     }()
     
-    private var messages: [Message] = [] {
-        willSet {
-            if messages != newValue {
-                coreDataStack.performSave { context in
-                    guard let channel = coreDataStack.getChannel(for: channelId, with: context) else { return }
-                    for message in newValue {
-                        let messageDb = MessageDb(context: context)
-                        messageDb.content = message.content
-                        messageDb.created = message.created
-                        messageDb.senderId = message.senderId
-                        messageDb.senderName = message.senderName
-                        channel.addToMessages(messageDb)
-                    }
-                }
-            }
-        }
-        didSet {
-            tableView.reloadData()
-            if messages.count > 0 {
-                let index = IndexPath(row: messages.count - 1, section: 0)
-                tableView.scrollToRow(at: index, at: .bottom, animated: true)
-            }
-        }
-    }
-    
     private let channelId: String
     
     private let networkService: NetworkService
     private weak var messageUpdateListener: ListenerRegistration?
     
     private let coreDataStack = CoreDataStack.shared
+    
+    private lazy var tableViewDataSource: UITableViewDataSource = {
+        let fetchedResultsController = coreDataStack.getFetchedResultController(id: channelId)
+        fetchedResultsController.delegate = self
+        return ConversationTableViewDataSource(fetchedResultsController: fetchedResultsController)
+    }()
     
     init(userName: String, channelId: String) {
         self.channelId = channelId
@@ -165,8 +147,7 @@ class ConversationViewController: UIViewController {
             sendIconImageView.centerYAnchor.constraint(equalTo: messageTextView.centerYAnchor)
         ])
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = tableViewDataSource
         
         tableView.register(OutgoingMessageTableViewCell.self,
                            forCellReuseIdentifier: OutgoingMessageTableViewCell.reuseIdentifier)
@@ -199,30 +180,64 @@ class ConversationViewController: UIViewController {
     private func configureNetworkService() {
         messageUpdateListener = networkService.getMessageUpdateListener(for: channelId,
                                                                         completion: { [weak self] messages in
-                                                                            self?.messages = messages
+                                                                            self?.saveMessagesToCoreData(messages)
                                                                         })
+    }
+    
+    private func saveMessagesToCoreData(_ messages: [Message]) {
+        coreDataStack.performSave { context in
+            guard let channel = coreDataStack.getChannel(for: channelId, with: context) else { return }
+            for message in messages {
+                let messageDb = MessageDb(context: context)
+                messageDb.content = message.content
+                messageDb.created = message.created
+                messageDb.senderId = message.senderId
+                messageDb.senderName = message.senderName
+                channel.addToMessages(messageDb)
+            }
+        }
     }
 }
 
-extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
+extension ConversationViewController: NSFetchedResultsControllerDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        @unknown default:
+            fatalError("Unknown type for NSFetchedResultsController didChange")
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
         
-        let identifier = message.senderId == Settings.shared.deviceId
-            ? OutgoingMessageTableViewCell.reuseIdentifier
-            : IncomingMessageTableViewCell.reuseIdentifier
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier,
-                                                       for: indexPath) as? MessageCellProtocol & UITableViewCell
-        else { fatalError("Wrong Cell Type") }
-        cell.setMessageModel(message)
-        
-        return cell
+//        let index = IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0)
+//        tableView.scrollToRow(at: index, at: .bottom, animated: true)
     }
 }
 

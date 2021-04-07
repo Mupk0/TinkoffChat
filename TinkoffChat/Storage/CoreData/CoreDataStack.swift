@@ -157,6 +157,20 @@ class CoreDataStack {
 
 extension CoreDataStack {
     
+    func getFetchedResultController(id: String) -> NSFetchedResultsController<MessageDb> {
+        let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+        request.predicate = NSPredicate(format: "channel.identifier = %@", id as String)
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        request.returnsDistinctResults = true
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: writterContext,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        return fetchedResultsController
+    }
+    
     @objc
     func getChannel(for id: String, with context: NSManagedObjectContext) -> ChannelDb? {
         let fetchChannel: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
