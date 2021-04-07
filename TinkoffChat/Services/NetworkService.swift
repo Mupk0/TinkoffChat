@@ -86,6 +86,14 @@ class NetworkService: NSObject {
                               })
     }
     
+    public func deleteChannel(_ channelId: String,
+                              completion: @escaping (Error?) -> Void) {
+        let reference = getReference(for: .allChannels).document(channelId)
+        reference.delete(completion: { error in
+            completion(error)
+        })
+    }
+    
     public func addMessage(channelId: String,
                            messageText: String,
                            complition: @escaping (Bool) -> Void) {

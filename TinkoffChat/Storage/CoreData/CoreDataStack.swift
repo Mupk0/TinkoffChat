@@ -86,6 +86,16 @@ class CoreDataStack {
         }
     }
     
+    public func performDelete(_ block: (NSManagedObjectContext) -> Void) {
+        let context = writterContext
+        context.performAndWait {
+            block(context)
+            if context.hasChanges {
+                performSave(in: context)
+            }
+        }
+    }
+    
     private func performSave(in context: NSManagedObjectContext) {
         context.performAndWait {
             do {

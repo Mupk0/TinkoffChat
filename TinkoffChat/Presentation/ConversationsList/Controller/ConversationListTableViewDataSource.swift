@@ -52,4 +52,22 @@ class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDa
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let channel = fetchedResultsController.object(at: indexPath)
+            guard let id = channel.identifier else { return }
+            NetworkService.shared.deleteChannel(id, completion: { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    CoreDataStack.shared.performDelete { context in
+                        context.delete(channel)
+                    }
+                }
+            })
+        }
+    }
 }
