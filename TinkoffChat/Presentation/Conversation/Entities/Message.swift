@@ -8,10 +8,10 @@
 import Foundation
 
 struct Message: MessageCellConfiguration {
-    let content: String
-    let created: Date
-    let senderId: String
-    let senderName: String
+    let content: String?
+    let created: Date?
+    let senderId: String?
+    let senderName: String?
 }
 
 extension Message: Equatable {
@@ -40,7 +40,10 @@ extension Array where Element == Message {
     func sort() -> [Message] {
         var result = self
         result.sort { (first, second) -> Bool in
-            return first.created < second.created
+            if let firstCreated = first.created, let secondCreated = second.created {
+                return firstCreated < secondCreated
+            }
+            return false
         }
         return result
     }

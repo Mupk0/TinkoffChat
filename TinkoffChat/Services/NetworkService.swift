@@ -48,7 +48,7 @@ class NetworkService: NSObject {
                         result.append(channel)
                     }
                 }
-                completion(result.sort())
+                completion(result)
             }
         }
     }
@@ -68,7 +68,7 @@ class NetworkService: NSObject {
                                           senderName: documentData["senderName"] as? String ?? "Unknown Name")
                     result.append(message)
                 }
-                completion(result.sort())
+                completion(result)
             }
         }
     }
@@ -84,6 +84,14 @@ class NetworkService: NSObject {
                                     print(error.localizedDescription)
                                 }
                               })
+    }
+    
+    public func deleteChannel(_ channelId: String,
+                              completion: @escaping (Error?) -> Void) {
+        let reference = getReference(for: .allChannels).document(channelId)
+        reference.delete(completion: { error in
+            completion(error)
+        })
     }
     
     public func addMessage(channelId: String,

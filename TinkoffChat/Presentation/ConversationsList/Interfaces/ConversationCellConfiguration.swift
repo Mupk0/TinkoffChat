@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ConversationCellConfiguration {
-    var name: String { get set }
+    var name: String? { get set }
     var lastMessage: String? { get set }
     var lastActivity: Date? { get set }
 }

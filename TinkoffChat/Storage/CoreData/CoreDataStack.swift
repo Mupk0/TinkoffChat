@@ -86,6 +86,16 @@ class CoreDataStack {
         }
     }
     
+    public func performDelete(_ block: (NSManagedObjectContext) -> Void) {
+        let context = writterContext
+        context.performAndWait {
+            block(context)
+            if context.hasChanges {
+                performSave(in: context)
+            }
+        }
+    }
+    
     private func performSave(in context: NSManagedObjectContext) {
         context.performAndWait {
             do {
@@ -157,6 +167,34 @@ class CoreDataStack {
 
 extension CoreDataStack {
     
+    func getFetchedResultController(id: String) -> NSFetchedResultsController<MessageDb> {
+        let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+        request.predicate = NSPredicate(format: "channel.identifier = %@", id as String)
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        request.returnsDistinctResults = true
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: writterContext,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        return fetchedResultsController
+    }
+    
+    func getFetchedResultController() -> NSFetchedResultsController<ChannelDb> {
+        let request: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let sortActivityDescriptor = NSSortDescriptor(key: "lastActivity", ascending: false)
+        let sortNameDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortActivityDescriptor, sortNameDescriptor]
+        request.returnsDistinctResults = true
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: writterContext,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        return fetchedResultsController
+    }
+    
     @objc
     func getChannel(for id: String, with context: NSManagedObjectContext) -> ChannelDb? {
         let fetchChannel: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
@@ -167,5 +205,15 @@ extension CoreDataStack {
               let channel = results.first else { return nil }
         
         return channel
+    }
+    
+    @objc
+    func getMessages(for id: String, with context: NSManagedObjectContext) -> [MessageDb] {
+        let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+        request.predicate = NSPredicate(format: "channel.identifier = %@", id as String)
+        
+        guard let results = try? context.fetch(request), results.count != 0 else { return [] }
+        
+        return results
     }
 }

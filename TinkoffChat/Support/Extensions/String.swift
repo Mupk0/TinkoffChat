@@ -40,3 +40,9 @@ extension String {
         return self.size(withAttributes: fontAttributes)
     }
 }
+
+extension String {
+    var isBlank: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+}
