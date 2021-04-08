@@ -184,12 +184,12 @@ class ConversationViewController: UIViewController {
                                                                         })
     }
     
-    private func saveMessagesToCoreData(_ messages: [Message]) {
-        let oldMessages = tableViewDataSource.getMessages()
+    private func saveMessagesToCoreData(_ newMessages: [Message]) {
+        let savedMessages = tableViewDataSource.getMessages()
         coreDataStack.performSave { context in
             guard let channel = coreDataStack.getChannel(for: channelId, with: context) else { return }
-            for message in messages {
-                if !oldMessages.contains(where: { $0.content == message.content && $0.senderId == message.senderId }) {
+            for message in newMessages {
+                if !savedMessages.contains(where: { $0.content == message.content && $0.senderId == message.senderId }) {
                     let messageDb = MessageDb(context: context)
                     messageDb.content = message.content
                     messageDb.created = message.created
