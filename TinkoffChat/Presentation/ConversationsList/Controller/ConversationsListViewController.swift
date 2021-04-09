@@ -15,10 +15,16 @@ class ConversationsListViewController: UIViewController {
     
     private let coreDataStack = CoreDataStack.shared
     
-    private lazy var tableViewDataSource: ConversationListTableViewDataSourceProtocol = {
+    private lazy var fetchRequestController: NSFetchedResultsControllerDelegate = {
+        return ConversationsListFetchedResultsControllerDelegate(tableView: tableView)
+    }()
+    
+    private lazy var tableViewManager: ConversationListTableManagerProtocol = {
         let fetchedResultsController = coreDataStack.getFetchedResultController()
-        fetchedResultsController.delegate = self
-        return ConversationListTableViewDataSource(fetchedResultsController: fetchedResultsController)
+        fetchedResultsController.delegate = fetchRequestController
+        let tableManager = ConversationListTableManager(fetchedResultsController: fetchedResultsController)
+        tableManager.delegate = self
+        return tableManager
     }()
     
     private let networkService: NetworkService
@@ -26,7 +32,6 @@ class ConversationsListViewController: UIViewController {
     
     init() {
         self.networkService = NetworkService.shared
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,8 +84,8 @@ class ConversationsListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
-        tableView.delegate = self
-        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewManager
+        tableView.dataSource = tableViewManager
         
         tableView.register(ConversationsListTableViewCell.self,
                            forCellReuseIdentifier: ConversationsListTableViewCell.reuseIdentifier)
@@ -132,7 +137,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNetworkService() {
-        let savedChannels = tableViewDataSource.getConversations()
+        let savedChannels = tableViewManager.getConversations()
         channelUpdateListener = networkService.getChannelUpdateListener(completion: { [weak self] channels in
             self?.coreDataStack.performSave { context in
                 for channel in channels {
@@ -160,58 +165,10 @@ class ConversationsListViewController: UIViewController {
     }
 }
 
-extension ConversationsListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let conversation = tableViewDataSource.getConversationForIndexPath(indexPath)
-
-        tableView.deselectRow(at: indexPath, animated: false)
-
-        guard let name = conversation.name, let id = conversation.identifier else { return }
-        let chatViewController = ConversationViewController(userName: name,
-                                                            channelId: id)
+extension ConversationsListViewController: ConversationListTableManagerDelegate {
+    func didSelectChannel(_ channel: SelectedChannelProtocol) {
+        let chatViewController = ConversationViewController(userName: channel.name,
+                                                            channelId: channel.id)
         navigationController?.pushViewController(chatViewController, animated: true)
-    }
-}
-
-extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any,
-                    at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType,
-                    newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        case .move:
-            if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        case .update:
-            if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-        @unknown default:
-            fatalError("Unknown type for NSFetchedResultsController didChange")
-        }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
     }
 }

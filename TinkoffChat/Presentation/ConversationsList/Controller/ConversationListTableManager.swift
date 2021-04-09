@@ -1,5 +1,5 @@
 //
-//  ConversationListTableViewDataSource.swift
+//  ConversationListTableManager.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 07.04.2021.
@@ -8,14 +8,20 @@
 import UIKit
 import CoreData
 
-protocol ConversationListTableViewDataSourceProtocol: UITableViewDataSource {
+protocol ConversationListTableManagerProtocol: UITableViewDataSource, UITableViewDelegate {
     func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb
     func getConversations() -> [ChannelDb]
 }
 
-class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDataSourceProtocol {
+protocol ConversationListTableManagerDelegate: class {
+    func didSelectChannel(_ channel: SelectedChannelProtocol)
+}
+
+class ConversationListTableManager: NSObject, ConversationListTableManagerProtocol {
     
     let fetchedResultsController: NSFetchedResultsController<ChannelDb>
+    
+    weak var delegate: ConversationListTableManagerDelegate?
     
     init(fetchedResultsController: NSFetchedResultsController<ChannelDb>) {
         
@@ -35,7 +41,9 @@ class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDa
     public func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb {
         return fetchedResultsController.object(at: indexPath)
     }
-    
+}
+
+extension ConversationListTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController.sections else {
@@ -74,5 +82,20 @@ class ConversationListTableViewDataSource: NSObject, ConversationListTableViewDa
                 }
             })
         }
+    }
+}
+
+extension ConversationListTableManager: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let conversation = getConversationForIndexPath(indexPath)
+
+        tableView.deselectRow(at: indexPath, animated: false)
+
+        guard let name = conversation.name, let id = conversation.identifier else { return }
+        delegate?.didSelectChannel(SelectedChannel(name: name, id: id))
     }
 }
