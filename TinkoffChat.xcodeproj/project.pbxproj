@@ -43,7 +43,6 @@
 		EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */; };
 		EFD1349225F51D6000C398CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349125F51D6000C398CE /* CustomButton.swift */; };
 		EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */; };
-		EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCC25D81DD00016BD67 /* Log.swift */; };
 		EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCF25D81E240016BD67 /* Constants.swift */; };
 		EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */; };
 		EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B525EC23C100869295 /* ConversationsListViewController.swift */; };
@@ -51,8 +50,6 @@
 		EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C125EC2BFD00869295 /* ConversationViewController.swift */; };
 		EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */; };
 		EFE436CA25ECE04C00869295 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C925ECE04C00869295 /* Channel.swift */; };
-		EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CC25ECE19D00869295 /* DateUtils.swift */; };
-		EFE436D025ECF97600869295 /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436CF25ECF97600869295 /* Randomizer.swift */; };
 		EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436D825ED512900869295 /* OutgoingMessageTableViewCell.swift */; };
 		EFE436E025ED71A200869295 /* IncomingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436DF25ED71A200869295 /* IncomingMessageTableViewCell.swift */; };
 		EFE436E325ED727000869295 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436E225ED727000869295 /* MessageType.swift */; };
@@ -109,7 +106,6 @@
 		EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackgroundView.swift; sourceTree = "<group>"; };
 		EFD1349125F51D6000C398CE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeControllerBackgroundView.swift; sourceTree = "<group>"; };
-		EFDE1BCC25D81DD00016BD67 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		EFDE1BCF25D81E240016BD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.swift; sourceTree = "<group>"; };
 		EFE436B525EC23C100869295 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
@@ -117,8 +113,6 @@
 		EFE436C125EC2BFD00869295 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		EFE436C625ECD86800869295 /* ConversationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListTableViewCell.swift; sourceTree = "<group>"; };
 		EFE436C925ECE04C00869295 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		EFE436CC25ECE19D00869295 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
-		EFE436CF25ECF97600869295 /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
 		EFE436D825ED512900869295 /* OutgoingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageTableViewCell.swift; sourceTree = "<group>"; };
 		EFE436DF25ED71A200869295 /* IncomingMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageTableViewCell.swift; sourceTree = "<group>"; };
 		EFE436E225ED727000869295 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
@@ -308,9 +302,6 @@
 			children = (
 				EFD1348925F518B100C398CE /* CustomViews */,
 				EFDE1BDB25D82B720016BD67 /* Extensions */,
-				EFDE1BCC25D81DD00016BD67 /* Log.swift */,
-				EFE436CC25ECE19D00869295 /* DateUtils.swift */,
-				EFE436CF25ECF97600869295 /* Randomizer.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -612,7 +603,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFE436B925EC2B3F00869295 /* ConversationsListType.swift in Sources */,
-				EFE436D025ECF97600869295 /* Randomizer.swift in Sources */,
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
 				EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */,
 				EF7CD05D2600AB8C00EC4F0E /* FileSerializeProtocol.swift in Sources */,
@@ -638,7 +628,6 @@
 				EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */,
 				EF5CB632261DE165009E0EC1 /* ConversationTableViewDataSource.swift in Sources */,
 				EF24E3242620996900A2B7B9 /* SelectedChannel.swift in Sources */,
-				EFDE1BCD25D81DD00016BD67 /* Log.swift in Sources */,
 				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,
 				EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */,
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
@@ -659,7 +648,6 @@
 				EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */,
 				EFD1348125F5050600C398CE /* ThemeType.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
-				EFE436CD25ECE19D00869295 /* DateUtils.swift in Sources */,
 				EF24E321262097F400A2B7B9 /* ConversationsListFetchedResultsControllerDelegate.swift in Sources */,
 				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
 				EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */,

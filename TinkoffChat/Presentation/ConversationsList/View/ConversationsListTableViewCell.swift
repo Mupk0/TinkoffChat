@@ -92,7 +92,7 @@ class ConversationsListTableViewCell: UITableViewCell {
     
     func configureCell(model: ConversationCellConfiguration) {
         userNameLabel.text = model.name
-        lastMessageDateLabel.text = DateUtils.shared.getStringFromDate(model.lastActivity)
+        lastMessageDateLabel.text = getStringFromDate(model.lastActivity)
         lastMessageLabel.text = model.lastMessage ?? "No messages yet"
         
         lastMessageLabel.font = model.lastMessage != nil
@@ -103,11 +103,6 @@ class ConversationsListTableViewCell: UITableViewCell {
         userStatusView.isHidden = true
     }
     
-    private func getOfflineBackgroundColor() -> UIColor {
-        let theme = ThemeType(Settings.shared.themeType)
-        return theme.mainBackgroundColor
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -115,5 +110,23 @@ class ConversationsListTableViewCell: UITableViewCell {
         lastMessageDateLabel.text = nil
         lastMessageLabel.text = nil
         lastMessageLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+    }
+    
+    private func getOfflineBackgroundColor() -> UIColor {
+        let theme = ThemeType(Settings.shared.themeType)
+        return theme.mainBackgroundColor
+    }
+    
+    private func getStringFromDate(_ date: Date?) -> String {
+        if let date = date {
+            let calendar = Calendar.current
+            let dateFormatter = DateFormatter()
+            let startOfCurrentDay = calendar.startOfDay(for: Date())
+            dateFormatter.locale = Locale(identifier: "ru_RU")
+            dateFormatter.dateFormat = date > startOfCurrentDay ? "HH:mm" : "dd MMM"
+            
+            return dateFormatter.string(from: date)
+        }
+        return "Unknown Date"
     }
 }

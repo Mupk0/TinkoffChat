@@ -7,4 +7,4 @@
 
 import Foundation
 
-extension ChannelDb: ConversationCellConfiguration { }
+extension ChannelDb: ConversationCellConfiguration {}

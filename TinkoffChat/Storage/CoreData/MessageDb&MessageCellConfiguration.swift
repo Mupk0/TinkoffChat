@@ -7,6 +7,4 @@
 
 import Foundation
 
-extension MessageDb: MessageCellConfiguration {
-    
-}
+extension MessageDb: MessageCellConfiguration {}
