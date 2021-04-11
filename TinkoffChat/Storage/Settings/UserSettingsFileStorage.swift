@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol SettingsStorageProtocol: class {
-    func save(model: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void)
-    func load(completionHandler: @escaping (_ model: UserSettings?) -> Void)
-}
-
 class UserSettingsFileStorage {
     
     private let fileManager: FileManager
@@ -24,7 +19,7 @@ class UserSettingsFileStorage {
     }
 }
 
-extension UserSettingsFileStorage: SettingsStorageProtocol {
+extension UserSettingsFileStorage: FileStorageProtocol {
     
     public func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void) {
         guard let filePath = filePath else {
@@ -48,24 +43,26 @@ extension UserSettingsFileStorage: SettingsStorageProtocol {
     }
     
     public func save(model: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void) {
-        let dataDictionary = serialize(model: model)
-        
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary,
-                                                        requiringSecureCoding: false)
-            guard let filePath = filePath else {
-                print("Error With Url Path")
-                completionHandler(false)
-                return
-            }
+        DispatchQueue.global().async {
+            let dataDictionary = self.serialize(model: model)
             
-            try data.write(to: filePath)
-            completionHandler(true)
-            return
-        } catch {
-            print("Error writing data \(error)")
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary,
+                                                            requiringSecureCoding: false)
+                guard let filePath = self.filePath else {
+                    print("Error With Url Path")
+                    completionHandler(false)
+                    return
+                }
+                
+                try data.write(to: filePath)
+                completionHandler(true)
+                return
+            } catch {
+                print("Error writing data \(error)")
+            }
+            completionHandler(false)
         }
-        completionHandler(false)
     }
 }
 

@@ -104,7 +104,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private var imagePicker: ImagePicker?
-    private var profileStorage: ProfileStorageProtocol?
+    private var profileStorage = ProfileFileStorage()
     
     // MARK: - Profile Datas
     private var savedProfile: Profile?
@@ -250,7 +250,7 @@ class ProfileViewController: UIViewController {
                                                                  action: #selector(didTapCancelButton)))
         
         saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: #selector(didTapButtonSaveUsingGSD)))
+                                                              action: #selector(didTapSaveButton)))
     }
     
     private func updateViewsByProfile(_ profile: Profile?) {
@@ -286,8 +286,7 @@ class ProfileViewController: UIViewController {
         unsavedProfile = savedProfile
     }
     
-    @objc private func didTapButtonSaveUsingGSD() {
-        profileStorage = ProfileStorageWithGCD()
+    @objc private func didTapSaveButton() {
         
         activityIndicator.startAnimating()
         cancelButton.isEnabled = false
@@ -297,7 +296,7 @@ class ProfileViewController: UIViewController {
                               photo: userAvatarImageView.image,
                               userName: userNameTextField.text)
         
-        profileStorage?.save(profile) { status in
+        profileStorage.save(model: profile) { status in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.activityIndicator.stopAnimating()
                 self.cancelButton.isEnabled = true
@@ -322,7 +321,7 @@ class ProfileViewController: UIViewController {
                                                                         self.unsavedProfile = self.savedProfile
                                                                       },
                                                                       buttonRightAction: { _ in
-                                                                        self.didTapButtonSaveUsingGSD()
+                                                                        self.didTapSaveButton()
                                                                       })
                 }
             }
@@ -332,7 +331,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Storage methods
     private func loadProfile() {
         profileStorage = ProfileFileStorage()
-        profileStorage?.load { profile in
+        profileStorage.load { profile in
             self.savedProfile = profile
             self.unsavedProfile = profile
         }

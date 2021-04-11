@@ -96,7 +96,7 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     }
     
     private func updateCurrentTheme() {
-        let themeStorage = UserSettingsStorageWithGCD()
+        let themeStorage = UserSettingsFileStorage()
         themeStorage.load(completionHandler: { userTheme in
             let themeType = ThemeType(userTheme?.currentTheme)
             self.didSelectTheme(themeType)

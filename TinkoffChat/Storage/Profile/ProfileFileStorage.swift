@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol ProfileStorageProtocol: class {
-    func save(_ profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void)
-    func load(completionHandler: @escaping (_ model: Profile?) -> Void)
-}
-
 class ProfileFileStorage {
     
     private let fileManager: FileManager
@@ -24,7 +19,7 @@ class ProfileFileStorage {
     }
 }
 
-extension ProfileFileStorage: ProfileStorageProtocol {
+extension ProfileFileStorage: FileStorageProtocol {
     
     public func load(completionHandler: @escaping (_ profile: Profile?) -> Void) {
         guard let filePath = filePath else {
@@ -47,25 +42,27 @@ extension ProfileFileStorage: ProfileStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(_ profile: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
-        let dataDictionary = serialize(model: profile)
-        
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary,
-                                                        requiringSecureCoding: false)
-            guard let filePath = filePath else {
-                print("Error With Url Path")
-                completionHandler(false)
-                return
-            }
+    public func save(model: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
+        DispatchQueue.global().async {
+            let dataDictionary = self.serialize(model: model)
             
-            try data.write(to: filePath)
-            completionHandler(true)
-            return
-        } catch {
-            print("Error writing data \(error)")
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: dataDictionary,
+                                                            requiringSecureCoding: false)
+                guard let filePath = self.filePath else {
+                    print("Error With Url Path")
+                    completionHandler(false)
+                    return
+                }
+                
+                try data.write(to: filePath)
+                completionHandler(true)
+                return
+            } catch {
+                print("Error writing data \(error)")
+            }
+            completionHandler(false)
         }
-        completionHandler(false)
     }
 }
 

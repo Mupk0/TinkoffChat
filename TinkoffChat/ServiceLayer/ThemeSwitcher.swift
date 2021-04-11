@@ -81,7 +81,7 @@ class ThemeSwitcher {
     }
     
     private func updateThemeInStorage(_ themeType: ThemeType) {
-        let themeStorage = UserSettingsStorageWithGCD()
+        let themeStorage = UserSettingsFileStorage()
         themeStorage.save(model: UserSettings(currentTheme: themeType.rawValue),
                           completionHandler: { status in
                             if !status {
