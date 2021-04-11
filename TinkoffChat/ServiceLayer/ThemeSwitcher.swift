@@ -12,12 +12,12 @@ class ThemeSwitcher {
     static var shared = ThemeSwitcher()
     
     public func setTheme(_ themeType: ThemeType) {
-        updateAppereances(themeType)
+        updateAppearances(themeType)
         resetSubviews()
         updateThemeInStorage(themeType)
     }
     
-    private func updateAppereances(_ themeType: ThemeType) {
+    private func updateAppearances(_ themeType: ThemeType) {
         // Tables
         let tableViewAppearance = UITableView.appearance()
         tableViewAppearance.backgroundColor = themeType.mainBackgroundColor

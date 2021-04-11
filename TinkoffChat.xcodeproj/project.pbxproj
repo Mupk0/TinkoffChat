@@ -178,11 +178,11 @@
 		EF08B63E25D59BA70050FBA3 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
-				EF97C8DA260496520049B00C /* GoogleService-Info.plist */,
+				EFDE1BD625D82AC80016BD67 /* ApplicationLayer */,
+				EFAEA37F262369A900397C90 /* CoreLayer */,
+				EFBF508125F401FB004F16C1 /* ServiceLayer */,
 				EF7CD0572600A97500EC4F0E /* Storage */,
-				EFBF508125F401FB004F16C1 /* Services */,
-				EFDE1BD625D82AC80016BD67 /* App */,
-				EFDE1BE025D82BD90016BD67 /* Presentation */,
+				EFDE1BE025D82BD90016BD67 /* PresentationLayer */,
 				EFDE1BD925D82B200016BD67 /* Support */,
 				EFDE1BD825D82B190016BD67 /* Resources */,
 			);
@@ -192,7 +192,6 @@
 		EF7CD0572600A97500EC4F0E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				EF9A27942610F4BF006E0CF8 /* CoreData */,
 				EFEC1DCE25FE50AD00194752 /* Profile */,
 				EF7CD0592600AA0500EC4F0E /* Settings */,
 				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
@@ -220,14 +219,22 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		EFBF508125F401FB004F16C1 /* Services */ = {
+		EFAEA37F262369A900397C90 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				EF9A27942610F4BF006E0CF8 /* CoreData */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
 				EFBF508225F40205004F16C1 /* Settings.swift */,
 				EFBF508A25F4097F004F16C1 /* ThemeSwitcher.swift */,
 				EFCB11602607C7C0004389F4 /* NetworkService.swift */,
 			);
-			path = Services;
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		EFD1347C25F504B300C398CE /* Settings */ = {
@@ -278,14 +285,15 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		EFDE1BD625D82AC80016BD67 /* App */ = {
+		EFDE1BD625D82AC80016BD67 /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
 				EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */,
 				EFDE1BCF25D81E240016BD67 /* Constants.swift */,
 				EF08B64D25D59BA80050FBA3 /* Info.plist */,
+				EF97C8DA260496520049B00C /* GoogleService-Info.plist */,
 			);
-			path = App;
+			path = ApplicationLayer;
 			sourceTree = "<group>";
 		};
 		EFDE1BD825D82B190016BD67 /* Resources */ = {
@@ -319,7 +327,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		EFDE1BE025D82BD90016BD67 /* Presentation */ = {
+		EFDE1BE025D82BD90016BD67 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
 				EFD1347C25F504B300C398CE /* Settings */,
@@ -327,7 +335,7 @@
 				EFE436C025EC2BF100869295 /* Conversation */,
 				EFE436BD25EC2B7D00869295 /* Profile */,
 			);
-			path = Presentation;
+			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
 		EFE436BB25EC2B7300869295 /* ConversationsList */ = {
@@ -440,17 +448,9 @@
 			isa = PBXGroup;
 			children = (
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
-				EFEC1DDD25FE8D7A00194752 /* GCD */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		EFEC1DDD25FE8D7A00194752 /* GCD */ = {
-			isa = PBXGroup;
-			children = (
 				EFEC1DDE25FE8D9D00194752 /* ProfileStorageWithGCD.swift */,
 			);
-			path = GCD;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		EFEC1DED25FE915800194752 /* Controllers */ = {
@@ -795,7 +795,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HNZG8PLWWM;
-				INFOPLIST_FILE = TinkoffChat/App/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/ApplicationLayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -818,7 +818,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HNZG8PLWWM;
-				INFOPLIST_FILE = TinkoffChat/App/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/ApplicationLayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
