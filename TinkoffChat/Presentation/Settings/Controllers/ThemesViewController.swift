@@ -25,10 +25,7 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     private let nightThemeView = ThemeTypeView(.Night)
     
     weak var delegate: ThemesViewControllerDelegate?
-    /*
-     retain cycle при использовании данного делегата может возникнуть в том случае,
-     когда он указан сильной ссылкой (без weak)
-     */
+    
     var didSelectThemeType: ((ThemeType) -> Void)?
     
     init() {
@@ -115,9 +112,5 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
         
         delegate?.didSelectTheme(themeType)
         didSelectThemeType?(themeType)
-        /*
-         retain cycle возникнет при использовании данного замыкания,
-         если в контроллере есть ссылка на замыкание, в котором мы используем self сильной ссылкой
-         */
     }
 }

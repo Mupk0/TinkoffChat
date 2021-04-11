@@ -14,11 +14,6 @@ class ProfileViewController: UIViewController {
         case disabled
     }
     
-    private enum SaveType {
-        case GCD
-        case operation
-    }
-    
     private enum ProfileState {
         case show
         case edit
@@ -292,25 +287,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapButtonSaveUsingGSD() {
-        saveProfile(type: .GCD)
-    }
-    
-    // MARK: - Storage methods
-    private func loadProfile() {
-        profileStorage = ProfileFileStorage()
-        profileStorage?.load { profile in
-            self.savedProfile = profile
-            self.unsavedProfile = profile
-        }
-    }
-    
-    private func saveProfile(type: SaveType) {
-        switch type {
-        case .GCD:
-            profileStorage = ProfileStorageWithGCD()
-        case .operation:
-            profileStorage = ProfileStorageWithOperation()
-        }
+        profileStorage = ProfileStorageWithGCD()
         
         activityIndicator.startAnimating()
         cancelButton.isEnabled = false
@@ -345,10 +322,19 @@ class ProfileViewController: UIViewController {
                                                                         self.unsavedProfile = self.savedProfile
                                                                       },
                                                                       buttonRightAction: { _ in
-                                                                        self.saveProfile(type: type)
+                                                                        self.didTapButtonSaveUsingGSD()
                                                                       })
                 }
             }
+        }
+    }
+    
+    // MARK: - Storage methods
+    private func loadProfile() {
+        profileStorage = ProfileFileStorage()
+        profileStorage?.load { profile in
+            self.savedProfile = profile
+            self.unsavedProfile = profile
         }
     }
 }
