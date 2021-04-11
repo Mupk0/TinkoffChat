@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct UserSettings {
+protocol UserSettingsProtocol {
+    var currentTheme: String? { get }
+}
+
+struct UserSettings: UserSettingsProtocol {
     var currentTheme: String?
 }

@@ -21,7 +21,7 @@ class ProfileFileStorage {
 
 extension ProfileFileStorage: FileStorageProtocol {
     
-    public func load(completionHandler: @escaping (_ profile: Profile?) -> Void) {
+    public func load(completionHandler: @escaping (_ profile: ProfileProtocol?) -> Void) {
         guard let filePath = filePath else {
             print("Error With Url Path")
             completionHandler(nil)
@@ -42,7 +42,7 @@ extension ProfileFileStorage: FileStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(model: Profile, completionHandler: @escaping (_ success: Bool) -> Void) {
+    public func save(model: ProfileProtocol, completionHandler: @escaping (_ success: Bool) -> Void) {
         DispatchQueue.global().async {
             let dataDictionary = self.serialize(model: model)
             
@@ -68,7 +68,7 @@ extension ProfileFileStorage: FileStorageProtocol {
 
 extension ProfileFileStorage: FileSerializeProtocol {
     
-    func serialize(model: Profile) -> [String: Any?] {
+    func serialize(model: ProfileProtocol) -> [String: Any?] {
         
         var userPhotoData: Data?
         if let userPhoto = model.photo {
@@ -85,7 +85,7 @@ extension ProfileFileStorage: FileSerializeProtocol {
                 Constants.profileUserDescriptionKey: model.about]
     }
     
-    func deserialize(from data: Data) throws -> Profile? {
+    func deserialize(from data: Data) throws -> ProfileProtocol? {
         
         do {
             if let dictionary = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {

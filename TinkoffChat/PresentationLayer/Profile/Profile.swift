@@ -7,7 +7,15 @@
 
 import UIKit
 
-struct Profile {
+protocol ProfileProtocol {
+    var about: String? { get }
+    var photo: UIImage? { get }
+    var userName: String? { get }
+    
+    func isEquatable(newValue: ProfileProtocol?) -> Bool
+}
+
+struct Profile: ProfileProtocol {
     var about: String?
     var photo: UIImage?
     var userName: String?
@@ -19,10 +27,8 @@ struct Profile {
         self.photo = photo
         self.userName = userName
     }
-}
-
-extension Profile: Equatable {
-    static func == (lhs: Profile, rhs: Profile) -> Bool {
-        return lhs.about == rhs.about && lhs.photo == rhs.photo && lhs.userName == rhs.userName
+    
+    func isEquatable(newValue: ProfileProtocol?) -> Bool {
+        return self.about == newValue?.about && self.photo == newValue?.photo && self.userName == newValue?.userName
     }
 }

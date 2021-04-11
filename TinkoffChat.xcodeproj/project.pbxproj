@@ -190,20 +190,10 @@
 		EF7CD0572600A97500EC4F0E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				EFEC1DCE25FE50AD00194752 /* Profile */,
-				EF7CD0592600AA0500EC4F0E /* Settings */,
-				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
-				EFAEA38726236F9B00397C90 /* FileStorageProtocol.swift */,
-			);
-			path = Storage;
-			sourceTree = "<group>";
-		};
-		EF7CD0592600AA0500EC4F0E /* Settings */ = {
-			isa = PBXGroup;
-			children = (
+				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
 				EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */,
 			);
-			path = Settings;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EF9A27942610F4BF006E0CF8 /* CoreData */ = {
@@ -220,9 +210,19 @@
 		EFAEA37F262369A900397C90 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA38A262371BA00397C90 /* Storage */,
 				EF9A27942610F4BF006E0CF8 /* CoreData */,
 			);
 			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		EFAEA38A262371BA00397C90 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
+				EFAEA38726236F9B00397C90 /* FileStorageProtocol.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
@@ -440,14 +440,6 @@
 				EFE4370025EE2C4A00869295 /* ConversationCellConfiguration.swift */,
 			);
 			path = Interfaces;
-			sourceTree = "<group>";
-		};
-		EFEC1DCE25FE50AD00194752 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		EFEC1DED25FE915800194752 /* Controllers */ = {

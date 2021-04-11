@@ -21,7 +21,7 @@ class UserSettingsFileStorage {
 
 extension UserSettingsFileStorage: FileStorageProtocol {
     
-    public func load(completionHandler: @escaping (_ userTheme: UserSettings?) -> Void) {
+    public func load(completionHandler: @escaping (_ userTheme: UserSettingsProtocol?) -> Void) {
         guard let filePath = filePath else {
             print("Error With Url Path")
             completionHandler(nil)
@@ -42,7 +42,7 @@ extension UserSettingsFileStorage: FileStorageProtocol {
         completionHandler(nil)
     }
     
-    public func save(model: UserSettings, completionHandler: @escaping (_ success: Bool) -> Void) {
+    public func save(model: UserSettingsProtocol, completionHandler: @escaping (_ success: Bool) -> Void) {
         DispatchQueue.global().async {
             let dataDictionary = self.serialize(model: model)
             
@@ -68,11 +68,11 @@ extension UserSettingsFileStorage: FileStorageProtocol {
 
 extension UserSettingsFileStorage: FileSerializeProtocol {
     
-    func serialize(model userTheme: UserSettings) -> [String: Any?] {
+    func serialize(model userTheme: UserSettingsProtocol) -> [String: Any?] {
         return [Constants.userThemeKey: userTheme.currentTheme]
     }
     
-    func deserialize(from data: Data) throws -> UserSettings? {
+    func deserialize(from data: Data) throws -> UserSettingsProtocol? {
         do {
             if let dictionary = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {
                 let currentTheme = dictionary[Constants.userThemeKey] as? String

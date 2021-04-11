@@ -107,12 +107,12 @@ class ProfileViewController: UIViewController {
     private var profileStorage = ProfileFileStorage()
     
     // MARK: - Profile Datas
-    private var savedProfile: Profile?
+    private var savedProfile: ProfileProtocol?
     
-    private var unsavedProfile: Profile? {
+    private var unsavedProfile: ProfileProtocol? {
         didSet {
             updateViewsByProfile(unsavedProfile)
-            hasUnsavedChanges = unsavedProfile != savedProfile
+            hasUnsavedChanges = savedProfile?.isEquatable(newValue: unsavedProfile) ?? false
         }
     }
     // MARK: - Controller states
@@ -253,7 +253,7 @@ class ProfileViewController: UIViewController {
                                                               action: #selector(didTapSaveButton)))
     }
     
-    private func updateViewsByProfile(_ profile: Profile?) {
+    private func updateViewsByProfile(_ profile: ProfileProtocol?) {
         userAvatarImageView.image = unsavedProfile?.photo ?? nil
         userNameTextField.text = unsavedProfile?.userName ?? "Your Name"
         userDescriptionTextView.text = unsavedProfile?.about ?? "Add Some Information About you"

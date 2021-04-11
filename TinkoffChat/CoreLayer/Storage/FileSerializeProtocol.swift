@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FileSerializeProtocol {
+protocol FileSerializeProtocol: class {
     associatedtype Model
     
     func serialize(model: Model) -> [String: Any?]
