@@ -22,10 +22,13 @@
             <uniquenessConstraint>
                 <constraint value="created"/>
             </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="senderId"/>
+            </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <elements>
         <element name="ChannelDb" positionX="-298.53125" positionY="23.71484375" width="128" height="118"/>
-        <element name="MessageDb" positionX="-45" positionY="27" width="128" height="118"/>
+        <element name="MessageDb" positionX="-45" positionY="27" width="128" height="104"/>
     </elements>
 </model>

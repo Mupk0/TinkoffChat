@@ -201,7 +201,7 @@ extension CoreDataStack {
         fetchChannel.predicate = NSPredicate(format: "identifier = %@", id as String)
         
         guard let results = try? context.fetch(fetchChannel),
-              results.count != 0,
+              !results.isEmpty,
               let channel = results.first else { return nil }
         
         return channel
@@ -212,7 +212,7 @@ extension CoreDataStack {
         let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
         request.predicate = NSPredicate(format: "channel.identifier = %@", id as String)
         
-        guard let results = try? context.fetch(request), results.count != 0 else { return [] }
+        guard let results = try? context.fetch(request), !results.isEmpty else { return [] }
         
         return results
     }
