@@ -201,8 +201,7 @@
 			children = (
 				EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */,
 				EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */,
-				EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */,
-				EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */,
+				EFAEA391262386D000397C90 /* Entities */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -223,6 +222,15 @@
 				EFAEA38726236F9B00397C90 /* FileStorageProtocol.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		EFAEA391262386D000397C90 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */,
+				EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
