@@ -104,7 +104,6 @@ class ProfileViewController: UIViewController {
     }()
     
     private var imagePicker: ImagePicker?
-    private var profileStorage = ProfileFileStorage()
     
     // MARK: - Profile Datas
     private var savedProfile: ProfileProtocol?
@@ -134,7 +133,12 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    init() {
+    private let dataModel: ProfileDataModelProtocol
+    
+    init(dataModel: ProfileDataModelProtocol) {
+        
+        self.dataModel = dataModel
+        
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.title = "Profile"
@@ -254,10 +258,12 @@ class ProfileViewController: UIViewController {
     }
     
     private func updateViewsByProfile(_ profile: ProfileProtocol?) {
-        userAvatarImageView.image = unsavedProfile?.photo ?? nil
         userNameTextField.text = unsavedProfile?.userName ?? "Your Name"
         userDescriptionTextView.text = unsavedProfile?.about ?? "Add Some Information About you"
         userAvatarLabel.text = userNameTextField.text?.getStringFirstChars()
+        if let photoData = unsavedProfile?.photo {
+            userAvatarImageView.image = UIImage(data: photoData)
+        }
     }
     
     private func setStateOfSaveButtons(to state: SaveButtonsState) {
@@ -293,48 +299,50 @@ class ProfileViewController: UIViewController {
         setStateOfSaveButtons(to: .disabled)
         
         let profile = Profile(about: userDescriptionTextView.text,
-                              photo: userAvatarImageView.image,
+                              photo: userAvatarImageView.image?.pngData(),
                               userName: userNameTextField.text)
         
-        profileStorage.save(model: profile) { status in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.activityIndicator.stopAnimating()
-                self.cancelButton.isEnabled = true
-                self.setStateOfSaveButtons(to: .enabled)
-                if status {
-                    let window = UIApplication.shared.delegate?.window as? UIWindow
-                    window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
-                                                                      buttonLeftTitle: "Ок",
-                                                                      buttonLeftAction: { _ in },
-                                                                      buttonRightAction: { _ in })
-                    self.hasUnsavedChanges = false
-                    self.savedProfile = profile
-                    self.profileState = .show
-                } else {
-                    let window = UIApplication.shared.delegate?.window as? UIWindow
-                    window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
-                                                                      message: "Не удалось сохранить данные",
-                                                                      buttonLeftTitle: "Ок",
-                                                                      buttonRightTitle: "Повторить",
-                                                                      buttonLeftAction: { _ in
-                                                                        self.profileState = .show
-                                                                        self.unsavedProfile = self.savedProfile
-                                                                      },
-                                                                      buttonRightAction: { _ in
-                                                                        self.didTapSaveButton()
-                                                                      })
-                }
-            }
-        }
+        dataModel.saveUserProfile(profile,
+                                  completionHandler: { error in
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                        self.activityIndicator.stopAnimating()
+                                        self.cancelButton.isEnabled = true
+                                        self.setStateOfSaveButtons(to: .enabled)
+                                        if error != nil {
+                                            let window = UIApplication.shared.delegate?.window as? UIWindow
+                                            window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
+                                                                                              message: "Не удалось сохранить данные",
+                                                                                              buttonLeftTitle: "Ок",
+                                                                                              buttonRightTitle: "Повторить",
+                                                                                              buttonLeftAction: { _ in
+                                                                                                self.profileState = .show
+                                                                                                self.unsavedProfile = self.savedProfile
+                                                                                              },
+                                                                                              buttonRightAction: { _ in
+                                                                                                self.didTapSaveButton()
+                                                                                              })
+                                        } else {
+                                            let window = UIApplication.shared.delegate?.window as? UIWindow
+                                            window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
+                                                                                              buttonLeftTitle: "Ок",
+                                                                                              buttonLeftAction: { _ in },
+                                                                                              buttonRightAction: { _ in })
+                                            self.hasUnsavedChanges = false
+                                            self.savedProfile = profile
+                                            self.profileState = .show
+                                        }
+                                    }
+                                  })
     }
     
     // MARK: - Storage methods
     private func loadProfile() {
-        profileStorage = ProfileFileStorage()
-        profileStorage.load { profile in
-            self.savedProfile = profile
-            self.unsavedProfile = profile
-        }
+        dataModel.getUserProfile(completionHandler: { [weak self] (profile, _) in
+            if let profile = profile {
+                self?.savedProfile = profile
+                self?.unsavedProfile = profile
+            }
+        })
     }
 }
 // MARK: - Image Picker Delegate

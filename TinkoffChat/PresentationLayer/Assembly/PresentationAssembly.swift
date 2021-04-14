@@ -35,7 +35,8 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     
     // MARK: - ProfileViewController
     func profileViewController() -> ProfileViewController {
-        let viewController = ProfileViewController()
+        let dataModel = ProfileDataModel(profileService: serviceAssembly.profileService)
+        let viewController = ProfileViewController(dataModel: dataModel)
         return viewController
     }
     

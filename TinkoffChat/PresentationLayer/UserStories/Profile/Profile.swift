@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol ProfileProtocol {
+protocol ProfileProtocol: Codable {
     var about: String? { get }
-    var photo: UIImage? { get }
+    var photo: Data? { get }
     var userName: String? { get }
     
     func isEquatable(newValue: ProfileProtocol?) -> Bool
@@ -17,11 +17,11 @@ protocol ProfileProtocol {
 
 struct Profile: ProfileProtocol {
     var about: String?
-    var photo: UIImage?
+    var photo: Data?
     var userName: String?
     
     init(about: String? = nil,
-         photo: UIImage? = nil,
+         photo: Data? = nil,
          userName: String? = nil) {
         self.about = about
         self.photo = photo

@@ -18,13 +18,17 @@ class FirebaseService: FirebaseServiceProtocol {
     private let parserService: FirebaseParserProtocol
     private let coreDataService: CoreDataManagerProtocol
     private let settingsService: SettingsServiceProtocol
+    private let profileService: ProfileServiceProtocol
     
     init(parserService: FirebaseParserProtocol,
          coreDataService: CoreDataManagerProtocol,
-         settingsService: SettingsServiceProtocol) {
+         settingsService: SettingsServiceProtocol,
+         profileService: ProfileServiceProtocol) {
+        
         self.parserService = parserService
         self.coreDataService = coreDataService
         self.settingsService = settingsService
+        self.profileService = profileService
     }
     
     private enum NetworkCollection {
@@ -121,25 +125,29 @@ class FirebaseService: FirebaseServiceProtocol {
         let reference = getReference(for: .channel(channelId))
         
         if let deviceId = settingsService.getDeviceId() {
-            let message: [String: Any] = [
-                "content": messageText,
-                "created": Date(),
-                "senderId": deviceId,
-                "senderName": "Kulagin Dmitry"
-            ]
-            
-            reference.addDocument(data: message,
-                                  completion: { error in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                        complition(false)
-                                    } else {
-                                        complition(true)
-                                    }
-                                  })
+            profileService.getUserProfile(completionHandler: { (profile, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    complition(false)
+                }
+                
+                let message: [String: Any] = [
+                    "content": messageText,
+                    "created": Date(),
+                    "senderId": deviceId,
+                    "senderName": profile?.userName ?? "Unknown User"
+                ]
+                
+                reference.addDocument(data: message,
+                                      completion: { error in
+                                        if let error = error {
+                                            print(error.localizedDescription)
+                                            complition(false)
+                                        } else {
+                                            complition(true)
+                                        }
+                                      })
+            })
         }
-        // ProfileFileStorage().load { profile in
-        
-        // }
     }
 }

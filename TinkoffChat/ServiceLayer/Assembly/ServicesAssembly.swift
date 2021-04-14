@@ -12,6 +12,7 @@ protocol ServicesAssemblyProtocol {
     var firebaseService: FirebaseServiceProtocol { get }
     var themeSwitcherService: ThemeSwitcherServiceProtocol { get }
     var settingsService: SettingsServiceProtocol { get }
+    var profileService: ProfileServiceProtocol { get }
 }
 
 class ServicesAssembly: ServicesAssemblyProtocol {
@@ -25,7 +26,9 @@ class ServicesAssembly: ServicesAssemblyProtocol {
     lazy var coreDataManager: CoreDataManagerProtocol = coreAssembly.coreDataManager
     lazy var settingsService: SettingsServiceProtocol = SettingsService(userDefaults: coreAssembly.userDefaultsCore)
     lazy var themeSwitcherService: ThemeSwitcherServiceProtocol = ThemeSwitcherService(dataManager: coreAssembly.dataManager)
+    lazy var profileService: ProfileServiceProtocol = ProfileService(dataManager: coreAssembly.dataManager)
     lazy var firebaseService: FirebaseServiceProtocol = FirebaseService(parserService: coreAssembly.firebaseParser,
                                                                         coreDataService: coreDataManager,
-                                                                        settingsService: settingsService)
+                                                                        settingsService: settingsService,
+                                                                        profileService: profileService)
 }

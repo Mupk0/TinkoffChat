@@ -96,7 +96,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc private func didTapProfileButton() {
-        let profileController = ProfileViewController()
+        let profileController = presentationAssembly.profileViewController()
         let navController = UINavigationController(rootViewController: profileController)
         present(navController, animated: true)
     }
