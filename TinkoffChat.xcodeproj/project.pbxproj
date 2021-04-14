@@ -17,7 +17,6 @@
 		EF5CB785261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */; };
 		EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */; };
 		EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */; };
-		EF7CD04C25FF979300EC4F0E /* UserSettingsFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */; };
 		EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */; };
 		EF7CD05D2600AB8C00EC4F0E /* FileSerializeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
@@ -52,6 +51,7 @@
 		EFAEA40F26272D5F00397C90 /* ConversationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA40E26272D5F00397C90 /* ConversationDataModel.swift */; };
 		EFAEA427262756C100397C90 /* SettingsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA426262756C100397C90 /* SettingsServiceProtocol.swift */; };
 		EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA429262756DE00397C90 /* SettingsService.swift */; };
+		EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA42F2627642800397C90 /* ThemesDataModel.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
 		EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1347825F4F21200C398CE /* ThemeTypeView.swift */; };
@@ -96,7 +96,6 @@
 		EF5CB784261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageDb&MessageCellConfiguration.swift"; sourceTree = "<group>"; };
 		EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListTableManager.swift; sourceTree = "<group>"; };
 		EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelDb&ConversationCellConfiguration.swift"; sourceTree = "<group>"; };
-		EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsFileStorage.swift; sourceTree = "<group>"; };
 		EF7CD04E25FF990E00EC4F0E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSerializeProtocol.swift; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +130,7 @@
 		EFAEA40E26272D5F00397C90 /* ConversationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDataModel.swift; sourceTree = "<group>"; };
 		EFAEA426262756C100397C90 /* SettingsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsServiceProtocol.swift; sourceTree = "<group>"; };
 		EFAEA429262756DE00397C90 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		EFAEA42F2627642800397C90 /* ThemesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesDataModel.swift; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EFD1347825F4F21200C398CE /* ThemeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTypeView.swift; sourceTree = "<group>"; };
@@ -227,7 +227,6 @@
 				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
 				EFAEA38726236F9B00397C90 /* FileStorageProtocol.swift */,
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
-				EF7CD04B25FF979300EC4F0E /* UserSettingsFileStorage.swift */,
 			);
 			path = inWork;
 			sourceTree = "<group>";
@@ -429,6 +428,14 @@
 			path = UserDefaultsCore;
 			sourceTree = "<group>";
 		};
+		EFAEA432262769C400397C90 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EFAEA42F2627642800397C90 /* ThemesDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +450,7 @@
 			children = (
 				EFD1347D25F504BB00C398CE /* Controllers */,
 				EFD1347E25F504C400C398CE /* Views */,
+				EFAEA432262769C400397C90 /* Models */,
 				EFD1347F25F504E400C398CE /* Entities */,
 			);
 			path = Settings;
@@ -801,7 +809,6 @@
 				EF7CD05D2600AB8C00EC4F0E /* FileSerializeProtocol.swift in Sources */,
 				EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */,
 				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
-				EF7CD04C25FF979300EC4F0E /* UserSettingsFileStorage.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
 				EFAEA3B42626D63100397C90 /* CoreDataStackProtocol.swift in Sources */,
 				EFAEA3E52626EA5600397C90 /* ThemeSwitcherServiceProtocol.swift in Sources */,
@@ -832,6 +839,7 @@
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
+				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
 				EFEC1DC925FE373600194752 /* Profile.swift in Sources */,

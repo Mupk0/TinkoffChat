@@ -46,10 +46,11 @@ class ConversationsListViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
+        configureNavigationBar()
         loadData()
     }
     
-    private func configureViews() {
+    private func configureNavigationBar() {
         navigationItem.title = "Channels"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -69,7 +70,9 @@ class ConversationsListViewController: UIViewController {
                                                target: self,
                                                action: #selector(didTapAddChannelButton))
         navigationItem.leftBarButtonItems = [settingsButton, addChannelButton]
-        
+    }
+    
+    private func configureViews() {
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +102,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc private func didTapSettingsButton() {
-        let themesViewController = ThemesViewController()
+        let themesViewController = presentationAssembly.themeListViewController()
         navigationController?.pushViewController(themesViewController, animated: true)
         
         themesViewController.didSelectThemeType = { themeType in

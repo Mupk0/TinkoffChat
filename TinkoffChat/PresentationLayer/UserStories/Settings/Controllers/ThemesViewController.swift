@@ -28,7 +28,12 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     
     var didSelectThemeType: ((ThemeType) -> Void)?
     
-    init() {
+    private let dataModel: ThemesDataModel
+    
+    init(dataModel: ThemesDataModel) {
+        
+        self.dataModel = dataModel
+        
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.title = "Settings"
@@ -96,9 +101,8 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     }
     
     private func updateCurrentTheme() {
-        let themeStorage = UserSettingsFileStorage()
-        themeStorage.load(completionHandler: { userTheme in
-            let themeType = ThemeType(userTheme?.currentTheme)
+        dataModel.settingsService.getCurrentTheme(completion: { theme in
+            let themeType = ThemeType(theme)
             self.didSelectTheme(themeType)
         })
     }
@@ -108,7 +112,8 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
         dayThemeView.isSelected = themeType == .Day
         nightThemeView.isSelected = themeType == .Night
         
-        // ThemeSwitcher.shared.setTheme(themeType)
+        dataModel.themeSwitchService.apply(themeType)
+        dataModel.saveTheme(themeType.rawValue)
         
         delegate?.didSelectTheme(themeType)
         didSelectThemeType?(themeType)
