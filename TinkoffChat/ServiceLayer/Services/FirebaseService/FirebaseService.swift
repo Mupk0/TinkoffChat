@@ -17,11 +17,14 @@ class FirebaseService: FirebaseServiceProtocol {
     
     private let parserService: FirebaseParserProtocol
     private let coreDataService: CoreDataManagerProtocol
+    private let settingsService: SettingsServiceProtocol
     
     init(parserService: FirebaseParserProtocol,
-         coreDataService: CoreDataManagerProtocol) {
+         coreDataService: CoreDataManagerProtocol,
+         settingsService: SettingsServiceProtocol) {
         self.parserService = parserService
         self.coreDataService = coreDataService
+        self.settingsService = settingsService
     }
     
     private enum NetworkCollection {
@@ -117,25 +120,26 @@ class FirebaseService: FirebaseServiceProtocol {
         
         let reference = getReference(for: .channel(channelId))
         
-        // if let deviceId = Settings.shared.deviceId {
-            // ProfileFileStorage().load { profile in
-                let message: [String: Any] = [
-                    "content": messageText,
-                    "created": Date(),
-                    "senderId": UIDevice.current.identifierForVendor?.uuidString,
-                    "senderName": "Kulagin Dmitry"
-                ]
-                
-                reference.addDocument(data: message,
-                                      completion: { error in
-                                        if let error = error {
-                                            print(error.localizedDescription)
-                                            complition(false)
-                                        } else {
-                                            complition(true)
-                                        }
-                                      })
-            // }
+        if let deviceId = settingsService.getDeviceId() {
+            let message: [String: Any] = [
+                "content": messageText,
+                "created": Date(),
+                "senderId": deviceId,
+                "senderName": "Kulagin Dmitry"
+            ]
+            
+            reference.addDocument(data: message,
+                                  completion: { error in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                        complition(false)
+                                    } else {
+                                        complition(true)
+                                    }
+                                  })
+        }
+        // ProfileFileStorage().load { profile in
+        
         // }
     }
 }

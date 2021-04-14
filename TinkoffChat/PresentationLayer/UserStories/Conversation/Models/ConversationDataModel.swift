@@ -25,12 +25,15 @@ class ConversationDataModel: ConversationDataModelProtocol {
     
     let firebaseService: FirebaseServiceProtocol
     let coreDataService: CoreDataManagerProtocol
+    let settingsService: SettingsServiceProtocol
     
     init(firebaseService: FirebaseServiceProtocol,
-         coreDataService: CoreDataManagerProtocol) {
+         coreDataService: CoreDataManagerProtocol,
+         settingsService: SettingsServiceProtocol) {
         
         self.firebaseService = firebaseService
         self.coreDataService = coreDataService
+        self.settingsService = settingsService
     }
     
     func fetchMessages(id channelId: String) {

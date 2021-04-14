@@ -112,11 +112,6 @@ class ConversationsListTableViewCell: UITableViewCell {
         lastMessageLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
     }
     
-    private func getOfflineBackgroundColor() -> UIColor {
-        let theme = ThemeType(Settings.shared.themeType)
-        return theme.mainBackgroundColor
-    }
-    
     private func getStringFromDate(_ date: Date?) -> String {
         if let date = date {
             let calendar = Calendar.current

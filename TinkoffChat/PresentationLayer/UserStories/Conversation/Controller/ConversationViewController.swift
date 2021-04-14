@@ -55,8 +55,10 @@ class ConversationViewController: UIViewController {
     private lazy var tableViewDataSource: ConversationTableManagerProtocol = {
         let fetchedResultsController = dataModel.getFetchedRequestController(id: channelId)
         fetchedResultsController.delegate = fetchRequestController
+        let tableManager = ConversationTableManager(fetchedResultsController: fetchedResultsController)
+        tableManager.deviceId = dataModel.settingsService.getDeviceId()
         
-        return ConversationTableManager(fetchedResultsController: fetchedResultsController)
+        return tableManager
     }()
     
     init(channel: SelectedChannelProtocol, dataModel: ConversationDataModel) {
@@ -79,8 +81,32 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureViews()
         loadData()
+        configureViews()
+        addKeyboardObservers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeKeyboardObservers()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y == 0 {
+                view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    private func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
@@ -89,29 +115,13 @@ class ConversationViewController: UIViewController {
                                                object: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
+    private func removeKeyboardObservers() {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillShowNotification,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 0 {
-                view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            view.frame.origin.y = 0
-        }
     }
     
     private func configureViews() {

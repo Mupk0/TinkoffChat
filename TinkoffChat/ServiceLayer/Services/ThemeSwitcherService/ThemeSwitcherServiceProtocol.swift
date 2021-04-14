@@ -10,4 +10,5 @@ import Foundation
 protocol ThemeSwitcherServiceProtocol {
     func save(theme: ThemeType)
     func load(completionHandler: @escaping (ThemeType?) -> Void)
+    func apply(_ themeType: ThemeType)
 }

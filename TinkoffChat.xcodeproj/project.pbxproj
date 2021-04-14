@@ -50,7 +50,9 @@
 		EFAEA40526270F2100397C90 /* FirebaseParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA40426270F2100397C90 /* FirebaseParserProtocol.swift */; };
 		EFAEA4092627165700397C90 /* ConversationsListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA4082627165700397C90 /* ConversationsListDataModel.swift */; };
 		EFAEA40F26272D5F00397C90 /* ConversationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA40E26272D5F00397C90 /* ConversationDataModel.swift */; };
-		EFBF508325F40205004F16C1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* Settings.swift */; };
+		EFAEA427262756C100397C90 /* SettingsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA426262756C100397C90 /* SettingsServiceProtocol.swift */; };
+		EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA429262756DE00397C90 /* SettingsService.swift */; };
+		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
 		EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1347825F4F21200C398CE /* ThemeTypeView.swift */; };
 		EFD1348125F5050600C398CE /* ThemeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348025F5050600C398CE /* ThemeType.swift */; };
@@ -127,7 +129,9 @@
 		EFAEA40426270F2100397C90 /* FirebaseParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseParserProtocol.swift; sourceTree = "<group>"; };
 		EFAEA4082627165700397C90 /* ConversationsListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListDataModel.swift; sourceTree = "<group>"; };
 		EFAEA40E26272D5F00397C90 /* ConversationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDataModel.swift; sourceTree = "<group>"; };
-		EFBF508225F40205004F16C1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		EFAEA426262756C100397C90 /* SettingsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsServiceProtocol.swift; sourceTree = "<group>"; };
+		EFAEA429262756DE00397C90 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EFD1347825F4F21200C398CE /* ThemeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTypeView.swift; sourceTree = "<group>"; };
 		EFD1348025F5050600C398CE /* ThemeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeType.swift; sourceTree = "<group>"; };
@@ -220,7 +224,6 @@
 		EF7CD0572600A97500EC4F0E /* inWork */ = {
 			isa = PBXGroup;
 			children = (
-				EFBF508225F40205004F16C1 /* Settings.swift */,
 				EF7CD05C2600AB8C00EC4F0E /* FileSerializeProtocol.swift */,
 				EFAEA38726236F9B00397C90 /* FileStorageProtocol.swift */,
 				EFEC1DCF25FE545600194752 /* ProfileFileStorage.swift */,
@@ -247,6 +250,7 @@
 				EFAEA3D72626E3D200397C90 /* DataManager */,
 				EF9A27942610F4BF006E0CF8 /* CoreDataStack */,
 				EFAEA3B82626D65600397C90 /* CoreDataManager */,
+				EFAEA42C2627603500397C90 /* UserDefaultsCore */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -332,6 +336,7 @@
 		EFAEA3C72626DD5E00397C90 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA4252627569800397C90 /* SettingsService */,
 				EFAEA3F32627031C00397C90 /* FirebaseService */,
 				EFAEA3E12626EA2100397C90 /* ThemeSwitcherService */,
 			);
@@ -405,6 +410,23 @@
 				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
 			);
 			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		EFAEA4252627569800397C90 /* SettingsService */ = {
+			isa = PBXGroup;
+			children = (
+				EFAEA426262756C100397C90 /* SettingsServiceProtocol.swift */,
+				EFAEA429262756DE00397C90 /* SettingsService.swift */,
+			);
+			path = SettingsService;
+			sourceTree = "<group>";
+		};
+		EFAEA42C2627603500397C90 /* UserDefaultsCore */ = {
+			isa = PBXGroup;
+			children = (
+				EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */,
+			);
+			path = UserDefaultsCore;
 			sourceTree = "<group>";
 		};
 		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
@@ -793,7 +815,8 @@
 				EF7CD04F25FF990E00EC4F0E /* UserSettings.swift in Sources */,
 				EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
-				EFBF508325F40205004F16C1 /* Settings.swift in Sources */,
+				EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */,
+				EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */,
 				EF9BB93B25F4E9D8006D013A /* ThemesViewController.swift in Sources */,
 				EFAEA3A12626D15B00397C90 /* RootAssembly.swift in Sources */,
 				EFEC1DD025FE545600194752 /* ProfileFileStorage.swift in Sources */,
@@ -833,6 +856,7 @@
 				EFAEA40F26272D5F00397C90 /* ConversationDataModel.swift in Sources */,
 				EFAEA3A72626D1F000397C90 /* PresentationAssembly.swift in Sources */,
 				EFAEA3DA2626E3EF00397C90 /* DataManagerProtocol.swift in Sources */,
+				EFAEA427262756C100397C90 /* SettingsServiceProtocol.swift in Sources */,
 				EFAEA3AB2626D29600397C90 /* PresentationAssemblyProtocol.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
 				EFAEA40126270ED700397C90 /* FirebaseParser.swift in Sources */,

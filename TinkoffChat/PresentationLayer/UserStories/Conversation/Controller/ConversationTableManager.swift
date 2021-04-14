@@ -16,8 +16,11 @@ class ConversationTableManager: NSObject, ConversationTableManagerProtocol {
     
     let fetchedResultsController: NSFetchedResultsController<MessageDb>
     
+    var deviceId: String?
+    
     init(fetchedResultsController: NSFetchedResultsController<MessageDb>) {
         self.fetchedResultsController = fetchedResultsController
+        
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -42,7 +45,7 @@ class ConversationTableManager: NSObject, ConversationTableManagerProtocol {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = fetchedResultsController.object(at: indexPath)
         
-        let identifier = message.senderId == Settings.shared.deviceId
+        let identifier = message.senderId == deviceId
             ? OutgoingMessageTableViewCell.reuseIdentifier
             : IncomingMessageTableViewCell.reuseIdentifier
         

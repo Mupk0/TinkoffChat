@@ -27,7 +27,8 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     // MARK: - ConversationViewController
     func conversationViewController(channel: SelectedChannelProtocol) -> ConversationViewController {
         let dataModel = ConversationDataModel(firebaseService: serviceAssembly.firebaseService,
-                                                coreDataService: serviceAssembly.coreDataManager)
+                                                coreDataService: serviceAssembly.coreDataManager,
+                                                settingsService: serviceAssembly.settingsService)
         let viewController = ConversationViewController(channel: channel, dataModel: dataModel)
         return viewController
     }
