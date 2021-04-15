@@ -9,7 +9,7 @@ import Foundation
 
 protocol FirebaseServiceProtocol {
     func getChannels(completion: @escaping () -> Void)
-    func deleteChannel(_ channel: ChannelDb)
+    func deleteChannel(_ channel: Channel)
     func createChannel(channelName: String)
     func getMessages(channelId: String, completion: @escaping () -> Void)
     func sendMessage(channelId: String,

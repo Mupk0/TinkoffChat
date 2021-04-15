@@ -1,5 +1,5 @@
 //
-//  MessageDb&MessageCellConfiguration.swift
+//  Message&MessageCellConfiguration.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 07.04.2021.
@@ -7,4 +7,4 @@
 
 import Foundation
 
-extension MessageDb: MessageCellConfiguration {}
+extension Message: MessageCellConfiguration {}

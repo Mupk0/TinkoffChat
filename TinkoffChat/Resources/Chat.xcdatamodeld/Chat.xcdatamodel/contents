@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ChannelDb" representedClassName="ChannelDb" syncable="YES" codeGenerationType="class">
+    <entity name="Channel" representedClassName="Channel" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" attributeType="String"/>
         <attribute name="lastActivity" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastMessage" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MessageDb" inverseName="channel" inverseEntity="MessageDb"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="channel" inverseEntity="Message"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="identifier"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="MessageDb" representedClassName="MessageDb" syncable="YES" codeGenerationType="class">
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
         <attribute name="content" attributeType="String"/>
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="identifier" attributeType="String"/>
         <attribute name="senderId" attributeType="String"/>
         <attribute name="senderName" attributeType="String"/>
-        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ChannelDb" inverseName="messages" inverseEntity="ChannelDb"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Channel" inverseName="messages" inverseEntity="Channel"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="identifier"/>
@@ -26,7 +26,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="ChannelDb" positionX="-298.53125" positionY="23.71484375" width="128" height="118"/>
-        <element name="MessageDb" positionX="-45" positionY="27" width="128" height="119"/>
+        <element name="Channel" positionX="-298.53125" positionY="23.71484375" width="128" height="104"/>
+        <element name="Message" positionX="-45" positionY="27" width="128" height="119"/>
     </elements>
 </model>

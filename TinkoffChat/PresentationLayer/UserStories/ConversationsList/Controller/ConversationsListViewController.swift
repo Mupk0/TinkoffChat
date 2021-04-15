@@ -142,7 +142,7 @@ class ConversationsListViewController: UIViewController {
 }
 
 extension ConversationsListViewController: ConversationListTableManagerDelegate {
-    func didRemoveChannel(_ channel: ChannelDb) {
+    func didRemoveChannel(_ channel: Channel) {
         dataModel.removeChannel(channel: channel)
     }
     

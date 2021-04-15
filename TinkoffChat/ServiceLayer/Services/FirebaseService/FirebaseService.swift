@@ -106,7 +106,7 @@ class FirebaseService: FirebaseServiceProtocol {
                               })
     }
     
-    public func deleteChannel(_ channel: ChannelDb) {
+    public func deleteChannel(_ channel: Channel) {
         guard let id = channel.identifier else { return }
         let reference = getReference(for: .allChannels).document(id)
         reference.delete(completion: { error in

@@ -12,10 +12,10 @@ protocol ConversationsListDataModelProtocol {
     var delegate: ConversListModelDelegate? { get set }
     
     func fetchChannels()
-    func removeChannel(channel: ChannelDb)
+    func removeChannel(channel: Channel)
     func createNewChannel(name: String)
     
-    func getFetchedRequestController() -> NSFetchedResultsController<ChannelDb>
+    func getFetchedRequestController() -> NSFetchedResultsController<Channel>
 }
 
 protocol ConversListModelDelegate: class {
@@ -41,7 +41,7 @@ class ConversationsListDataModel: ConversationsListDataModelProtocol {
         }
     }
     
-    func removeChannel(channel: ChannelDb) {
+    func removeChannel(channel: Channel) {
         firebaseService.deleteChannel(channel)
     }
     
@@ -49,8 +49,8 @@ class ConversationsListDataModel: ConversationsListDataModelProtocol {
         firebaseService.createChannel(channelName: name)
     }
     
-    func getFetchedRequestController() -> NSFetchedResultsController<ChannelDb> {
-        let request: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+    func getFetchedRequestController() -> NSFetchedResultsController<Channel> {
+        let request: NSFetchRequest<Channel> = Channel.fetchRequest()
         let sortActivityDescriptor = NSSortDescriptor(key: "lastActivity", ascending: false)
         let sortNameDescriptor = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sortActivityDescriptor, sortNameDescriptor]

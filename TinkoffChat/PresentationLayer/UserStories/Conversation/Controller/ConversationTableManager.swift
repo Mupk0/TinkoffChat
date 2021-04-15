@@ -9,16 +9,16 @@ import UIKit
 import CoreData
 
 protocol ConversationTableManagerProtocol: UITableViewDataSource {
-    func getMessages() -> [MessageDb]
+    func getMessages() -> [Message]
 }
 
 class ConversationTableManager: NSObject, ConversationTableManagerProtocol {
     
-    let fetchedResultsController: NSFetchedResultsController<MessageDb>
+    let fetchedResultsController: NSFetchedResultsController<Message>
     
     var deviceId: String?
     
-    init(fetchedResultsController: NSFetchedResultsController<MessageDb>) {
+    init(fetchedResultsController: NSFetchedResultsController<Message>) {
         self.fetchedResultsController = fetchedResultsController
         
         do {
@@ -28,7 +28,7 @@ class ConversationTableManager: NSObject, ConversationTableManagerProtocol {
         }
     }
     
-    func getMessages() -> [MessageDb] {
+    func getMessages() -> [Message] {
         return fetchedResultsController.fetchedObjects ?? []
     }
     

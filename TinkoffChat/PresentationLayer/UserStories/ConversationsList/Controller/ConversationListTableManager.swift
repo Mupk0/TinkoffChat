@@ -9,24 +9,24 @@ import UIKit
 import CoreData
 
 protocol ConversationListTableManagerProtocol: UITableViewDataSource, UITableViewDelegate {
-    var fetchedResultsController: NSFetchedResultsController<ChannelDb> { get }
+    var fetchedResultsController: NSFetchedResultsController<Channel> { get }
     
-    func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb
-    func getConversations() -> [ChannelDb]
+    func getConversationForIndexPath(_ indexPath: IndexPath) -> Channel
+    func getConversations() -> [Channel]
 }
 
 protocol ConversationListTableManagerDelegate: class {
     func didSelectChannel(_ channel: SelectedChannelProtocol)
-    func didRemoveChannel(_ channel: ChannelDb)
+    func didRemoveChannel(_ channel: Channel)
 }
 
 class ConversationListTableManager: NSObject, ConversationListTableManagerProtocol {
     
-    let fetchedResultsController: NSFetchedResultsController<ChannelDb>
+    let fetchedResultsController: NSFetchedResultsController<Channel>
     
     weak var delegate: ConversationListTableManagerDelegate?
     
-    init(fetchedResultsController: NSFetchedResultsController<ChannelDb>) {
+    init(fetchedResultsController: NSFetchedResultsController<Channel>) {
         
         self.fetchedResultsController = fetchedResultsController
         
@@ -37,11 +37,11 @@ class ConversationListTableManager: NSObject, ConversationListTableManagerProtoc
         }
     }
     
-    func getConversations() -> [ChannelDb] {
+    func getConversations() -> [Channel] {
         return fetchedResultsController.fetchedObjects ?? []
     }
     
-    public func getConversationForIndexPath(_ indexPath: IndexPath) -> ChannelDb {
+    public func getConversationForIndexPath(_ indexPath: IndexPath) -> Channel {
         return fetchedResultsController.object(at: indexPath)
     }
 }

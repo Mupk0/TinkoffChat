@@ -12,7 +12,7 @@ protocol ConversationDataModelProtocol {
     var delegate: ConversationDataModelDelegate? { get set }
     func fetchMessages(id channelId: String)
     func sendMessage(id channelId: String, text: String)
-    func getFetchedRequestController(id channelId: String) -> NSFetchedResultsController<MessageDb>
+    func getFetchedRequestController(id channelId: String) -> NSFetchedResultsController<Message>
 }
 
 protocol ConversationDataModelDelegate: class {
@@ -50,8 +50,8 @@ class ConversationDataModel: ConversationDataModelProtocol {
                                     })
     }
     
-    func getFetchedRequestController(id channelId: String) -> NSFetchedResultsController<MessageDb> {
-        let request: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+    func getFetchedRequestController(id channelId: String) -> NSFetchedResultsController<Message> {
+        let request: NSFetchRequest<Message> = Message.fetchRequest()
         request.predicate = NSPredicate(format: "channel.identifier = %@", channelId as String)
         let sortDescriptor = NSSortDescriptor(key: "created", ascending: false)
         request.sortDescriptors = [sortDescriptor]

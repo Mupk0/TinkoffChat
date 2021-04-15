@@ -20,7 +20,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func addChannel(id identifier: String, name: String, message: String?, date: Date?) {
-        let channelFetchRequest: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let channelFetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
         channelFetchRequest.predicate = NSPredicate(format: "identifier = %@", identifier)
         
         coreDataStack.saveContext.perform {
@@ -29,7 +29,7 @@ class CoreDataManager: CoreDataManagerProtocol {
                 let channel = result.first
                 
                 if channel == nil {
-                    let channel = ChannelDb(context: self.coreDataStack.saveContext)
+                    let channel = Channel(context: self.coreDataStack.saveContext)
                     channel.identifier = identifier
                     channel.name = name
                     channel.lastActivity = date
@@ -48,7 +48,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func updateChannel(id identifier: String, name: String, message: String?, date: Date?) {
-        let fetchRequest: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let fetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "identifier = %@", identifier)
         
         coreDataStack.saveContext.perform {
@@ -75,7 +75,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func deleteChannel(channelId: String) {
-        let fetchRequest: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let fetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "identifier = %@", channelId)
         
         coreDataStack.saveContext.perform {
@@ -103,10 +103,10 @@ class CoreDataManager: CoreDataManagerProtocol {
                     content: String,
                     created: Date) {
         
-        let channelFetchRequest: NSFetchRequest<ChannelDb> = ChannelDb.fetchRequest()
+        let channelFetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
         channelFetchRequest.predicate = NSPredicate(format: "identifier = %@", channelId)
         
-        let messageFetchRequest: NSFetchRequest<MessageDb> = MessageDb.fetchRequest()
+        let messageFetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
         let messagePredicate = NSPredicate(format: "identifier = %@", messageId)
         messageFetchRequest.predicate = messagePredicate
         
@@ -116,7 +116,7 @@ class CoreDataManager: CoreDataManagerProtocol {
                 let result = try self.coreDataStack.saveContext.fetch(channelFetchRequest)
                 if let channel = result.first,
                    message.first == nil {
-                    let newMessage = MessageDb(context: self.coreDataStack.saveContext)
+                    let newMessage = Message(context: self.coreDataStack.saveContext)
                     newMessage.identifier = messageId
                     newMessage.senderId = senderId
                     newMessage.senderName = senderName
