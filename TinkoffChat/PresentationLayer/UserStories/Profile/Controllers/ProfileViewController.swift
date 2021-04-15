@@ -254,7 +254,7 @@ class ProfileViewController: UIViewController {
                                                                  action: #selector(didTapCancelButton)))
         
         saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: #selector(didTapSaveButton)))
+                                                               action: #selector(didTapSaveButton)))
     }
     
     private func updateViewsByProfile(_ profile: ProfileProtocol?) {
@@ -308,25 +308,25 @@ class ProfileViewController: UIViewController {
                                         self.activityIndicator.stopAnimating()
                                         self.cancelButton.isEnabled = true
                                         self.setStateOfSaveButtons(to: .enabled)
+                                        let window = UIApplication.shared.delegate?.window as? UIWindow
+                                        let vc = window?.visibleViewController
                                         if error != nil {
-                                            let window = UIApplication.shared.delegate?.window as? UIWindow
-                                            window?.visibleViewController?.showAlertWithTitle(title: "Ошибка",
-                                                                                              message: "Не удалось сохранить данные",
-                                                                                              buttonLeftTitle: "Ок",
-                                                                                              buttonRightTitle: "Повторить",
-                                                                                              buttonLeftAction: { _ in
-                                                                                                self.profileState = .show
-                                                                                                self.unsavedProfile = self.savedProfile
-                                                                                              },
-                                                                                              buttonRightAction: { _ in
-                                                                                                self.didTapSaveButton()
-                                                                                              })
+                                            vc?.showAlertWithTitle(title: "Ошибка",
+                                                                   message: "Не удалось сохранить данные",
+                                                                   buttonLeftTitle: "Ок",
+                                                                   buttonRightTitle: "Повторить",
+                                                                   buttonLeftAction: { _ in
+                                                                    self.profileState = .show
+                                                                    self.unsavedProfile = self.savedProfile
+                                                                   },
+                                                                   buttonRightAction: { _ in
+                                                                    self.didTapSaveButton()
+                                                                   })
                                         } else {
-                                            let window = UIApplication.shared.delegate?.window as? UIWindow
-                                            window?.visibleViewController?.showAlertWithTitle(title: "Данные сохранены",
-                                                                                              buttonLeftTitle: "Ок",
-                                                                                              buttonLeftAction: { _ in },
-                                                                                              buttonRightAction: { _ in })
+                                            vc?.showAlertWithTitle(title: "Данные сохранены",
+                                                                   buttonLeftTitle: "Ок",
+                                                                   buttonLeftAction: { _ in },
+                                                                   buttonRightAction: { _ in })
                                             self.hasUnsavedChanges = false
                                             self.savedProfile = profile
                                             self.profileState = .show
