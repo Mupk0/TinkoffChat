@@ -8,8 +8,8 @@
 import Foundation
 
 protocol ProfileDataModelProtocol {
-    func getUserProfile(completionHandler: @escaping (Profile?, Error?) -> Void)
-    func saveUserProfile(_ profile: Profile,
+    func getUserProfile(completionHandler: @escaping (ProfileProtocol?, Error?) -> Void)
+    func saveUserProfile(_ profile: ProfileProtocol,
                          completionHandler: @escaping (Error?) -> Void)
 }
 
@@ -21,7 +21,7 @@ class ProfileDataModel: ProfileDataModelProtocol {
         self.profileService = profileService
     }
     
-    func saveUserProfile(_ profile: Profile,
+    func saveUserProfile(_ profile: ProfileProtocol,
                          completionHandler: @escaping (Error?) -> Void) {
         profileService.saveUserProfile(profile,
                                        completionHandler: { error in
@@ -29,7 +29,7 @@ class ProfileDataModel: ProfileDataModelProtocol {
                                        })
     }
     
-    func getUserProfile(completionHandler: @escaping (Profile?, Error?) -> Void) {
+    func getUserProfile(completionHandler: @escaping (ProfileProtocol?, Error?) -> Void) {
         profileService.getUserProfile(completionHandler: { (profile, error) in
             completionHandler(profile, error)
         })

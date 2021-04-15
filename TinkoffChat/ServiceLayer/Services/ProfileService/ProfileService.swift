@@ -17,7 +17,7 @@ class ProfileService: ProfileServiceProtocol {
         self.dataManager = dataManager
     }
     
-    func getUserProfile(completionHandler: @escaping (Profile?, Error?) -> Void) {
+    func getUserProfile(completionHandler: @escaping (ProfileProtocol?, Error?) -> Void) {
         dataManager.load(Profile.self,
                          from: userProfileKey,
                          completionHandler: { (profile, error) in
@@ -28,9 +28,10 @@ class ProfileService: ProfileServiceProtocol {
                          })
     }
     
-    func saveUserProfile(_ profile: Profile,
+    func saveUserProfile(_ profile: ProfileProtocol,
                          completionHandler: @escaping (Error?) -> Void) {
-        dataManager.save(profile,
+        let profileModel = Profile(about: profile.about, photo: profile.photo, userName: profile.userName)
+        dataManager.save(profileModel,
                          to: userProfileKey,
                          completionHandler: { error in
                             if let error = error {

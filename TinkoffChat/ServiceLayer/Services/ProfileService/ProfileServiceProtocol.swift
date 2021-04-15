@@ -8,6 +8,6 @@
 import Foundation
 
 protocol ProfileServiceProtocol {
-    func getUserProfile(completionHandler: @escaping (Profile?, Error?) -> Void)
-    func saveUserProfile(_ profile: Profile, completionHandler: @escaping (Error?) -> Void)
+    func getUserProfile(completionHandler: @escaping (ProfileProtocol?, Error?) -> Void)
+    func saveUserProfile(_ profile: ProfileProtocol, completionHandler: @escaping (Error?) -> Void)
 }
