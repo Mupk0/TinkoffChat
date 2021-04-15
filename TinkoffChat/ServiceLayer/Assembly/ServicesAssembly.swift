@@ -16,7 +16,7 @@ protocol ServicesAssemblyProtocol {
 }
 
 class ServicesAssembly: ServicesAssemblyProtocol {
-
+    
     private let coreAssembly: CoreAssemblyProtocol
     
     init(coreAssembly: CoreAssemblyProtocol) {

@@ -46,5 +46,4 @@ class PresentationAssembly: PresentationAssemblyProtocol {
                                         settingsService: serviceAssembly.settingsService)
         return ThemesViewController(dataModel: dataModel)
     }
-    
 }

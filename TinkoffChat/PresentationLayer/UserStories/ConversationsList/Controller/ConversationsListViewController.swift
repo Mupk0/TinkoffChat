@@ -112,8 +112,8 @@ class ConversationsListViewController: UIViewController {
     
     @objc private func didTapAddChannelButton() {
         let alertController = UIAlertController(title: "Введите название канала",
-                                   message: nil,
-                                   preferredStyle: .alert)
+                                                message: nil,
+                                                preferredStyle: .alert)
         alertController.addTextField(configurationHandler: { textField in
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification,
                                                    object: textField,
@@ -123,7 +123,7 @@ class ConversationsListViewController: UIViewController {
         })
         let textField = alertController.textFields?[0]
         textField?.textColor = .black
-
+        
         let submitAction = UIAlertAction(title: "Создать", style: .default) { [weak self] _ in
             if let textField = textField, let channelName = textField.text {
                 self?.dataModel.createNewChannel(name: channelName)
@@ -133,10 +133,10 @@ class ConversationsListViewController: UIViewController {
                                          style: .cancel,
                                          handler: { _ in })
         submitAction.isEnabled = false
-
+        
         alertController.addAction(submitAction)
         alertController.addAction(cancelAction)
-
+        
         present(alertController, animated: true)
     }
 }

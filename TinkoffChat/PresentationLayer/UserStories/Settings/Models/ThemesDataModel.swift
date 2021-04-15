@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol ThemesDataModelProtocol {
-    func saveTheme(_ theme: String)
-}
-
 class ThemesDataModel: ThemesDataModelProtocol {
     
     let themeSwitchService: ThemeSwitcherServiceProtocol

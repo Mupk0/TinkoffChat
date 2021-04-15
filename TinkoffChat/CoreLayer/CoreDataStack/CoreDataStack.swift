@@ -37,7 +37,7 @@ class CoreDataStack: CoreDataStackProtocol {
     }()
     
     private lazy var persistantStoreCoordinator: NSPersistentStoreCoordinator = {
-       let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
         
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType,

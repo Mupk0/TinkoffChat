@@ -11,7 +11,7 @@ class SettingsService: SettingsServiceProtocol {
     
     private let themeKey = "CurrentTheme"
     private let userDeviceKey = "UserDevice"
-
+    
     private let userDefaults: UserDefaultsCoreProtocol
     
     init(userDefaults: UserDefaultsCoreProtocol) {

@@ -8,13 +8,6 @@
 import Foundation
 import CoreData
 
-protocol ConversationDataModelProtocol {
-    var delegate: ConversationDataModelDelegate? { get set }
-    func fetchMessages(id channelId: String)
-    func sendMessage(id channelId: String, text: String)
-    func getFetchedRequestController(id channelId: String) -> NSFetchedResultsController<Message>
-}
-
 protocol ConversationDataModelDelegate: class {
     func messageSenden()
 }

@@ -8,16 +8,6 @@
 import Foundation
 import CoreData
 
-protocol ConversationsListDataModelProtocol {
-    var delegate: ConversListModelDelegate? { get set }
-    
-    func fetchChannels()
-    func removeChannel(channel: Channel)
-    func createNewChannel(name: String)
-    
-    func getFetchedRequestController() -> NSFetchedResultsController<Channel>
-}
-
 protocol ConversListModelDelegate: class {
     func loadComplited()
 }

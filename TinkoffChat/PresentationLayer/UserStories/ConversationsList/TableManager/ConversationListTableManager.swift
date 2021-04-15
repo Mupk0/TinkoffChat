@@ -8,13 +8,6 @@
 import UIKit
 import CoreData
 
-protocol ConversationListTableManagerProtocol: UITableViewDataSource, UITableViewDelegate {
-    var fetchedResultsController: NSFetchedResultsController<Channel> { get }
-    
-    func getConversationForIndexPath(_ indexPath: IndexPath) -> Channel
-    func getConversations() -> [Channel]
-}
-
 protocol ConversationListTableManagerDelegate: class {
     func didSelectChannel(_ channel: SelectedChannelProtocol)
     func didRemoveChannel(_ channel: Channel)
@@ -86,9 +79,9 @@ extension ConversationListTableManager: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let conversation = getConversationForIndexPath(indexPath)
-
+        
         tableView.deselectRow(at: indexPath, animated: false)
-
+        
         guard let name = conversation.name, let id = conversation.identifier else { return }
         delegate?.didSelectChannel(SelectedChannel(name: name, id: id))
     }

@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol ThemesViewControllerProtocol {
-    var delegate: ThemesViewControllerDelegate? { get set }
-    var didSelectThemeType: ((ThemeType) -> Void)? { get set }
-}
-
 protocol ThemesViewControllerDelegate: class {
     func didSelectTheme(_ themeType: ThemeType)
 }

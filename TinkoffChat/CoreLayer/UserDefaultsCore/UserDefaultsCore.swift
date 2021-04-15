@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol UserDefaultsCoreProtocol {
-    func getValueToKey(key: String, completion: @escaping (String?) -> Void)
-    func getValueToKey(key: String) -> String?
-    func setValueToKey(value: String, key: String)
-}
-
 class UserDefaultsCore: UserDefaultsCoreProtocol {
     
     lazy var userDefaults: UserDefaults = {

@@ -23,7 +23,7 @@ enum ThemeType: String, Codable {
         }
     }
 }
-    
+
 extension ThemeType {
     var mainBackgroundColor: UIColor {
         switch self {
@@ -79,7 +79,7 @@ extension ThemeType {
             return .blackTranslucent
         }
     }
-
+    
     var navigationSeparatorColor: UIColor {
         switch self {
         case .Classic:

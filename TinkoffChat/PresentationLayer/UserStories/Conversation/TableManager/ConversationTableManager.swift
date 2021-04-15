@@ -8,10 +8,6 @@
 import UIKit
 import CoreData
 
-protocol ConversationTableManagerProtocol: UITableViewDataSource {
-    func getMessages() -> [Message]
-}
-
 class ConversationTableManager: NSObject, ConversationTableManagerProtocol {
     
     let fetchedResultsController: NSFetchedResultsController<Message>
