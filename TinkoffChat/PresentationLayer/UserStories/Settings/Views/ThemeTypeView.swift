@@ -16,7 +16,7 @@ class ThemeTypeView: UIView {
     private let themeIncomingMessageView: UIImageView = {
         let imageView = UIImageView()
         let bubbleImage = #imageLiteral(resourceName: "incomingMessageBubble")
-            .resizableImage(withCapInsets: Constants.BUBBLE_IMAGE_INSETS,
+            .resizableImage(withCapInsets: UIEdgeInsets.BUBBLE_IMAGE_INSETS,
                             resizingMode: .stretch)
             .withRenderingMode(.alwaysTemplate)
         imageView.image = bubbleImage
@@ -26,7 +26,7 @@ class ThemeTypeView: UIView {
     private let themeOutgoingMessageView: UIImageView = {
         let imageView = UIImageView()
         let bubbleImage = #imageLiteral(resourceName: "outgoingMessageBubble")
-            .resizableImage(withCapInsets: Constants.BUBBLE_IMAGE_INSETS,
+            .resizableImage(withCapInsets: UIEdgeInsets.BUBBLE_IMAGE_INSETS,
                             resizingMode: .stretch)
             .withRenderingMode(.alwaysTemplate)
         imageView.image = bubbleImage

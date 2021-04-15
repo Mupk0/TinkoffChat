@@ -47,6 +47,7 @@ class FirebaseService: FirebaseServiceProtocol {
     
     func getChannels(completion: @escaping () -> Void) {
         let reference = getReference(for: .allChannels)
+        
         backgroundQueue.async {
             reference.addSnapshotListener { querySnapshot, error in
                 guard let snapshot = querySnapshot else {

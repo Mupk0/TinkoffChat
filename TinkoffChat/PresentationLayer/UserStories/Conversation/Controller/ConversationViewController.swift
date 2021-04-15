@@ -9,6 +9,8 @@ import UIKit
 import FirebaseFirestore
 import CoreData
 
+private let TEXT_VIEW_FONT: UIFont = .systemFont(ofSize: 16, weight: .regular)
+
 class ConversationViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .plain)
@@ -21,16 +23,16 @@ class ConversationViewController: UIViewController {
         textView.sizeToFit()
         textView.layer.cornerRadius = 16
         textView.textContainerInset = UIEdgeInsets(top: 5, left: 17, bottom: 5, right: 30)
-        textView.font = Constants.TEXT_VIEW_FONT
+        textView.font = TEXT_VIEW_FONT
         return textView
     }()
     
     private let placeholderLabel: UILabel = {
         let label = UILabel()
         label.text = "Your message here..."
-        label.font = Constants.TEXT_VIEW_FONT
+        label.font = TEXT_VIEW_FONT
         label.sizeToFit()
-        label.frame.origin = CGPoint(x: 22, y: (Constants.TEXT_VIEW_FONT.pointSize) / 2)
+        label.frame.origin = CGPoint(x: 22, y: (TEXT_VIEW_FONT.pointSize) / 2)
         label.textColor = .lightGray
         return label
     }()

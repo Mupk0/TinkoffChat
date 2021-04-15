@@ -63,6 +63,7 @@
 		EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */; };
 		EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */; };
 		EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */; };
+		EFAEA47B2628154500397C90 /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
 		EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1347825F4F21200C398CE /* ThemeTypeView.swift */; };
@@ -72,7 +73,6 @@
 		EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */; };
 		EFD1349225F51D6000C398CE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349125F51D6000C398CE /* CustomButton.swift */; };
 		EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */; };
-		EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BCF25D81E240016BD67 /* Constants.swift */; };
 		EFDE1BDD25D82B8F0016BD67 /* NSObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */; };
 		EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436B525EC23C100869295 /* ConversationsListViewController.swift */; };
 		EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE436C125EC2BFD00869295 /* ConversationViewController.swift */; };
@@ -149,6 +149,7 @@
 		EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
+		EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EFD1347825F4F21200C398CE /* ThemeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTypeView.swift; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		EFD1348E25F51B0E00C398CE /* MainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackgroundView.swift; sourceTree = "<group>"; };
 		EFD1349125F51D6000C398CE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EFD1349625F53D2B00C398CE /* ThemeControllerBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeControllerBackgroundView.swift; sourceTree = "<group>"; };
-		EFDE1BCF25D81E240016BD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EFDE1BDC25D82B8F0016BD67 /* NSObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.swift; sourceTree = "<group>"; };
 		EFE436B525EC23C100869295 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		EFE436C125EC2BFD00869295 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -533,7 +533,6 @@
 		EFDE1BD825D82B190016BD67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EFDE1BCF25D81E240016BD67 /* Constants.swift */,
 				EF08B64825D59BA80050FBA3 /* Assets.xcassets */,
 				EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */,
 				EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */,
@@ -561,6 +560,7 @@
 				EFEC1DCB25FE3C6800194752 /* UIViewController.swift */,
 				EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */,
 				EFEC1DDA25FE8A1800194752 /* UIWindow.swift */,
+				EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -828,7 +828,6 @@
 				EFAEA3F92627035F00397C90 /* FirebaseServiceProtocol.swift in Sources */,
 				EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */,
 				EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */,
-				EFDE1BD025D81E240016BD67 /* Constants.swift in Sources */,
 				EFAEA46226280F9F00397C90 /* ConversationDataModelProtocol.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
 				EFAEA43626276B9100397C90 /* ProfileService.swift in Sources */,
@@ -841,6 +840,7 @@
 				EFAEA3C02626D69A00397C90 /* CoreDataManager.swift in Sources */,
 				EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */,
 				EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */,
+				EFAEA47B2628154500397C90 /* UIEdgeInsets.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
 				EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */,
 				EFAEA44B26280E9200397C90 /* ThemesDataModelProtocol.swift in Sources */,

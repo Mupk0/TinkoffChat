@@ -18,7 +18,7 @@ class MessageTextView: UITextView {
     init() {
         super.init(frame: .zero, textContainer: .none)
         
-        textContainerInset = Constants.BUBBLE_IMAGE_INSETS
+        textContainerInset = UIEdgeInsets.BUBBLE_IMAGE_INSETS
         backgroundColor = .clear
         font = UIFont.systemFont(ofSize: 16, weight: .light)
         sizeToFit()

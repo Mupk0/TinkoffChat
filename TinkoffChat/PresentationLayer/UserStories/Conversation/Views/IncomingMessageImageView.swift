@@ -22,7 +22,7 @@ class IncomingMessageImageView: UIImageView {
         super.init(frame: .zero)
         
         let bubbleImage = #imageLiteral(resourceName: "incomingMessageBubble")
-            .resizableImage(withCapInsets: Constants.BUBBLE_IMAGE_INSETS,
+            .resizableImage(withCapInsets: UIEdgeInsets.BUBBLE_IMAGE_INSETS,
                             resizingMode: .stretch)
             .withRenderingMode(.alwaysTemplate)
         image = bubbleImage
