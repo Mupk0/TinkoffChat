@@ -25,9 +25,7 @@ class ProfileDataModel: ProfileDataModelProtocol {
                          completionHandler: @escaping (Error?) -> Void) {
         profileService.saveUserProfile(profile,
                                        completionHandler: { error in
-                                        if let error = error {
-                                            completionHandler(error)
-                                        }
+                                        completionHandler(error)
                                        })
     }
     

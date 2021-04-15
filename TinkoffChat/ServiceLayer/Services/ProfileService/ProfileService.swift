@@ -22,12 +22,9 @@ class ProfileService: ProfileServiceProtocol {
                          from: userProfileKey,
                          completionHandler: { (profile, error) in
                             if let error = error {
-                                print(error)
-                                completionHandler(nil, error)
+                                print(error.localizedDescription)
                             }
-                            if let profile = profile {
-                                completionHandler(profile, nil)
-                            }
+                            completionHandler(profile, error)
                          })
     }
     
@@ -37,9 +34,9 @@ class ProfileService: ProfileServiceProtocol {
                          to: userProfileKey,
                          completionHandler: { error in
                             if let error = error {
-                                print(error)
-                                completionHandler(error)
+                                print(error.localizedDescription)
                             }
+                            completionHandler(error)
                          })
     }
 }

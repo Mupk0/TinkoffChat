@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
     private var unsavedProfile: ProfileProtocol? {
         didSet {
             updateViewsByProfile(unsavedProfile)
-            hasUnsavedChanges = savedProfile?.isEquatable(newValue: unsavedProfile) ?? false
+            hasUnsavedChanges = !(savedProfile?.isEquatable(newValue: unsavedProfile) ?? false)
         }
     }
     // MARK: - Controller states
@@ -338,10 +338,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Storage methods
     private func loadProfile() {
         dataModel.getUserProfile(completionHandler: { [weak self] (profile, _) in
-            if let profile = profile {
-                self?.savedProfile = profile
-                self?.unsavedProfile = profile
-            }
+            self?.savedProfile = profile
+            self?.unsavedProfile = profile
         })
     }
 }
@@ -349,7 +347,6 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         if image != nil {
-            
             userAvatarImageView.image = image
             setStateOfSaveButtons(to: .enabled)
         } else {
