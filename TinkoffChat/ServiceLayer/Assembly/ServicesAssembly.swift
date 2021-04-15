@@ -5,15 +5,7 @@
 //  Created by Dmitry Kulagin on 14.04.2021.
 //
 
-import CoreData
-
-protocol ServicesAssemblyProtocol {
-    var coreDataManager: CoreDataManagerProtocol { get }
-    var firebaseService: FirebaseServiceProtocol { get }
-    var themeSwitcherService: ThemeSwitcherServiceProtocol { get }
-    var settingsService: SettingsServiceProtocol { get }
-    var profileService: ProfileServiceProtocol { get }
-}
+import Foundation
 
 class ServicesAssembly: ServicesAssemblyProtocol {
     

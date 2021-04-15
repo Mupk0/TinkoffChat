@@ -7,14 +7,6 @@
 
 import Foundation
 
-protocol CoreAssemblyProtocol {
-    var coreDataStack: CoreDataStackProtocol { get }
-    var coreDataManager: CoreDataManagerProtocol { get }
-    var dataManager: DataManagerProtocol { get }
-    var firebaseParser: FirebaseParserProtocol { get }
-    var userDefaultsCore: UserDefaultsCoreProtocol { get }
-}
-
 class CoreAssembly: CoreAssemblyProtocol {
     
     lazy var dataManager: DataManagerProtocol = DataManager()

@@ -11,18 +11,10 @@ public protocol ImagePickerDelegate: class {
     func didSelect(image: UIImage?)
 }
 
-class ImagePicker: NSObject {
+class ImagePicker: NSObject, ImagePickerProtocol {
     
-    private weak var presentationController: UIViewController?
-    private weak var delegate: ImagePickerDelegate?
-    
-    public init(presentationController: UIViewController,
-                delegate: ImagePickerDelegate) {
-        super.init()
-        
-        self.presentationController = presentationController
-        self.delegate = delegate
-    }
+    weak var presentationController: UIViewController?
+    weak var delegate: ImagePickerDelegate?
     
     private func getAction(for type: UIImagePickerController.SourceType,
                            title: String) -> UIAlertAction? {

@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController {
         return indicatorView
     }()
     
-    private var imagePicker: ImagePicker?
+    private var imagePicker: ImagePickerProtocol?
     
     // MARK: - Profile Datas
     private var savedProfile: ProfileProtocol?
@@ -133,10 +133,13 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    private let presentationAssembly: PresentationAssemblyProtocol
     private let dataModel: ProfileDataModelProtocol
     
-    init(dataModel: ProfileDataModelProtocol) {
+    init(presentationAssembly: PresentationAssemblyProtocol,
+         dataModel: ProfileDataModelProtocol) {
         
+        self.presentationAssembly = presentationAssembly
         self.dataModel = dataModel
         
         super.init(nibName: nil, bundle: nil)
@@ -274,7 +277,9 @@ class ProfileViewController: UIViewController {
         profileState = .edit
         userNameTextField.endEditing(true)
         userDescriptionTextView.endEditing(true)
-        imagePicker = ImagePicker(presentationController: self, delegate: self)
+        imagePicker = presentationAssembly.imagePicker()
+        imagePicker?.presentationController = self
+        imagePicker?.delegate = self
         imagePicker?.present()
     }
     

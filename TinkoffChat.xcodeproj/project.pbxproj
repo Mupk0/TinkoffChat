@@ -59,6 +59,10 @@
 		EFAEA45626280F0E00397C90 /* ConversationsListDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA45526280F0E00397C90 /* ConversationsListDataModelProtocol.swift */; };
 		EFAEA45E26280F7000397C90 /* ConversationTableManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA45D26280F7000397C90 /* ConversationTableManagerProtocol.swift */; };
 		EFAEA46226280F9F00397C90 /* ConversationDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46126280F9F00397C90 /* ConversationDataModelProtocol.swift */; };
+		EFAEA468262810FE00397C90 /* RootAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */; };
+		EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */; };
+		EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */; };
+		EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
 		EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1347825F4F21200C398CE /* ThemeTypeView.swift */; };
@@ -141,6 +145,10 @@
 		EFAEA45526280F0E00397C90 /* ConversationsListDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListDataModelProtocol.swift; sourceTree = "<group>"; };
 		EFAEA45D26280F7000397C90 /* ConversationTableManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableManagerProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46126280F9F00397C90 /* ConversationDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDataModelProtocol.swift; sourceTree = "<group>"; };
+		EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssemblyProtocol.swift; sourceTree = "<group>"; };
+		EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyProtocol.swift; sourceTree = "<group>"; };
+		EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssemblyProtocol.swift; sourceTree = "<group>"; };
+		EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EFD1347825F4F21200C398CE /* ThemeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTypeView.swift; sourceTree = "<group>"; };
@@ -269,6 +277,7 @@
 		EFAEA3A32626D1B500397C90 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */,
 				EFAEA3A02626D15B00397C90 /* RootAssembly.swift */,
 			);
 			path = Assembly;
@@ -277,17 +286,10 @@
 		EFAEA3A52626D1E000397C90 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA3AA2626D29600397C90 /* PresentationAssemblyProtocol.swift */,
 				EFAEA3A62626D1F000397C90 /* PresentationAssembly.swift */,
 			);
 			path = Assembly;
-			sourceTree = "<group>";
-		};
-		EFAEA3A92626D28100397C90 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				EFAEA3AA2626D29600397C90 /* PresentationAssemblyProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		EFAEA3AD2626D4FA00397C90 /* UserStories */ = {
@@ -305,6 +307,7 @@
 		EFAEA3AE2626D52E00397C90 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */,
 				EFAEA3AF2626D55900397C90 /* CoreAssembly.swift */,
 			);
 			path = Assembly;
@@ -322,6 +325,7 @@
 		EFAEA3C32626DBFE00397C90 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */,
 				EFAEA3C42626DC4400397C90 /* ServicesAssembly.swift */,
 			);
 			path = Assembly;
@@ -394,6 +398,7 @@
 		EFAEA42126274AE400397C90 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */,
 				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
 			);
 			path = ImagePicker;
@@ -565,7 +570,6 @@
 			children = (
 				EFAEA3A52626D1E000397C90 /* Assembly */,
 				EFAEA3AD2626D4FA00397C90 /* UserStories */,
-				EFAEA3A92626D28100397C90 /* Protocols */,
 				EFD1348925F518B100C398CE /* Common */,
 			);
 			path = PresentationLayer;
@@ -830,6 +834,7 @@
 				EFAEA43626276B9100397C90 /* ProfileService.swift in Sources */,
 				EFAEA3B42626D63100397C90 /* CoreDataStackProtocol.swift in Sources */,
 				EFAEA3E52626EA5600397C90 /* ThemeSwitcherServiceProtocol.swift in Sources */,
+				EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */,
 				EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */,
 				EFAEA3DF2626E45500397C90 /* DataManager.swift in Sources */,
 				EF9BB93725F4E83E006D013A /* MessageTextView.swift in Sources */,
@@ -837,7 +842,9 @@
 				EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */,
 				EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
+				EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */,
 				EFAEA44B26280E9200397C90 /* ThemesDataModelProtocol.swift in Sources */,
+				EFAEA468262810FE00397C90 /* RootAssemblyProtocol.swift in Sources */,
 				EFAEA43D26276F0C00397C90 /* ProfileDataModel.swift in Sources */,
 				EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */,
 				EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */,
@@ -850,6 +857,7 @@
 				EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */,
 				EF5CB632261DE165009E0EC1 /* ConversationTableManager.swift in Sources */,
 				EF24E3242620996900A2B7B9 /* SelectedChannel.swift in Sources */,
+				EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */,
 				EFAEA40526270F2100397C90 /* FirebaseParserProtocol.swift in Sources */,
 				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,
 				EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */,

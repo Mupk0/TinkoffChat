@@ -36,7 +36,8 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     // MARK: - ProfileViewController
     func profileViewController() -> ProfileViewController {
         let dataModel = ProfileDataModel(profileService: serviceAssembly.profileService)
-        let viewController = ProfileViewController(dataModel: dataModel)
+        let viewController = ProfileViewController(presentationAssembly: self,
+                                                   dataModel: dataModel)
         return viewController
     }
     
@@ -45,5 +46,10 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         let dataModel = ThemesDataModel(themeSwitchService: serviceAssembly.themeSwitcherService,
                                         settingsService: serviceAssembly.settingsService)
         return ThemesViewController(dataModel: dataModel)
+    }
+    
+    // MARK: - Gallery Picker
+    func imagePicker() -> ImagePicker {
+        return ImagePicker()
     }
 }
