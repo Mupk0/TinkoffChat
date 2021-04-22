@@ -59,7 +59,6 @@ class ProfileViewController: UIViewController {
     private let userDescriptionTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        textView.isScrollEnabled = false
         textView.isEditable = false
         textView.sizeToFit()
         return textView
@@ -265,7 +264,8 @@ class ProfileViewController: UIViewController {
             userDescriptionTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
-            userDescriptionTextView.bottomAnchor.constraint(lessThanOrEqualTo: activityIndicator.topAnchor, constant: -10),
+            userDescriptionTextView.bottomAnchor.constraint(equalTo: cancelButton.topAnchor,
+                                                            constant: -5),
             
             cancelButton.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10),
             cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
@@ -282,10 +282,9 @@ class ProfileViewController: UIViewController {
             editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
             editProfileStackView.heightAnchor.constraint(equalToConstant: 40),
             
-            activityIndicator.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -45),
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 90),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 90)
+            activityIndicator.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor,
+                                                      constant: 5),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         userAvatarView.layoutIfNeeded()
