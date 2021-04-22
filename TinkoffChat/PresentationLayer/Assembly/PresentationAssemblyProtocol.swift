@@ -12,5 +12,5 @@ protocol PresentationAssemblyProtocol {
     func conversationViewController(channel: SelectedChannelProtocol) -> ConversationViewController
     func profileViewController() -> ProfileViewController
     func themeListViewController() -> ThemesViewController
-    func imagePicker() -> ImagePicker
+    func imagePicker() -> ImagePickerViewController
 }

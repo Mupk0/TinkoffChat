@@ -8,6 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		97120C51D4A0EEAD382CE1EB /* Pods_TinkoffChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDC143A0E06F4EE2A616F5A /* Pods_TinkoffChat.framework */; };
+		EF08A51626313989005F9D2B /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A51526313989005F9D2B /* RequestProtocol.swift */; };
+		EF08A519263139C7005F9D2B /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A518263139C7005F9D2B /* ParserProtocol.swift */; };
+		EF08A51C263139F1005F9D2B /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A51B263139F1005F9D2B /* ImageParser.swift */; };
+		EF08A51F26313B6A005F9D2B /* RequestSenderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A51E26313B6A005F9D2B /* RequestSenderProtocol.swift */; };
+		EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A52226313B9D005F9D2B /* RequestConfig.swift */; };
+		EF08A52726313BC7005F9D2B /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A52626313BC7005F9D2B /* ApiError.swift */; };
+		EF08A52A26313C22005F9D2B /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A52926313C22005F9D2B /* RequestSender.swift */; };
+		EF08A52E26313C79005F9D2B /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A52D26313C79005F9D2B /* ImageData.swift */; };
+		EF08A53226313C8F005F9D2B /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A53126313C8F005F9D2B /* Images.swift */; };
+		EF08A53526313CA1005F9D2B /* ImageUrlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A53426313CA1005F9D2B /* ImageUrlParser.swift */; };
+		EF08A53826313CD0005F9D2B /* ImageUrlRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A53726313CD0005F9D2B /* ImageUrlRequest.swift */; };
+		EF08A53C26313D1E005F9D2B /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A53B26313D1E005F9D2B /* ImageRequest.swift */; };
+		EF08A53F26313DF9005F9D2B /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A53E26313DF9005F9D2B /* RequestsFactory.swift */; };
+		EF08A54326313FFE005F9D2B /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A54226313FFE005F9D2B /* NetworkServiceProtocol.swift */; };
+		EF08A54626314021005F9D2B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A54526314021005F9D2B /* NetworkService.swift */; };
+		EF08A54F26314E16005F9D2B /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A54E26314E16005F9D2B /* ImagePickerViewController.swift */; };
+		EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A55126315110005F9D2B /* ImagePickerCell.swift */; };
+		EF08A55F2631627D005F9D2B /* ProfileDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A55E2631627D005F9D2B /* ProfileDataModelProtocol.swift */; };
+		EF08A563263162A1005F9D2B /* ImagePickerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A562263162A1005F9D2B /* ImagePickerDataModel.swift */; };
+		EF08A567263162BB005F9D2B /* ImagePickerDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */; };
+		EF08A56C2631638B005F9D2B /* ImageCacheServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */; };
+		EF08A56F2631639B005F9D2B /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56E2631639B005F9D2B /* ImageCacheService.swift */; };
+		EF08A572263173D3005F9D2B /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A571263173D3005F9D2B /* UIAlertController.swift */; };
+		EF08A57526319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */; };
+		EF08A5782631A3E2005F9D2B /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */; };
 		EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */; };
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
@@ -18,7 +43,6 @@
 		EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */; };
 		EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
-		EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE825DFCB4D00906839 /* ImagePicker.swift */; };
 		EF835BEC25E0362000906839 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BEB25E0362000906839 /* String.swift */; };
 		EF97C8DB260496520049B00C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF97C8DA260496520049B00C /* GoogleService-Info.plist */; };
 		EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */; };
@@ -62,7 +86,6 @@
 		EFAEA468262810FE00397C90 /* RootAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */; };
 		EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */; };
 		EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */; };
-		EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */; };
 		EFAEA47B2628154500397C90 /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
@@ -92,6 +115,31 @@
 		7BA717A9282415C1079B5B90 /* Pods-TinkoffChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChat.debug.xcconfig"; path = "Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E552369322AD319156B4D3 /* Pods-TinkoffChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChat.release.xcconfig"; path = "Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat.release.xcconfig"; sourceTree = "<group>"; };
 		DFDC143A0E06F4EE2A616F5A /* Pods_TinkoffChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF08A51526313989005F9D2B /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		EF08A518263139C7005F9D2B /* ParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserProtocol.swift; sourceTree = "<group>"; };
+		EF08A51B263139F1005F9D2B /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
+		EF08A51E26313B6A005F9D2B /* RequestSenderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderProtocol.swift; sourceTree = "<group>"; };
+		EF08A52226313B9D005F9D2B /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
+		EF08A52626313BC7005F9D2B /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		EF08A52926313C22005F9D2B /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		EF08A52D26313C79005F9D2B /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
+		EF08A53126313C8F005F9D2B /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		EF08A53426313CA1005F9D2B /* ImageUrlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlParser.swift; sourceTree = "<group>"; };
+		EF08A53726313CD0005F9D2B /* ImageUrlRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlRequest.swift; sourceTree = "<group>"; };
+		EF08A53B26313D1E005F9D2B /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		EF08A53E26313DF9005F9D2B /* RequestsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
+		EF08A54226313FFE005F9D2B /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		EF08A54526314021005F9D2B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EF08A54E26314E16005F9D2B /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		EF08A55126315110005F9D2B /* ImagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCell.swift; sourceTree = "<group>"; };
+		EF08A55E2631627D005F9D2B /* ProfileDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataModelProtocol.swift; sourceTree = "<group>"; };
+		EF08A562263162A1005F9D2B /* ImagePickerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDataModel.swift; sourceTree = "<group>"; };
+		EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDataModelProtocol.swift; sourceTree = "<group>"; };
+		EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheServiceProtocol.swift; sourceTree = "<group>"; };
+		EF08A56E2631639B005F9D2B /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		EF08A571263173D3005F9D2B /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		EF08B63C25D59BA70050FBA3 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF08B64825D59BA80050FBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +152,6 @@
 		EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListTableManager.swift; sourceTree = "<group>"; };
 		EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelDb&ConversationCellConfiguration.swift"; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		EF835BE825DFCB4D00906839 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EF835BEB25E0362000906839 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EF97C8DA260496520049B00C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
@@ -148,7 +195,6 @@
 		EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssemblyProtocol.swift; sourceTree = "<group>"; };
-		EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
 		EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -203,6 +249,118 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EF08A51126313953005F9D2B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A52C26313C3C005F9D2B /* Entities */,
+				EF08A5142631396C005F9D2B /* RequestManager */,
+				EF08A51326313963005F9D2B /* Parser */,
+				EF08A5122631395B005F9D2B /* Request */,
+				EF08A53E26313DF9005F9D2B /* RequestsFactory.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EF08A5122631395B005F9D2B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A51526313989005F9D2B /* RequestProtocol.swift */,
+				EF08A53726313CD0005F9D2B /* ImageUrlRequest.swift */,
+				EF08A53B26313D1E005F9D2B /* ImageRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		EF08A51326313963005F9D2B /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A518263139C7005F9D2B /* ParserProtocol.swift */,
+				EF08A51B263139F1005F9D2B /* ImageParser.swift */,
+				EF08A53426313CA1005F9D2B /* ImageUrlParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		EF08A5142631396C005F9D2B /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A51E26313B6A005F9D2B /* RequestSenderProtocol.swift */,
+				EF08A52926313C22005F9D2B /* RequestSender.swift */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		EF08A52C26313C3C005F9D2B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A52626313BC7005F9D2B /* ApiError.swift */,
+				EF08A52226313B9D005F9D2B /* RequestConfig.swift */,
+				EF08A52D26313C79005F9D2B /* ImageData.swift */,
+				EF08A53126313C8F005F9D2B /* Images.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		EF08A54126313FEE005F9D2B /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A54226313FFE005F9D2B /* NetworkServiceProtocol.swift */,
+				EF08A54526314021005F9D2B /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		EF08A55526316209005F9D2B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A54E26314E16005F9D2B /* ImagePickerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EF08A55926316215005F9D2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A55126315110005F9D2B /* ImagePickerCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EF08A55C2631624D005F9D2B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A562263162A1005F9D2B /* ImagePickerDataModel.swift */,
+				EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EF08A55D26316274005F9D2B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A55E2631627D005F9D2B /* ProfileDataModelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EF08A565263162B0005F9D2B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */,
+				EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EF08A56A26316377005F9D2B /* ImageCacheService */ = {
+			isa = PBXGroup;
+			children = (
+				EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */,
+				EF08A56E2631639B005F9D2B /* ImageCacheService.swift */,
+			);
+			path = ImageCacheService;
+			sourceTree = "<group>";
+		};
 		EF08B63325D59BA70050FBA3 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +411,7 @@
 				EF9A27942610F4BF006E0CF8 /* CoreDataStack */,
 				EFAEA3B82626D65600397C90 /* CoreDataManager */,
 				EFAEA42C2627603500397C90 /* UserDefaultsCore */,
+				EF08A51126313953005F9D2B /* Network */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -334,6 +493,8 @@
 		EFAEA3C72626DD5E00397C90 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EF08A56A26316377005F9D2B /* ImageCacheService */,
+				EF08A54126313FEE005F9D2B /* NetworkService */,
 				EFAEA43426276B7600397C90 /* ProfileService */,
 				EFAEA4252627569800397C90 /* SettingsService */,
 				EFAEA3F32627031C00397C90 /* FirebaseService */,
@@ -398,8 +559,10 @@
 		EFAEA42126274AE400397C90 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */,
-				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
+				EF08A55526316209005F9D2B /* Controllers */,
+				EF08A55926316215005F9D2B /* Views */,
+				EF08A55C2631624D005F9D2B /* Models */,
+				EF08A565263162B0005F9D2B /* Protocols */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -561,6 +724,7 @@
 				EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */,
 				EFEC1DDA25FE8A1800194752 /* UIWindow.swift */,
 				EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */,
+				EF08A571263173D3005F9D2B /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -594,6 +758,7 @@
 				EFEC1DED25FE915800194752 /* Controllers */,
 				EFAEA4642628103200397C90 /* Models */,
 				EFEC1DEE25FE916700194752 /* Entities */,
+				EF08A55D26316274005F9D2B /* Protocols */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -826,47 +991,62 @@
 				EFAEA3C52626DC4400397C90 /* ServicesAssembly.swift in Sources */,
 				EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */,
 				EFAEA3F92627035F00397C90 /* FirebaseServiceProtocol.swift in Sources */,
+				EF08A51F26313B6A005F9D2B /* RequestSenderProtocol.swift in Sources */,
 				EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */,
 				EF9BB93425F4E803006D013A /* OutgoingMessageImageView.swift in Sources */,
 				EFAEA46226280F9F00397C90 /* ConversationDataModelProtocol.swift in Sources */,
 				EFE436B625EC23C100869295 /* ConversationsListViewController.swift in Sources */,
 				EFAEA43626276B9100397C90 /* ProfileService.swift in Sources */,
 				EFAEA3B42626D63100397C90 /* CoreDataStackProtocol.swift in Sources */,
+				EF08A53C26313D1E005F9D2B /* ImageRequest.swift in Sources */,
 				EFAEA3E52626EA5600397C90 /* ThemeSwitcherServiceProtocol.swift in Sources */,
 				EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */,
 				EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */,
+				EF08A56F2631639B005F9D2B /* ImageCacheService.swift in Sources */,
 				EFAEA3DF2626E45500397C90 /* DataManager.swift in Sources */,
 				EF9BB93725F4E83E006D013A /* MessageTextView.swift in Sources */,
 				EFAEA3C02626D69A00397C90 /* CoreDataManager.swift in Sources */,
 				EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */,
 				EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */,
 				EFAEA47B2628154500397C90 /* UIEdgeInsets.swift in Sources */,
+				EF08A56C2631638B005F9D2B /* ImageCacheServiceProtocol.swift in Sources */,
+				EF08A54F26314E16005F9D2B /* ImagePickerViewController.swift in Sources */,
 				EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */,
 				EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */,
 				EFAEA44B26280E9200397C90 /* ThemesDataModelProtocol.swift in Sources */,
+				EF08A519263139C7005F9D2B /* ParserProtocol.swift in Sources */,
+				EF08A52726313BC7005F9D2B /* ApiError.swift in Sources */,
 				EFAEA468262810FE00397C90 /* RootAssemblyProtocol.swift in Sources */,
+				EF08A53826313CD0005F9D2B /* ImageUrlRequest.swift in Sources */,
 				EFAEA43D26276F0C00397C90 /* ProfileDataModel.swift in Sources */,
 				EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */,
 				EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */,
 				EF9BB93B25F4E9D8006D013A /* ThemesViewController.swift in Sources */,
+				EF08A57526319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift in Sources */,
 				EFAEA3A12626D15B00397C90 /* RootAssembly.swift in Sources */,
 				EFAEA45E26280F7000397C90 /* ConversationTableManagerProtocol.swift in Sources */,
-				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EFAEA4092627165700397C90 /* ConversationsListDataModel.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */,
 				EF5CB632261DE165009E0EC1 /* ConversationTableManager.swift in Sources */,
 				EF24E3242620996900A2B7B9 /* SelectedChannel.swift in Sources */,
-				EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */,
+				EF08A5782631A3E2005F9D2B /* ImagePickerDelegate.swift in Sources */,
+				EF08A54626314021005F9D2B /* NetworkService.swift in Sources */,
 				EFAEA40526270F2100397C90 /* FirebaseParserProtocol.swift in Sources */,
 				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,
+				EF08A54326313FFE005F9D2B /* NetworkServiceProtocol.swift in Sources */,
+				EF08A563263162A1005F9D2B /* ImagePickerDataModel.swift in Sources */,
+				EF08A51C263139F1005F9D2B /* ImageParser.swift in Sources */,
 				EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */,
 				EFD1348F25F51B0E00C398CE /* MainBackgroundView.swift in Sources */,
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
+				EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
 				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
+				EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
+				EF08A53226313C8F005F9D2B /* Images.swift in Sources */,
 				EFEC1DC925FE373600194752 /* Profile.swift in Sources */,
 				EF5CB785261E0484009E0EC1 /* MessageDb&MessageCellConfiguration.swift in Sources */,
 				EFD1348725F517D900C398CE /* MainTitleLabel.swift in Sources */,
@@ -875,25 +1055,33 @@
 				EFE436EA25EE290E00869295 /* MessageCellProtocol.swift in Sources */,
 				EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */,
 				EFAEA3F12627031500397C90 /* FirebaseService.swift in Sources */,
+				EF08A55F2631627D005F9D2B /* ProfileDataModelProtocol.swift in Sources */,
+				EF08A52E26313C79005F9D2B /* ImageData.swift in Sources */,
 				EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */,
+				EF08A567263162BB005F9D2B /* ImagePickerDataModelProtocol.swift in Sources */,
 				EFE436E025ED71A200869295 /* IncomingMessageTableViewCell.swift in Sources */,
 				EFAEA44F26280EAA00397C90 /* ThemesViewControllerProtocol.swift in Sources */,
 				EFAEA3BB2626D68500397C90 /* CoreDataManagerProtocol.swift in Sources */,
 				EFAEA44526280BEE00397C90 /* UserDefaultsCoreProtocol.swift in Sources */,
 				EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */,
 				EFAEA43A26276E9200397C90 /* ProfileServiceProtocol.swift in Sources */,
+				EF08A52A26313C22005F9D2B /* RequestSender.swift in Sources */,
 				EFAEA3E82626EA7700397C90 /* ThemeSwitcherService.swift in Sources */,
 				EFD1348125F5050600C398CE /* ThemeType.swift in Sources */,
+				EF08A572263173D3005F9D2B /* UIAlertController.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
 				EF24E321262097F400A2B7B9 /* FetchedResultsControllerDelegate.swift in Sources */,
 				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
 				EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */,
 				EFAEA40F26272D5F00397C90 /* ConversationDataModel.swift in Sources */,
+				EF08A53F26313DF9005F9D2B /* RequestsFactory.swift in Sources */,
 				EFAEA3A72626D1F000397C90 /* PresentationAssembly.swift in Sources */,
 				EFAEA3DA2626E3EF00397C90 /* DataManagerProtocol.swift in Sources */,
 				EFAEA427262756C100397C90 /* SettingsServiceProtocol.swift in Sources */,
+				EF08A53526313CA1005F9D2B /* ImageUrlParser.swift in Sources */,
 				EFAEA3AB2626D29600397C90 /* PresentationAssemblyProtocol.swift in Sources */,
 				EFE436C225EC2BFD00869295 /* ConversationViewController.swift in Sources */,
+				EF08A51626313989005F9D2B /* RequestProtocol.swift in Sources */,
 				EFAEA40126270ED700397C90 /* FirebaseParser.swift in Sources */,
 				EFAEA3B02626D55900397C90 /* CoreAssembly.swift in Sources */,
 				EFAEA45626280F0E00397C90 /* ConversationsListDataModelProtocol.swift in Sources */,

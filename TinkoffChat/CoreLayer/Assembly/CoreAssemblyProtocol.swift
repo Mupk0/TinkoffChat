@@ -13,4 +13,5 @@ protocol CoreAssemblyProtocol {
     var dataManager: DataManagerProtocol { get }
     var firebaseParser: FirebaseParserProtocol { get }
     var userDefaultsCore: UserDefaultsCoreProtocol { get }
+    var requestSender: RequestSenderProtocol { get }
 }

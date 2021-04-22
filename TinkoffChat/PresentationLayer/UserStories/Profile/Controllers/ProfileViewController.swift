@@ -59,7 +59,6 @@ class ProfileViewController: UIViewController {
     private let userDescriptionTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        textView.isScrollEnabled = false
         textView.isEditable = false
         textView.sizeToFit()
         return textView
@@ -103,8 +102,54 @@ class ProfileViewController: UIViewController {
         return indicatorView
     }()
     
-    private var imagePicker: ImagePickerProtocol?
+    private func getAction(for type: UIImagePickerController.SourceType,
+                           title: String) -> UIAlertAction? {
+        
+        guard UIImagePickerController.isSourceTypeAvailable(type) else {
+            return nil
+        }
+        
+        return UIAlertAction(title: title, style: .default) { _ in
+            let pickerController = UIImagePickerController()
+            pickerController.delegate = self
+            pickerController.allowsEditing = true
+            pickerController.mediaTypes = ["public.image"]
+            pickerController.sourceType = type
+            self.present(pickerController, animated: true)
+        }
+    }
     
+    private lazy var actionSheetController: UIAlertController = {
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        
+        if let action = self.getAction(for: .camera,
+                                       title: "Сделать фото") {
+            alertController.addAction(action)
+        }
+        if let action = self.getAction(for: .photoLibrary,
+                                       title: "Установить из галлереи") {
+            alertController.addAction(action)
+        }
+        
+        let networkImagePicker = presentationAssembly.imagePicker()
+        networkImagePicker.delegate = self
+        let navigationController = UINavigationController(rootViewController: networkImagePicker)
+        alertController.addAction(UIAlertAction(title: "Загрузить",
+                                                style: .default,
+                                                handler: { _ in
+                                                    self.present(navigationController, animated: true)
+                                                }))
+
+        alertController.addAction(UIAlertAction(title: "Отменить",
+                                                style: .cancel,
+                                                handler: { _ in
+            self.didSelect(image: nil)
+        }))
+        alertController.clearConstraintErrors()
+        return alertController
+    }()
     // MARK: - Profile Datas
     private var savedProfile: ProfileProtocol?
     
@@ -145,10 +190,10 @@ class ProfileViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.title = "Profile"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(didTapCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(didTapCloseButton))
     }
     
     required init?(coder: NSCoder) {
@@ -219,7 +264,8 @@ class ProfileViewController: UIViewController {
             userDescriptionTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
-            userDescriptionTextView.bottomAnchor.constraint(lessThanOrEqualTo: activityIndicator.topAnchor, constant: -10),
+            userDescriptionTextView.bottomAnchor.constraint(equalTo: cancelButton.topAnchor,
+                                                            constant: -5),
             
             cancelButton.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10),
             cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
@@ -236,10 +282,9 @@ class ProfileViewController: UIViewController {
             editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
             editProfileStackView.heightAnchor.constraint(equalToConstant: 40),
             
-            activityIndicator.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -45),
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 90),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 90)
+            activityIndicator.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor,
+                                                      constant: 5),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         userAvatarView.layoutIfNeeded()
@@ -277,10 +322,7 @@ class ProfileViewController: UIViewController {
         profileState = .edit
         userNameTextField.endEditing(true)
         userDescriptionTextView.endEditing(true)
-        imagePicker = presentationAssembly.imagePicker()
-        imagePicker?.presentationController = self
-        imagePicker?.delegate = self
-        imagePicker?.present()
+        present(actionSheetController, animated: true)
     }
     
     @objc private func didTapCloseButton() {
@@ -358,7 +400,6 @@ extension ProfileViewController: ImagePickerDelegate {
             profileState = hasUnsavedChanges ? .edit : .show
             setStateOfSaveButtons(to: hasUnsavedChanges ? .enabled : .disabled)
         }
-        imagePicker = nil
     }
 }
 // MARK: - UITextField Delegate
@@ -375,5 +416,24 @@ extension ProfileViewController: UITextViewDelegate {
         unsavedProfile = Profile(about: textView.text,
                                  photo: unsavedProfile?.photo,
                                  userName: unsavedProfile?.userName)
+    }
+}
+// MARK: - UIImagePickerControllerDelegate
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    private func pickerController(_ controller: UIImagePickerController,
+                                  didSelect image: UIImage?) {
+        didSelect(image: image)
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        pickerController(picker, didSelect: nil)
+    }
+
+    public func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        let image = info[.editedImage] as? UIImage
+        pickerController(picker, didSelect: image)
     }
 }
