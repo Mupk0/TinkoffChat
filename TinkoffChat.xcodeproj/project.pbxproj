@@ -31,6 +31,8 @@
 		EF08A56C2631638B005F9D2B /* ImageCacheServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */; };
 		EF08A56F2631639B005F9D2B /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56E2631639B005F9D2B /* ImageCacheService.swift */; };
 		EF08A572263173D3005F9D2B /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A571263173D3005F9D2B /* UIAlertController.swift */; };
+		EF08A57526319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */; };
+		EF08A5782631A3E2005F9D2B /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */; };
 		EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */; };
 		EF08B64925D59BA80050FBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64825D59BA80050FBA3 /* Assets.xcassets */; };
 		EF08B64C25D59BA80050FBA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF08B64A25D59BA80050FBA3 /* LaunchScreen.storyboard */; };
@@ -41,7 +43,6 @@
 		EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */; };
 		EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
-		EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE825DFCB4D00906839 /* ImagePicker.swift */; };
 		EF835BEC25E0362000906839 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BEB25E0362000906839 /* String.swift */; };
 		EF97C8DB260496520049B00C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF97C8DA260496520049B00C /* GoogleService-Info.plist */; };
 		EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */; };
@@ -85,7 +86,6 @@
 		EFAEA468262810FE00397C90 /* RootAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */; };
 		EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */; };
 		EFAEA46E2628113700397C90 /* ServicesAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */; };
-		EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */; };
 		EFAEA47B2628154500397C90 /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
@@ -138,6 +138,8 @@
 		EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheServiceProtocol.swift; sourceTree = "<group>"; };
 		EF08A56E2631639B005F9D2B /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		EF08A571263173D3005F9D2B /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		EF08B63C25D59BA70050FBA3 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF08B64825D59BA80050FBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,7 +152,6 @@
 		EF5CB787261E1240009E0EC1 /* ConversationListTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListTableManager.swift; sourceTree = "<group>"; };
 		EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelDb&ConversationCellConfiguration.swift"; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		EF835BE825DFCB4D00906839 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EF835BEB25E0362000906839 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EF97C8DA260496520049B00C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
@@ -194,7 +195,6 @@
 		EFAEA467262810FE00397C90 /* RootAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46A2628111100397C90 /* CoreAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyProtocol.swift; sourceTree = "<group>"; };
 		EFAEA46D2628113700397C90 /* ServicesAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssemblyProtocol.swift; sourceTree = "<group>"; };
-		EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
 		EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -310,17 +310,6 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
-		EF08A554263161FC005F9D2B /* ImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				EF08A565263162B0005F9D2B /* Protocols */,
-				EF08A55C2631624D005F9D2B /* Models */,
-				EF08A55926316215005F9D2B /* Views */,
-				EF08A55526316209005F9D2B /* Controllers */,
-			);
-			path = ImagePicker;
-			sourceTree = "<group>";
-		};
 		EF08A55526316209005F9D2B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				EF08A562263162A1005F9D2B /* ImagePickerDataModel.swift */,
+				EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +346,7 @@
 		EF08A565263162B0005F9D2B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */,
 				EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */,
 			);
 			path = Protocols;
@@ -568,9 +559,10 @@
 		EFAEA42126274AE400397C90 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				EFAEA4722628134C00397C90 /* ImagePickerProtocol.swift */,
-				EF835BE825DFCB4D00906839 /* ImagePicker.swift */,
-				EF08A554263161FC005F9D2B /* ImagePicker */,
+				EF08A55526316209005F9D2B /* Controllers */,
+				EF08A55926316215005F9D2B /* Views */,
+				EF08A55C2631624D005F9D2B /* Models */,
+				EF08A565263162B0005F9D2B /* Protocols */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -1030,15 +1022,15 @@
 				EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */,
 				EFAEA42A262756DE00397C90 /* SettingsService.swift in Sources */,
 				EF9BB93B25F4E9D8006D013A /* ThemesViewController.swift in Sources */,
+				EF08A57526319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift in Sources */,
 				EFAEA3A12626D15B00397C90 /* RootAssembly.swift in Sources */,
 				EFAEA45E26280F7000397C90 /* ConversationTableManagerProtocol.swift in Sources */,
-				EF835BE925DFCB4D00906839 /* ImagePicker.swift in Sources */,
 				EFAEA4092627165700397C90 /* ConversationsListDataModel.swift in Sources */,
 				EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */,
 				EF5CB788261E1240009E0EC1 /* ConversationListTableManager.swift in Sources */,
 				EF5CB632261DE165009E0EC1 /* ConversationTableManager.swift in Sources */,
 				EF24E3242620996900A2B7B9 /* SelectedChannel.swift in Sources */,
-				EFAEA4732628134C00397C90 /* ImagePickerProtocol.swift in Sources */,
+				EF08A5782631A3E2005F9D2B /* ImagePickerDelegate.swift in Sources */,
 				EF08A54626314021005F9D2B /* NetworkService.swift in Sources */,
 				EFAEA40526270F2100397C90 /* FirebaseParserProtocol.swift in Sources */,
 				EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */,

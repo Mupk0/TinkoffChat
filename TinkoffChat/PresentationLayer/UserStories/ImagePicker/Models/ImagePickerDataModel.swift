@@ -52,9 +52,9 @@ class ImagePickerDataModel: ImagePickerDataModelProtocol {
     }
     
     func fetchImage(imageUrl: String, completion: @escaping (UIImage?) -> Void) {
-        let finalImage = imageCacheService.checkCache(url: imageUrl)
+        let cachedImage = imageCacheService.checkCache(url: imageUrl)
         
-        guard let image = finalImage else {
+        guard let image = cachedImage else {
             self.networkService.getImage(imageUrl: imageUrl) { loadingImage, error in
                 if let error = error {
                     print(error)

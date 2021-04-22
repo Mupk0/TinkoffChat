@@ -12,6 +12,7 @@ class ImagePickerCell: UICollectionViewCell {
     static let identifier = "ImagePickerCell"
     
     private let imageView = UIImageView()
+    public let activityIndicator = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,18 +26,28 @@ class ImagePickerCell: UICollectionViewCell {
     
     private func configureViews() {
         addSubview(imageView)
+        imageView.addSubview(activityIndicator)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            activityIndicator.topAnchor.constraint(equalTo: imageView.topAnchor),
+            activityIndicator.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
         ])
         
+        imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
+        activityIndicator.hidesWhenStopped = true
     }
     
     override func prepareForReuse() {

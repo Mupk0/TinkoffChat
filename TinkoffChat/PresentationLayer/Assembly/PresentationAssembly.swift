@@ -48,16 +48,13 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         return ThemesViewController(dataModel: dataModel)
     }
     
-    // MARK: - Gallery Picker
-    func imagePicker() -> ImagePicker {
-        return ImagePicker()
-    }
-    
     // MARK: - Image Picker
-    func networkPicker() -> ImagePickerViewController {
+    func imagePicker() -> ImagePickerViewController {
         let dataModel = ImagePickerDataModel(networkService: serviceAssembly.networkService,
                                              imageCacheService: serviceAssembly.imageCacheService)
-        let imagePicker = ImagePickerViewController(dataModel: dataModel)
+        let collectionViewLayout = ImagePickerCollectionViewFlowLayout()
+        let imagePicker = ImagePickerViewController(dataModel: dataModel,
+                                                    collectionViewLayout: collectionViewLayout)
         dataModel.delegate = imagePicker
         return imagePicker
     }

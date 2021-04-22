@@ -10,27 +10,17 @@ import UIKit
 class ImagePickerViewController: UIViewController {
     
     private let collectionView: UICollectionView
-    private let activityIndicator: UIActivityIndicatorView
+    private let activityIndicator = UIActivityIndicatorView()
     
     private let dataModel: ImagePickerDataModelProtocol
     
     weak var delegate: ImagePickerDelegate?
     
-    init(dataModel: ImagePickerDataModelProtocol) {
-        let cellSize = (UIScreen.main.bounds.width - 22) / 3.0
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.itemSize = CGSize(width: cellSize,
-                                               height: cellSize)
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 5,
-                                                         left: 5,
-                                                         bottom: 5,
-                                                         right: 5)
-        collectionViewLayout.minimumLineSpacing = 5
-        collectionViewLayout.minimumInteritemSpacing = 5
-        collectionViewLayout.scrollDirection = .vertical
+    init(dataModel: ImagePickerDataModelProtocol,
+         collectionViewLayout: UICollectionViewFlowLayout) {
+        
         collectionView = UICollectionView(frame: .zero,
                                           collectionViewLayout: collectionViewLayout)
-        activityIndicator = UIActivityIndicatorView()
         
         self.dataModel = dataModel
         
@@ -92,11 +82,14 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.identifier,
-                                                            for: indexPath) as? ImagePickerCell else { fatalError("ImagePickerCell not inited") }
+                                                            for: indexPath) as? ImagePickerCell
+        else { fatalError("ImagePickerCell init error") }
         
-        let imageURL = self.dataModel.getImages()[indexPath.row].previewURL
-        self.dataModel.fetchImage(imageUrl: imageURL) { image in
+        let imageURL = dataModel.getImages()[indexPath.row].previewURL
+        cell.activityIndicator.startAnimating()
+        dataModel.fetchImage(imageUrl: imageURL) { image in
             DispatchQueue.main.async {
+                cell.activityIndicator.stopAnimating()
                 cell.configure(image: image)
                 cell.layoutIfNeeded()
             }
@@ -106,8 +99,8 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let imageURL = self.dataModel.getImages()[indexPath.row].webformatURL
-        self.dataModel.fetchImage(imageUrl: imageURL) { image in
+        let imageURL = dataModel.getImages()[indexPath.row].webformatURL
+        dataModel.fetchImage(imageUrl: imageURL) { image in
             guard let image = image else { return }
             DispatchQueue.main.async {
                 self.delegate?.didSelect(image: image)

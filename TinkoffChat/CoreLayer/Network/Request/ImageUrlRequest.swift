@@ -11,7 +11,7 @@ class ImageUrlRequest: RequestProtocol {
     func urlRequest(pageNumber: Int?) -> URLRequest? {
         guard let pageNumber = pageNumber,
               let url = urlConstructor(pageNumber: pageNumber) else { return nil }
-        return URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad)
+        return URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
     }
     
     private func urlConstructor(pageNumber: Int) -> URL? {
