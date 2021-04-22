@@ -13,4 +13,5 @@ protocol PresentationAssemblyProtocol {
     func profileViewController() -> ProfileViewController
     func themeListViewController() -> ThemesViewController
     func imagePicker() -> ImagePicker
+    func networkPicker() -> ImagePickerViewController
 }

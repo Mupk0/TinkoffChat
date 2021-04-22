@@ -9,32 +9,37 @@ import Foundation
 
 class RequestSender: RequestSenderProtocol {
     
+    private let backgroundQueue = DispatchQueue(label: "ru.tinkoff.TinkoffChat.RequestSender",
+                                                qos: .userInitiated)
+    
     public func send<Parser>(pageNumber: Int?,
                              requestConfig config: RequestConfig<Parser>,
                              completionHandler: @escaping (Result<Parser.Model, ApiError>) -> Void) where Parser: ParserProtocol {
         
-        let session = getSession()
-        guard let urlRequest = config.request.urlRequest(pageNumber: pageNumber) else {
-            completionHandler(.failure(.stringParseError))
-            return
-        }
-        
-        let task = session.dataTask(with: urlRequest) { data, _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                completionHandler(.failure(.taskError))
+        backgroundQueue.async {
+            let session = self.getSession()
+            guard let urlRequest = config.request.urlRequest(pageNumber: pageNumber) else {
+                completionHandler(.failure(.stringParseError))
                 return
             }
             
-            guard let data = data,
-                  let parsedModel: Parser.Model = config.parser.parse(data: data) else {
-                completionHandler(.failure(.dataParseError))
-                return
+            let task = session.dataTask(with: urlRequest) { data, _, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completionHandler(.failure(.taskError))
+                    return
+                }
+                
+                guard let data = data,
+                      let parsedModel: Parser.Model = config.parser.parse(data: data) else {
+                    completionHandler(.failure(.dataParseError))
+                    return
+                }
+                
+                completionHandler(Result.success(parsedModel))
             }
-            
-            completionHandler(Result.success(parsedModel))
+            task.resume()
         }
-        task.resume()
     }
     
     private func getSession() -> URLSession {

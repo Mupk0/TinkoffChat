@@ -11,5 +11,7 @@ protocol ImagePickerProtocol {
     var presentationController: UIViewController? { get set }
     var delegate: ImagePickerDelegate? { get set }
     
+    var imagePickerController: ImagePickerViewController? { get set }
+    
     func present()
 }

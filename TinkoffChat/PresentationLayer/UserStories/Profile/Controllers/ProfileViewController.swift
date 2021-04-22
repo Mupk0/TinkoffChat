@@ -278,6 +278,7 @@ class ProfileViewController: UIViewController {
         userNameTextField.endEditing(true)
         userDescriptionTextView.endEditing(true)
         imagePicker = presentationAssembly.imagePicker()
+        imagePicker?.imagePickerController = presentationAssembly.networkPicker()
         imagePicker?.presentationController = self
         imagePicker?.delegate = self
         imagePicker?.present()

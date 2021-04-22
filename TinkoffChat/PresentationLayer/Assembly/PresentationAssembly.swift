@@ -52,4 +52,13 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     func imagePicker() -> ImagePicker {
         return ImagePicker()
     }
+    
+    // MARK: - Image Picker
+    func networkPicker() -> ImagePickerViewController {
+        let dataModel = ImagePickerDataModel(networkService: serviceAssembly.networkService,
+                                             imageCacheService: serviceAssembly.imageCacheService)
+        let imagePicker = ImagePickerViewController(dataModel: dataModel)
+        dataModel.delegate = imagePicker
+        return imagePicker
+    }
 }

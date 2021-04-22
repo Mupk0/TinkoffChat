@@ -24,4 +24,5 @@ class ServicesAssembly: ServicesAssemblyProtocol {
                                                                         coreDataService: coreDataManager,
                                                                         settingsService: settingsService,
                                                                         profileService: profileService)
+    lazy var imageCacheService: ImageCacheServiceProtocol = ImageCacheService()
 }

@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol ProfileDataModelProtocol {
-    func getUserProfile(completionHandler: @escaping (ProfileProtocol?, Error?) -> Void)
-    func saveUserProfile(_ profile: ProfileProtocol,
-                         completionHandler: @escaping (Error?) -> Void)
-}
-
 class ProfileDataModel: ProfileDataModelProtocol {
     
     private let profileService: ProfileServiceProtocol

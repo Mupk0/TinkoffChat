@@ -8,6 +8,7 @@
 import UIKit
 
 class NetworkService: NetworkServiceProtocol {
+    
     private let requestSender: RequestSenderProtocol
     
     init(requestSender: RequestSenderProtocol) {

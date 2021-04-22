@@ -11,6 +11,7 @@ protocol ServicesAssemblyProtocol {
     var coreDataManager: CoreDataManagerProtocol { get }
     var firebaseService: FirebaseServiceProtocol { get }
     var networkService: NetworkServiceProtocol { get }
+    var imageCacheService: ImageCacheServiceProtocol { get }
     var themeSwitcherService: ThemeSwitcherServiceProtocol { get }
     var settingsService: SettingsServiceProtocol { get }
     var profileService: ProfileServiceProtocol { get }
