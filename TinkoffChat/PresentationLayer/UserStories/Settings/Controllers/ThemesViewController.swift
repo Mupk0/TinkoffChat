@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ThemesViewControllerDelegate: class {
+protocol ThemesViewControllerDelegate: AnyObject {
     func didSelectTheme(_ themeType: ThemeType)
 }
 

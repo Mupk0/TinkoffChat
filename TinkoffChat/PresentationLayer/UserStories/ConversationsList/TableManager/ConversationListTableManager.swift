@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-protocol ConversationListTableManagerDelegate: class {
+protocol ConversationListTableManagerDelegate: AnyObject {
     func didSelectChannel(_ channel: SelectedChannelProtocol)
     func didRemoveChannel(_ channel: Channel)
 }

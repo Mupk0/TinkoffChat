@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol ConversListModelDelegate: class {
+protocol ConversListModelDelegate: AnyObject {
     func loadComplited()
 }
 
