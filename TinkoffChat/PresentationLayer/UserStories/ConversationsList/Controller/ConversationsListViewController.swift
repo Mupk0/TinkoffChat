@@ -98,6 +98,8 @@ class ConversationsListViewController: UIViewController {
     @objc private func didTapProfileButton() {
         let profileController = presentationAssembly.profileViewController()
         let navController = UINavigationController(rootViewController: profileController)
+        navController.modalPresentationStyle = .custom
+        navController.transitioningDelegate = self
         present(navController, animated: true)
     }
     
@@ -149,5 +151,17 @@ extension ConversationsListViewController: ConversationListTableManagerDelegate 
     func didSelectChannel(_ channel: SelectedChannelProtocol) {
         let chatViewController = presentationAssembly.conversationViewController(channel: channel)
         navigationController?.pushViewController(chatViewController, animated: true)
+    }
+}
+
+extension ConversationsListViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomTransition(animationDuration: 1, animationType: .present)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomTransition(animationDuration: 1, animationType: .dismiss)
     }
 }

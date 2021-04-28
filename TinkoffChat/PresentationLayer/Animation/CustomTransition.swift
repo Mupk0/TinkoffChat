@@ -92,7 +92,7 @@ extension CustomTransition: UIViewControllerAnimatedTransitioning {
                                             width: size.width,
                                             height: size.height)
                        }, completion: { _ in
-                        UIView.animate(withDuration: duration * 0.75,
+                        UIView.animate(withDuration: duration * 0.5,
                                        delay: 0,
                                        animations: {
                                         view.frame = CGRect(x: 0,
