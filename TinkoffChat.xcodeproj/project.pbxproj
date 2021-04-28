@@ -110,6 +110,7 @@
 		EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */; };
 		EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDA25FE8A1800194752 /* UIWindow.swift */; };
 		EFFF46492639BA3000D4870D /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF46482639BA3000D4870D /* ShakeAnimation.swift */; };
+		EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF464A2639C29400D4870D /* EmitterAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +221,7 @@
 		EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		EFEC1DDA25FE8A1800194752 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		EFFF46482639BA3000D4870D /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
+		EFFF464A2639C29400D4870D /* EmitterAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -863,6 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				EFFF46482639BA3000D4870D /* ShakeAnimation.swift */,
+				EFFF464A2639C29400D4870D /* EmitterAnimation.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -1054,6 +1057,7 @@
 				EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
 				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
+				EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */,
 				EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
