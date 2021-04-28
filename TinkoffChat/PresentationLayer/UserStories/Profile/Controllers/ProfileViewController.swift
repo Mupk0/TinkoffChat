@@ -66,6 +66,7 @@ class ProfileViewController: UIViewController {
     
     private let editButton: CustomButton = {
         let button = CustomButton()
+        button.backgroundColor = .clear
         button.setTitle("Edit", for: .normal)
         return button
     }()
@@ -218,7 +219,6 @@ class ProfileViewController: UIViewController {
         userAvatarView.addSubview(userAvatarImageView)
         backView.addSubview(userNameTextField)
         backView.addSubview(userDescriptionTextView)
-        backView.addSubview(cancelButton)
         backView.addSubview(editButton)
         backView.addSubview(editProfileStackView)
         backView.addSubview(activityIndicator)
@@ -229,7 +229,6 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.translatesAutoresizingMaskIntoConstraints = false
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
         userDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editProfileStackView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -264,23 +263,17 @@ class ProfileViewController: UIViewController {
             userDescriptionTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userDescriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 78),
             userDescriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -78),
-            userDescriptionTextView.bottomAnchor.constraint(equalTo: cancelButton.topAnchor,
+            userDescriptionTextView.bottomAnchor.constraint(equalTo: editProfileStackView.topAnchor,
                                                             constant: -5),
             
-            cancelButton.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10),
-            cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
-            cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
-            cancelButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            editButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            editButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),
-            editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -62),
+            editButton.bottomAnchor.constraint(equalTo: userAvatarImageView.bottomAnchor),
+            editButton.trailingAnchor.constraint(equalTo: userAvatarImageView.trailingAnchor),
             editButton.heightAnchor.constraint(equalToConstant: 40),
             
             editProfileStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            editProfileStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 31),
-            editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
-            editProfileStackView.heightAnchor.constraint(equalToConstant: 40),
+            editProfileStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 62),
+            editProfileStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -62),
+            editProfileStackView.heightAnchor.constraint(equalToConstant: 96),
             
             activityIndicator.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor,
                                                       constant: 5),
@@ -293,7 +286,10 @@ class ProfileViewController: UIViewController {
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.height / 2
         userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                         action: #selector(showImagePickerAlert)))
-        
+        editProfileStackView.spacing = 16
+        editProfileStackView.alignment = .fill
+        editProfileStackView.axis = .vertical
+        editProfileStackView.addArrangedSubview(cancelButton)
         editProfileStackView.addArrangedSubview(saveButton)
         
         editButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
