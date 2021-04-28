@@ -93,6 +93,8 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    lazy private var editButtonAnimation = ShakeAnimation(layer: editButton.layer)
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let indicatorView: UIActivityIndicatorView
         if #available(iOS 13.0, *) {
@@ -169,7 +171,7 @@ class ProfileViewController: UIViewController {
     
     private var profileState: ProfileState = .show {
         didSet {
-            editButton.isHidden = profileState != .show
+            editButtonAnimation.setAnimationState(profileState == .show ? .stopped : .started)
             cancelButton.isHidden = profileState == .show
             editProfileStackView.isHidden = profileState == .show
             
@@ -326,8 +328,13 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapEditButton() {
-        profileState = .edit
-        userNameTextField.becomeFirstResponder()
+        switch profileState {
+        case .edit:
+            profileState = .show
+        case .show:
+            profileState = .edit
+            userNameTextField.becomeFirstResponder()
+        }
     }
     
     @objc private func didTapCancelButton() {
