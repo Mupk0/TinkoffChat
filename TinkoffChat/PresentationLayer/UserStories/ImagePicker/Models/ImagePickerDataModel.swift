@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ImagePickerDataModelDelegate: class {
+protocol ImagePickerDataModelDelegate: AnyObject {
     func loadStarted()
     func loadComplited()
 }

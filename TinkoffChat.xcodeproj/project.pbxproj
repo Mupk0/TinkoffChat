@@ -109,6 +109,9 @@
 		EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DCB25FE3C6800194752 /* UIViewController.swift */; };
 		EFEC1DD525FE831E00194752 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */; };
 		EFEC1DDB25FE8A1800194752 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC1DDA25FE8A1800194752 /* UIWindow.swift */; };
+		EFFF46492639BA3000D4870D /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF46482639BA3000D4870D /* ShakeAnimation.swift */; };
+		EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF464A2639C29400D4870D /* EmitterAnimation.swift */; };
+		EFFF464D2639F66C00D4870D /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF464C2639F66C00D4870D /* CustomTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +221,9 @@
 		EFEC1DCB25FE3C6800194752 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		EFEC1DDA25FE8A1800194752 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		EFFF46482639BA3000D4870D /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
+		EFFF464A2639C29400D4870D /* EmitterAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterAnimation.swift; sourceTree = "<group>"; };
+		EFFF464C2639F66C00D4870D /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -735,6 +741,7 @@
 				EFAEA3A52626D1E000397C90 /* Assembly */,
 				EFAEA3AD2626D4FA00397C90 /* UserStories */,
 				EFD1348925F518B100C398CE /* Common */,
+				EFFF46472639BA1A00D4870D /* Animation */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -854,6 +861,16 @@
 				EFEC1DC825FE373600194752 /* Profile.swift */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		EFFF46472639BA1A00D4870D /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				EFFF46482639BA3000D4870D /* ShakeAnimation.swift */,
+				EFFF464A2639C29400D4870D /* EmitterAnimation.swift */,
+				EFFF464C2639F66C00D4870D /* CustomTransition.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1043,6 +1060,7 @@
 				EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
 				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
+				EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */,
 				EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */,
 				EF9BB93125F4E773006D013A /* IncomingMessageImageView.swift in Sources */,
 				EFEC1DCC25FE3C6800194752 /* UIViewController.swift in Sources */,
@@ -1065,6 +1083,7 @@
 				EFAEA44526280BEE00397C90 /* UserDefaultsCoreProtocol.swift in Sources */,
 				EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */,
 				EFAEA43A26276E9200397C90 /* ProfileServiceProtocol.swift in Sources */,
+				EFFF46492639BA3000D4870D /* ShakeAnimation.swift in Sources */,
 				EF08A52A26313C22005F9D2B /* RequestSender.swift in Sources */,
 				EFAEA3E82626EA7700397C90 /* ThemeSwitcherService.swift in Sources */,
 				EFD1348125F5050600C398CE /* ThemeType.swift in Sources */,
@@ -1073,6 +1092,7 @@
 				EF24E321262097F400A2B7B9 /* FetchedResultsControllerDelegate.swift in Sources */,
 				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
 				EFD1348C25F5190100C398CE /* SubTitleLabel.swift in Sources */,
+				EFFF464D2639F66C00D4870D /* CustomTransition.swift in Sources */,
 				EFAEA40F26272D5F00397C90 /* ConversationDataModel.swift in Sources */,
 				EF08A53F26313DF9005F9D2B /* RequestsFactory.swift in Sources */,
 				EFAEA3A72626D1F000397C90 /* PresentationAssembly.swift in Sources */,

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol ConversationDataModelDelegate: class {
+protocol ConversationDataModelDelegate: AnyObject {
     func messageSenden()
 }
 
