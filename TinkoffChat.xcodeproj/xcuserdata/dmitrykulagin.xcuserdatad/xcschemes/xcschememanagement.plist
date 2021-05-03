@@ -7,12 +7,17 @@
 		<key>TinkoffChat.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>EF08B63B25D59BA70050FBA3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFBCA4A626404B6700D1176F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
