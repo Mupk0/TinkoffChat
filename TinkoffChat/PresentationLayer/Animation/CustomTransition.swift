@@ -23,35 +23,6 @@ class CustomTransition: NSObject {
         self.animationDuration = animationDuration
         self.animationType = animationType
     }
-}
-
-extension CustomTransition: UIViewControllerAnimatedTransitioning {
-    
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return TimeInterval(exactly: animationDuration) ?? 0
-    }
-    
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
-        guard let toViewController = transitionContext.viewController(forKey: .to),
-              let fromViewController = transitionContext.viewController(forKey: .from)
-        else {
-            transitionContext.completeTransition(false)
-            return
-        }
-        
-        switch animationType {
-        case .present:
-            transitionContext.containerView.addSubview(toViewController.view)
-            presentAnimation(with: transitionContext,
-                             view: toViewController.view,
-                             size: fromViewController.view.frame)
-        case .dismiss:
-            dismissAnimation(with: transitionContext,
-                             view: fromViewController.view,
-                             size: toViewController.view.frame)
-        }
-    }
     
     private func presentAnimation(with context: UIViewControllerContextTransitioning,
                                   view: UIView,
@@ -103,5 +74,34 @@ extension CustomTransition: UIViewControllerAnimatedTransitioning {
                                         context.completeTransition(true)
                                        })
                        })
+    }
+}
+
+extension CustomTransition: UIViewControllerAnimatedTransitioning {
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return TimeInterval(exactly: animationDuration) ?? 0
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        guard let toViewController = transitionContext.viewController(forKey: .to),
+              let fromViewController = transitionContext.viewController(forKey: .from)
+        else {
+            transitionContext.completeTransition(false)
+            return
+        }
+        
+        switch animationType {
+        case .present:
+            transitionContext.containerView.addSubview(toViewController.view)
+            presentAnimation(with: transitionContext,
+                             view: toViewController.view,
+                             size: fromViewController.view.frame)
+        case .dismiss:
+            dismissAnimation(with: transitionContext,
+                             view: fromViewController.view,
+                             size: toViewController.view.frame)
+        }
     }
 }

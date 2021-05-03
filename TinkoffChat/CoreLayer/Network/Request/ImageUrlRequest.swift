@@ -19,7 +19,7 @@ class ImageUrlRequest: RequestProtocol {
         
         urlConstructor.scheme = "https"
         urlConstructor.host = "pixabay.com"
-        urlConstructor.path = "/api"
+        urlConstructor.path = "/api/"
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "key", value: "21276680-ed9fafe5fe650d225c143f29f"),

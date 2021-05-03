@@ -4,19 +4,29 @@ platform :ios, '12.1'
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
-target 'TinkoffChat' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for FirebaseTest2
-  pod 'Firebase/Firestore', '7.8'
-  pod 'SwiftLint'
-end
-
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
     end
   end
+end
+
+target 'TinkoffChat' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TinkoffChat
+  pod 'Firebase/Firestore', '7.8'
+  pod 'SwiftLint'
+end
+
+target 'TinkoffChatTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TinkoffChat
+  pod 'Firebase/Firestore', '7.8'
+  pod 'SwiftLint'
+
 end

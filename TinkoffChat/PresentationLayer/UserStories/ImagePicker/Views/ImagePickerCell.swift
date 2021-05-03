@@ -43,7 +43,6 @@ class ImagePickerCell: UICollectionViewCell {
             activityIndicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
         ])
         
-        imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
@@ -53,7 +52,7 @@ class ImagePickerCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        imageView.image = #imageLiteral(resourceName: "placeholder")
+        imageView.image = nil
     }
 
     func configure(image: UIImage?) {
