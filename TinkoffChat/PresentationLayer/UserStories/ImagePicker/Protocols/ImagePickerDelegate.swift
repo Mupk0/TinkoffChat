@@ -8,5 +8,6 @@
 import UIKit
 
 public protocol ImagePickerDelegate: AnyObject {
-    func didSelect(image: UIImage?)
+    func didSelect(image: UIImage)
+    func didCancel()
 }

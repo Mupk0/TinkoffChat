@@ -115,6 +115,7 @@ class ProfileViewController: UIViewController {
         return UIAlertAction(title: title, style: .default) { _ in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
+            pickerController.presentationController?.delegate = self
             pickerController.allowsEditing = true
             pickerController.mediaTypes = ["public.image"]
             pickerController.sourceType = type
@@ -139,6 +140,7 @@ class ProfileViewController: UIViewController {
         let networkImagePicker = presentationAssembly.imagePicker()
         networkImagePicker.delegate = self
         let navigationController = UINavigationController(rootViewController: networkImagePicker)
+        navigationController.presentationController?.delegate = self
         alertController.addAction(UIAlertAction(title: "Загрузить",
                                                 style: .default,
                                                 handler: { _ in
@@ -148,9 +150,8 @@ class ProfileViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Отменить",
                                                 style: .cancel,
                                                 handler: { _ in
-            self.didSelect(image: nil)
+            self.didCancel()
         }))
-        alertController.clearConstraintErrors()
         return alertController
     }()
     // MARK: - Profile Datas
@@ -395,14 +396,14 @@ class ProfileViewController: UIViewController {
 }
 // MARK: - Image Picker Delegate
 extension ProfileViewController: ImagePickerDelegate {
-    func didSelect(image: UIImage?) {
-        if image != nil {
-            userAvatarImageView.image = image
-            setStateOfSaveButtons(to: .enabled)
-        } else {
-            profileState = hasUnsavedChanges ? .edit : .show
-            setStateOfSaveButtons(to: hasUnsavedChanges ? .enabled : .disabled)
-        }
+    func didSelect(image: UIImage) {
+        userAvatarImageView.image = image
+        setStateOfSaveButtons(to: .enabled)
+    }
+    
+    func didCancel() {
+        profileState = hasUnsavedChanges ? .edit : .show
+        setStateOfSaveButtons(to: hasUnsavedChanges ? .enabled : .disabled)
     }
 }
 // MARK: - UITextField Delegate
@@ -426,6 +427,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     private func pickerController(_ controller: UIImagePickerController,
                                   didSelect image: UIImage?) {
+        guard let image = image else { return }
         didSelect(image: image)
         controller.dismiss(animated: true, completion: nil)
     }
@@ -438,5 +440,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[.editedImage] as? UIImage
         pickerController(picker, didSelect: image)
+    }
+}
+// MARK: - UIAdaptivePresentationControllerDelegate
+extension ProfileViewController: UIAdaptivePresentationControllerDelegate {
+    public func presentationControllerDidDismiss( _ presentationController: UIPresentationController) {
+        if #available(iOS 13, *) {
+            didCancel()
+        }
     }
 }

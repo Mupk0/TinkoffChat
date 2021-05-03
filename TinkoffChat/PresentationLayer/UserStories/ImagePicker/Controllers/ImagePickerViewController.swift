@@ -69,7 +69,9 @@ class ImagePickerViewController: UIViewController {
     }
     
     @objc private func didTapCloseButton() {
-        dismiss(animated: true)
+        dismiss(animated: true, completion: {
+            self.delegate?.didCancel()
+        })
     }
 }
 

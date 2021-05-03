@@ -30,7 +30,6 @@
 		EF08A567263162BB005F9D2B /* ImagePickerDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */; };
 		EF08A56C2631638B005F9D2B /* ImageCacheServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */; };
 		EF08A56F2631639B005F9D2B /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A56E2631639B005F9D2B /* ImageCacheService.swift */; };
-		EF08A572263173D3005F9D2B /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A571263173D3005F9D2B /* UIAlertController.swift */; };
 		EF08A57526319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */; };
 		EF08A5782631A3E2005F9D2B /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */; };
 		EF08B64025D59BA70050FBA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08B63F25D59BA70050FBA3 /* AppDelegate.swift */; };
@@ -140,7 +139,6 @@
 		EF08A566263162BB005F9D2B /* ImagePickerDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDataModelProtocol.swift; sourceTree = "<group>"; };
 		EF08A56B2631638B005F9D2B /* ImageCacheServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheServiceProtocol.swift; sourceTree = "<group>"; };
 		EF08A56E2631639B005F9D2B /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
-		EF08A571263173D3005F9D2B /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		EF08A57426319DF8005F9D2B /* ImagePickerCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		EF08A5772631A3E2005F9D2B /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		EF08B63C25D59BA70050FBA3 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -730,7 +728,6 @@
 				EFEC1DD425FE831E00194752 /* UIViewController+Alerts.swift */,
 				EFEC1DDA25FE8A1800194752 /* UIWindow.swift */,
 				EFAEA47A2628154500397C90 /* UIEdgeInsets.swift */,
-				EF08A571263173D3005F9D2B /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1087,7 +1084,6 @@
 				EF08A52A26313C22005F9D2B /* RequestSender.swift in Sources */,
 				EFAEA3E82626EA7700397C90 /* ThemeSwitcherService.swift in Sources */,
 				EFD1348125F5050600C398CE /* ThemeType.swift in Sources */,
-				EF08A572263173D3005F9D2B /* UIAlertController.swift in Sources */,
 				EF835BEC25E0362000906839 /* String.swift in Sources */,
 				EF24E321262097F400A2B7B9 /* FetchedResultsControllerDelegate.swift in Sources */,
 				EFE436D925ED512900869295 /* OutgoingMessageTableViewCell.swift in Sources */,
