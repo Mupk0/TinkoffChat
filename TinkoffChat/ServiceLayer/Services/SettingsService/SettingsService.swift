@@ -29,6 +29,7 @@ class SettingsService: SettingsServiceProtocol {
         userDefaults.setValueToKey(value: theme, key: themeKey)
     }
     
+    @discardableResult
     func getDeviceId() -> String? {
         return userDefaults.getValueToKey(key: userDeviceKey)
     }

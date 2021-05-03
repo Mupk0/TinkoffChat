@@ -18,9 +18,10 @@ class UserDefaultsTests: XCTestCase {
         
         // Act
         settingsService.setDeviceId("1")
+        settingsService.setTheme("Classic")
         
         // Assert
-        XCTAssertEqual(userDefaultsMock.saveCallsCount, 1)
+        XCTAssertEqual(userDefaultsMock.saveCallsCount, 2)
     }
     
     func testReadUserDefaults() throws {
@@ -30,9 +31,10 @@ class UserDefaultsTests: XCTestCase {
         let settingsService = SettingsService(userDefaults: userDefaultsMock)
         
         // Act
+        settingsService.getDeviceId()
         settingsService.getCurrentTheme(completion: { _ in })
         
         // Assert
-        XCTAssertEqual(userDefaultsMock.readCallsCount, 1)
+        XCTAssertEqual(userDefaultsMock.readCallsCount, 2)
     }
 }
