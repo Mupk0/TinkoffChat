@@ -90,6 +90,7 @@
 		EFBCA4B526404DB100D1176F /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBCA4B426404DB100D1176F /* UserDefaultsMock.swift */; };
 		EFBCA4B72640520100D1176F /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBCA4B62640520100D1176F /* DataManagerMock.swift */; };
 		EFBCA4BB2640657600D1176F /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBCA4BA2640657600D1176F /* DataManagerTests.swift */; };
+		EFBCA4C3264076DD00D1176F /* TinkoffChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBCA4C2264076DD00D1176F /* TinkoffChatUITests.swift */; };
 		EFBF508325F40205004F16C1 /* UserDefaultsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */; };
 		EFCB115E2607B48F004389F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB115D2607B48F004389F4 /* MessageView.swift */; };
 		EFD1347925F4F21200C398CE /* ThemeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD1347825F4F21200C398CE /* ThemeTypeView.swift */; };
@@ -120,6 +121,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		EFBCA4AC26404B6700D1176F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF08B63425D59BA70050FBA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF08B63B25D59BA70050FBA3;
+			remoteInfo = TinkoffChat;
+		};
+		EFBCA4C5264076DD00D1176F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EF08B63425D59BA70050FBA3 /* Project object */;
 			proxyType = 1;
@@ -221,6 +229,9 @@
 		EFBCA4B426404DB100D1176F /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
 		EFBCA4B62640520100D1176F /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
 		EFBCA4BA2640657600D1176F /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		EFBCA4C0264076DD00D1176F /* TinkoffChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinkoffChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBCA4C2264076DD00D1176F /* TinkoffChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffChatUITests.swift; sourceTree = "<group>"; };
+		EFBCA4C4264076DD00D1176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFBF508225F40205004F16C1 /* UserDefaultsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCore.swift; sourceTree = "<group>"; };
 		EFCB115D2607B48F004389F4 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EFD1347825F4F21200C398CE /* ThemeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTypeView.swift; sourceTree = "<group>"; };
@@ -262,6 +273,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEF60E8F373127968B5C55DE /* Pods_TinkoffChatTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFBCA4BD264076DD00D1176F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +423,7 @@
 			children = (
 				EF08B63E25D59BA70050FBA3 /* TinkoffChat */,
 				EFBCA4A826404B6700D1176F /* TinkoffChatTests */,
+				EFBCA4C1264076DD00D1176F /* TinkoffChatUITests */,
 				EF08B63D25D59BA70050FBA3 /* Products */,
 				EB4DE1D51E48CE4925D360C3 /* Pods */,
 				70B7603C70E08E9684714CFB /* Frameworks */,
@@ -416,6 +435,7 @@
 			children = (
 				EF08B63C25D59BA70050FBA3 /* TinkoffChat.app */,
 				EFBCA4A726404B6700D1176F /* TinkoffChatTests.xctest */,
+				EFBCA4C0264076DD00D1176F /* TinkoffChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -696,6 +716,15 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		EFBCA4C1264076DD00D1176F /* TinkoffChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EFBCA4C2264076DD00D1176F /* TinkoffChatUITests.swift */,
+				EFBCA4C4264076DD00D1176F /* Info.plist */,
+			);
+			path = TinkoffChatUITests;
+			sourceTree = "<group>";
+		};
 		EFBF508125F401FB004F16C1 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -970,6 +999,24 @@
 			productReference = EFBCA4A726404B6700D1176F /* TinkoffChatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EFBCA4BF264076DD00D1176F /* TinkoffChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFBCA4C7264076DD00D1176F /* Build configuration list for PBXNativeTarget "TinkoffChatUITests" */;
+			buildPhases = (
+				EFBCA4BC264076DD00D1176F /* Sources */,
+				EFBCA4BD264076DD00D1176F /* Frameworks */,
+				EFBCA4BE264076DD00D1176F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFBCA4C6264076DD00D1176F /* PBXTargetDependency */,
+			);
+			name = TinkoffChatUITests;
+			productName = TinkoffChatUITests;
+			productReference = EFBCA4C0264076DD00D1176F /* TinkoffChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -983,6 +1030,10 @@
 						CreatedOnToolsVersion = 12.4;
 					};
 					EFBCA4A626404B6700D1176F = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = EF08B63B25D59BA70050FBA3;
+					};
+					EFBCA4BF264076DD00D1176F = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = EF08B63B25D59BA70050FBA3;
 					};
@@ -1003,6 +1054,7 @@
 			targets = (
 				EF08B63B25D59BA70050FBA3 /* TinkoffChat */,
 				EFBCA4A626404B6700D1176F /* TinkoffChatTests */,
+				EFBCA4BF264076DD00D1176F /* TinkoffChatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1019,6 +1071,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EFBCA4A526404B6700D1176F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFBCA4BE264076DD00D1176F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1244,6 +1303,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFBCA4BC264076DD00D1176F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBCA4C3264076DD00D1176F /* TinkoffChatUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1251,6 +1318,11 @@
 			isa = PBXTargetDependency;
 			target = EF08B63B25D59BA70050FBA3 /* TinkoffChat */;
 			targetProxy = EFBCA4AC26404B6700D1176F /* PBXContainerItemProxy */;
+		};
+		EFBCA4C6264076DD00D1176F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF08B63B25D59BA70050FBA3 /* TinkoffChat */;
+			targetProxy = EFBCA4C5264076DD00D1176F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1470,6 +1542,46 @@
 			};
 			name = Release;
 		};
+		EFBCA4C8264076DD00D1176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6939WNYZGH;
+				INFOPLIST_FILE = TinkoffChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.home.TinkoffChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinkoffChat;
+			};
+			name = Debug;
+		};
+		EFBCA4C9264076DD00D1176F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6939WNYZGH;
+				INFOPLIST_FILE = TinkoffChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.home.TinkoffChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinkoffChat;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1496,6 +1608,15 @@
 			buildConfigurations = (
 				EFBCA4AF26404B6700D1176F /* Debug */,
 				EFBCA4B026404B6700D1176F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFBCA4C7264076DD00D1176F /* Build configuration list for PBXNativeTarget "TinkoffChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFBCA4C8264076DD00D1176F /* Debug */,
+				EFBCA4C9264076DD00D1176F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
