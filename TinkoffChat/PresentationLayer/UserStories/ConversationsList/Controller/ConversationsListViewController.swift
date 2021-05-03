@@ -59,6 +59,9 @@ class ConversationsListViewController: UIViewController {
                                             style: .plain,
                                             target: self,
                                             action: #selector(didTapProfileButton))
+        profileButton.isAccessibilityElement = true
+        profileButton.accessibilityIdentifier = "ProfileButton"
+        
         navigationItem.rightBarButtonItem = profileButton
         
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"),

@@ -302,6 +302,12 @@ class ProfileViewController: UIViewController {
         
         saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(didTapSaveButton)))
+        
+        userNameTextField.isAccessibilityElement = true
+        userNameTextField.accessibilityIdentifier = "UserNameTextField"
+        
+        userDescriptionTextView.isAccessibilityElement = true
+        userDescriptionTextView.accessibilityIdentifier = "UserDescriptionTextView"
     }
     
     private func updateViewsByProfile(_ profile: ProfileProtocol?) {
