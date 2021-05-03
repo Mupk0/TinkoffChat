@@ -699,10 +699,10 @@
 		EFBCA4A826404B6700D1176F /* TinkoffChatTests */ = {
 			isa = PBXGroup;
 			children = (
-				EFBCA4B326404C7C00D1176F /* Mocks */,
-				EFBCA4AB26404B6700D1176F /* Info.plist */,
 				EFBCA4B126404C6200D1176F /* UserDefaultsTests.swift */,
 				EFBCA4BA2640657600D1176F /* DataManagerTests.swift */,
+				EFBCA4AB26404B6700D1176F /* Info.plist */,
+				EFBCA4B326404C7C00D1176F /* Mocks */,
 			);
 			path = TinkoffChatTests;
 			sourceTree = "<group>";
