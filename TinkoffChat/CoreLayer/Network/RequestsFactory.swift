@@ -11,8 +11,8 @@ import UIKit
 
 struct RequestsFactory {
     struct Requests {
-        static func newImageUrlConfig() -> RequestConfig<ImageUrlParser> {
-            return RequestConfig<ImageUrlParser>(request: ImageUrlRequest(),
+        static func newImageUrlConfig(privateConfig: PrivateConfigProtocol) -> RequestConfig<ImageUrlParser> {
+            return RequestConfig<ImageUrlParser>(request: ImageUrlRequest(privateConfig: privateConfig),
                                                  parser: ImageUrlParser())
         }
         

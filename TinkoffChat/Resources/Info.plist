@@ -38,6 +38,17 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>Private Properties</key>
+	<dict>
+		<key>API_SCHEME</key>
+		<string>$(API_SCHEME)</string>
+		<key>API_HOST</key>
+		<string>$(API_HOST)</string>
+		<key>API_PATH</key>
+		<string>$(API_PATH)</string>
+		<key>API_TOKEN</key>
+		<string>$(API_TOKEN)</string>
+	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

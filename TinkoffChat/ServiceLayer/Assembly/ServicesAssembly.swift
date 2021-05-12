@@ -17,7 +17,8 @@ class ServicesAssembly: ServicesAssemblyProtocol {
     
     lazy var coreDataManager: CoreDataManagerProtocol = coreAssembly.coreDataManager
     lazy var settingsService: SettingsServiceProtocol = SettingsService(userDefaults: coreAssembly.userDefaultsCore)
-    lazy var networkService: NetworkServiceProtocol = NetworkService(requestSender: coreAssembly.requestSender)
+    lazy var networkService: NetworkServiceProtocol = NetworkService(requestSender: coreAssembly.requestSender,
+                                                                     privateConfig: coreAssembly.privateConfig)
     lazy var themeSwitcherService: ThemeSwitcherServiceProtocol = ThemeSwitcherService(dataManager: coreAssembly.dataManager)
     lazy var profileService: ProfileServiceProtocol = ProfileService(dataManager: coreAssembly.dataManager)
     lazy var firebaseService: FirebaseServiceProtocol = FirebaseService(parserService: coreAssembly.firebaseParser,
