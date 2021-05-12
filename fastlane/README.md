@@ -15,6 +15,11 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
+### swiftlint_run
+```
+fastlane swiftlint_run
+```
+Run SwiftLint
 ### build_for_testing
 ```
 fastlane build_for_testing
