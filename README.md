@@ -4,7 +4,7 @@
 
 Проект для Финтех школы Тинькофф iOS Developer, весна 2021
 
-GitHub Actions ![status workflow](https://github.com/Mupk0/TinkoffChat/actions/workflows/github.yml/badge.svg)
+GitHub Actions ![status workflow](https://github.com/Mupk0/TinkoffChat/actions/workflows/github.yml/badge.svg?branch=dev)
 
 ## Особенности репозитория
 * Переменная DISCORD_WEBHOOK_URL задана в Actions secrets
@@ -26,7 +26,7 @@ brew install swiftlint
 ### Получения уведомления в Discord:
 * Выполняется лайном **send_discord_notification**, вызываемый командой:
 ```
-bundle exec fastlane build_and_test
+bundle exec fastlane send_discord_notification
 ```
 Для этого необходимо:
 1. Установить пакет:
