@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PrivateConfigProtocol {
+protocol EnvironmentProtocol {
     func getValueForProperties(_ properties: PrivateProperties) -> String
 }

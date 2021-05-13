@@ -11,13 +11,13 @@ class ImageUrlRequest: RequestProtocol, RequestPaginationProtocol {
     
     var pageNumber: Int
     
-    private let privateConfig: PrivateConfigProtocol
+    private let environment: EnvironmentProtocol
     
     init(pageNumber: Int,
-         privateConfig: PrivateConfigProtocol) {
+         environment: EnvironmentProtocol) {
         
         self.pageNumber = pageNumber
-        self.privateConfig = privateConfig
+        self.environment = environment
     }
     
     func urlRequest() -> URLRequest {
@@ -26,8 +26,8 @@ class ImageUrlRequest: RequestProtocol, RequestPaginationProtocol {
     }
     
     private func urlConstructor(pageNumber: Int) -> URL {
-        let apiUrl = privateConfig.getValueForProperties(.apiUrl)
-        let apiToken = privateConfig.getValueForProperties(.apiToken)
+        let apiUrl = environment.getValueForProperties(.apiUrl)
+        let apiToken = environment.getValueForProperties(.apiToken)
         guard var urlConstructor = URLComponents(string: apiUrl) else {
             fatalError("API Url Sintaxis Error")
         }

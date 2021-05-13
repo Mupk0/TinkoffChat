@@ -1,5 +1,5 @@
 //
-//  PrivateConfig.swift
+//  Environment.swift
 //  TinkoffChat
 //
 //  Created by Dmitry Kulagin on 12.05.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PrivateConfig: PrivateConfigProtocol {
+class Environment: EnvironmentProtocol {
     
     private let infoDictionary: [String: Any]
     

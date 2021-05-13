@@ -10,19 +10,19 @@ import UIKit
 class NetworkService: NetworkServiceProtocol {
     
     private let requestSender: RequestSenderProtocol
-    private let privateConfig: PrivateConfigProtocol
+    private let environment: EnvironmentProtocol
     
     init(requestSender: RequestSenderProtocol,
-         privateConfig: PrivateConfigProtocol) {
+         environment: EnvironmentProtocol) {
         
         self.requestSender = requestSender
-        self.privateConfig = privateConfig
+        self.environment = environment
     }
     
     public func getImageUrls(pageNumber: Int,
                              completionHandler: @escaping ([Images]?, String?) -> Void) {
         let requestConfig = RequestsFactory.Requests.newImageUrlConfig(pageNumber: pageNumber,
-                                                                       privateConfig: privateConfig)
+                                                                       environment: environment)
         
         loadImageUrl(requestConfig: requestConfig,
                      completionHandler: completionHandler)

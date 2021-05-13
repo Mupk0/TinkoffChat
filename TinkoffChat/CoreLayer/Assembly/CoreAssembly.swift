@@ -15,5 +15,5 @@ class CoreAssembly: CoreAssemblyProtocol {
     lazy var firebaseParser: FirebaseParserProtocol = FirebaseParser(coreDataService: coreDataManager)
     lazy var userDefaultsCore: UserDefaultsCoreProtocol = UserDefaultsCore()
     lazy var requestSender: RequestSenderProtocol = RequestSender()
-    lazy var privateConfig: PrivateConfigProtocol = PrivateConfig()
+    lazy var environment: EnvironmentProtocol = Environment()
 }
