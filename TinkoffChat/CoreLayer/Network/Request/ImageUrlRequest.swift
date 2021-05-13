@@ -28,7 +28,7 @@ class ImageUrlRequest: RequestProtocol {
               let apiScheme = privateConfig.getValueForProperties(.apiScheme),
               let apiHost = privateConfig.getValueForProperties(.apiHost),
               let apiToken = privateConfig.getValueForProperties(.apiToken) else {
-            fatalError("API params not found in Priavate Config")
+            fatalError("API params not found in Private Config")
         }
         
         urlConstructor.scheme = apiScheme
