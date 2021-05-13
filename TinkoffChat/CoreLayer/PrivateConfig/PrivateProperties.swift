@@ -8,8 +8,6 @@
 import Foundation
 
 public enum PrivateProperties: String {
-    case apiPath = "API_PATH"
-    case apiScheme = "API_SCHEME"
-    case apiHost = "API_HOST"
+    case apiUrl = "API_URL"
     case apiToken = "API_TOKEN"
 }

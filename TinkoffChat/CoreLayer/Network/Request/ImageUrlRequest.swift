@@ -22,20 +22,11 @@ class ImageUrlRequest: RequestProtocol {
     }
     
     private func urlConstructor(pageNumber: Int) -> URL? {
-        var urlConstructor = URLComponents()
+        let apiUrl = privateConfig.getValueForProperties(.apiUrl)
+        let apiToken = privateConfig.getValueForProperties(.apiToken)
+        var urlConstructor = URLComponents(string: apiUrl)
         
-        guard let apiPath = privateConfig.getValueForProperties(.apiPath),
-              let apiScheme = privateConfig.getValueForProperties(.apiScheme),
-              let apiHost = privateConfig.getValueForProperties(.apiHost),
-              let apiToken = privateConfig.getValueForProperties(.apiToken) else {
-            fatalError("API params not found in Private Config")
-        }
-        
-        urlConstructor.scheme = apiScheme
-        urlConstructor.host = apiHost
-        urlConstructor.path = apiPath
-        
-        urlConstructor.queryItems = [
+        urlConstructor?.queryItems = [
             URLQueryItem(name: "key", value: apiToken),
             URLQueryItem(name: "q", value: "yellow+flowers"),
             URLQueryItem(name: "image_type", value: "photo"),
@@ -43,6 +34,6 @@ class ImageUrlRequest: RequestProtocol {
             URLQueryItem(name: "per_page", value: "30")
         ]
         
-        return urlConstructor.url
+        return urlConstructor?.url
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PrivateConfigProtocol {
-    func getValueForProperties(_ properties: PrivateProperties) -> String?
+    func getValueForProperties(_ properties: PrivateProperties) -> String
 }
