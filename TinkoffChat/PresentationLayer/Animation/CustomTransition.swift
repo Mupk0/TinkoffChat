@@ -14,7 +14,7 @@ class CustomTransition: NSObject {
         case dismiss
     }
     
-    private let animationDuration: Double
+    private let animationDuration: TimeInterval
     private let animationType: AnimationType
     
     init(animationDuration: Double,
@@ -80,7 +80,7 @@ class CustomTransition: NSObject {
 extension CustomTransition: UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return TimeInterval(exactly: animationDuration) ?? 0
+        return animationDuration
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

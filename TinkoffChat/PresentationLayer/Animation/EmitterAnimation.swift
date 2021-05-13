@@ -9,40 +9,30 @@ import UIKit
 
 class EmitterAnimation {
     
-    private weak var gesture: UIGestureRecognizer?
     private weak var window: UIWindow?
     
-    init(gesture: UIGestureRecognizer,
-         window: UIWindow?) {
+    init(window: UIWindow?) {
         
-        self.gesture = gesture
         self.window = window
     }
     
-    public func startAnimation() {
-        if let location = gesture?.location(in: window) {
-            emitterLayer.emitterPosition = location
-            
-            switch gesture?.state {
-            case .began:
-                window?.layer.addSublayer(emitterLayer)
-            case .changed:
-                stopAnimation()
-                window?.layer.addSublayer(emitterLayer)
-            default:
-                stopAnimation()
-            }
+    public func startAnimation(gesture: UIGestureRecognizer) {
+        emitterLayer.emitterPosition = gesture.location(in: window)
+        
+        switch gesture.state {
+        case .began:
+            window?.layer.addSublayer(emitterLayer)
+        case .changed:
+            stopAnimation()
+            window?.layer.addSublayer(emitterLayer)
+        default:
+            stopAnimation()
         }
     }
     
     private func stopAnimation() {
-        guard let windowSublayers = window?.layer.sublayers else { return }
-        for layer in windowSublayers {
-            if let emitterLayer = layer as? CAEmitterLayer {
-                emitterLayer.removeAllAnimations()
-                emitterLayer.removeFromSuperlayer()
-            }
-        }
+        emitterLayer.removeAllAnimations()
+        emitterLayer.removeFromSuperlayer()
     }
     
     lazy private var emitterLayer: CAEmitterLayer = {
