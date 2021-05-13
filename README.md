@@ -1,10 +1,10 @@
 # TinkoffChat
 
+![status workflow](https://github.com/Mupk0/TinkoffChat/actions/workflows/github.yml/badge.svg)
+
 ## Общее описание 
 
 Проект для Финтех школы Тинькофф iOS Developer, весна 2021
-
-GitHub Actions ![status workflow](https://github.com/Mupk0/TinkoffChat/actions/workflows/github.yml/badge.svg?branch=dev)
 
 ## Особенности репозитория
 * Переменная DISCORD_WEBHOOK_URL задана в Actions secrets
