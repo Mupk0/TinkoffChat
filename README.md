@@ -10,7 +10,9 @@ GitHub Actions ![status workflow](https://github.com/Mupk0/TinkoffChat/actions/w
 * Переменная DISCORD_WEBHOOK_URL задана в Actions secrets
 
 ## Запуск проекта на локальной машине
-1. Добавить [файл конфиг](https://drive.google.com/file/d/1OAbnphA51vY6C9TimN6KwK-kdpkPgSmB/view?usp=sharing "файл конфиг") в корень проекта
+* Добавить [файл конфиг](https://drive.google.com/file/d/1OAbnphA51vY6C9TimN6KwK-kdpkPgSmB/view?usp=sharing "файл конфиг") в корень проекта
+
+![Insert Config](./images/insert_config.png)
 
 ## Настройка Fastlane на локальной машине
 ### Проверка кода линтером:
@@ -34,3 +36,5 @@ bundle exec fastlane send_discord_notification
 brew install libsodium
 ```
 2. Добавить [.env файл](https://drive.google.com/file/d/14wq__6np-U8wHIFRoAT5BgkGNLZfDqpb/view?usp=sharing ".env файл")  в корень проекта 
+
+![Insert Config](./images/insert_env.png)
