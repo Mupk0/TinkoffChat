@@ -8,14 +8,17 @@
 import Foundation
 
 class ImageRequest: RequestProtocol {
+    
     var url: String
     
     init(url: String) {
         self.url = url
     }
     
-    func urlRequest(pageNumber: Int?) -> URLRequest? {
-        guard let url = URL(string: url) else { return nil }
+    func urlRequest() -> URLRequest {
+        guard let url = URL(string: url) else {
+            fatalError("API Url Sintaxis Error")
+        }
         return URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad)
     }
 }

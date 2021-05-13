@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NetworkServiceProtocol {
-    func getImageUrls(pageNumber: Int?,
+    func getImageUrls(pageNumber: Int,
                       completionHandler: @escaping ([Images]?, String?) -> Void)
     func getImage(imageUrl: String,
                   completionHandler: @escaping (UIImage?, String?) -> Void)

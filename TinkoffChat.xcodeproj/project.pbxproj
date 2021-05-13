@@ -43,6 +43,10 @@
 		EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */; };
 		EF835BE625DFB29400906839 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BE525DFB29400906839 /* ProfileViewController.swift */; };
 		EF835BEC25E0362000906839 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF835BEB25E0362000906839 /* String.swift */; };
+		EF8DE789264C19C800F76831 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE788264C19C800F76831 /* Environment.swift */; };
+		EF8DE78B264C19D600F76831 /* EnvironmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE78A264C19D600F76831 /* EnvironmentProtocol.swift */; };
+		EF8DE78D264C1F5000F76831 /* PrivateProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE78C264C1F5000F76831 /* PrivateProperties.swift */; };
+		EF8DE798264D154B00F76831 /* RequestPaginationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */; };
 		EF97C8DB260496520049B00C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF97C8DA260496520049B00C /* GoogleService-Info.plist */; };
 		EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */; };
 		EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */; };
@@ -180,6 +184,10 @@
 		EF5CB79B261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelDb&ConversationCellConfiguration.swift"; sourceTree = "<group>"; };
 		EF835BE525DFB29400906839 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EF835BEB25E0362000906839 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		EF8DE788264C19C800F76831 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		EF8DE78A264C19D600F76831 /* EnvironmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentProtocol.swift; sourceTree = "<group>"; };
+		EF8DE78C264C1F5000F76831 /* PrivateProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateProperties.swift; sourceTree = "<group>"; };
+		EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaginationProtocol.swift; sourceTree = "<group>"; };
 		EF97C8DA260496520049B00C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -324,6 +332,7 @@
 				EF08A51526313989005F9D2B /* RequestProtocol.swift */,
 				EF08A53726313CD0005F9D2B /* ImageUrlRequest.swift */,
 				EF08A53B26313D1E005F9D2B /* ImageRequest.swift */,
+				EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -453,6 +462,16 @@
 			path = TinkoffChat;
 			sourceTree = "<group>";
 		};
+		EF8DE787264C199300F76831 /* PrivateConfig */ = {
+			isa = PBXGroup;
+			children = (
+				EF8DE788264C19C800F76831 /* Environment.swift */,
+				EF8DE78A264C19D600F76831 /* EnvironmentProtocol.swift */,
+				EF8DE78C264C1F5000F76831 /* PrivateProperties.swift */,
+			);
+			path = PrivateConfig;
+			sourceTree = "<group>";
+		};
 		EF9A27942610F4BF006E0CF8 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +492,7 @@
 				EFAEA3B82626D65600397C90 /* CoreDataManager */,
 				EFAEA42C2627603500397C90 /* UserDefaultsCore */,
 				EF08A51126313953005F9D2B /* Network */,
+				EF8DE787264C199300F76831 /* PrivateConfig */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -1158,7 +1178,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi\n";
 		};
 		F6427622006BBAE3C241249F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1200,6 +1220,7 @@
 				EFAEA43626276B9100397C90 /* ProfileService.swift in Sources */,
 				EFAEA3B42626D63100397C90 /* CoreDataStackProtocol.swift in Sources */,
 				EF08A53C26313D1E005F9D2B /* ImageRequest.swift in Sources */,
+				EF8DE78B264C19D600F76831 /* EnvironmentProtocol.swift in Sources */,
 				EFAEA3E52626EA5600397C90 /* ThemeSwitcherServiceProtocol.swift in Sources */,
 				EFAEA46B2628111100397C90 /* CoreAssemblyProtocol.swift in Sources */,
 				EFE4370125EE2C4A00869295 /* ConversationCellConfiguration.swift in Sources */,
@@ -1243,6 +1264,7 @@
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
+				EF8DE798264D154B00F76831 /* RequestPaginationProtocol.swift in Sources */,
 				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
 				EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */,
 				EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */,
@@ -1258,6 +1280,7 @@
 				EFD1349725F53D2C00C398CE /* ThemeControllerBackgroundView.swift in Sources */,
 				EFAEA3F12627031500397C90 /* FirebaseService.swift in Sources */,
 				EF08A55F2631627D005F9D2B /* ProfileDataModelProtocol.swift in Sources */,
+				EF8DE789264C19C800F76831 /* Environment.swift in Sources */,
 				EF08A52E26313C79005F9D2B /* ImageData.swift in Sources */,
 				EF5CB79C261E1854009E0EC1 /* ChannelDb&ConversationCellConfiguration.swift in Sources */,
 				EF08A567263162BB005F9D2B /* ImagePickerDataModelProtocol.swift in Sources */,
@@ -1265,6 +1288,7 @@
 				EFAEA44F26280EAA00397C90 /* ThemesViewControllerProtocol.swift in Sources */,
 				EFAEA3BB2626D68500397C90 /* CoreDataManagerProtocol.swift in Sources */,
 				EFAEA44526280BEE00397C90 /* UserDefaultsCoreProtocol.swift in Sources */,
+				EF8DE78D264C1F5000F76831 /* PrivateProperties.swift in Sources */,
 				EF9BB92E25F4DEF3006D013A /* UIColor.swift in Sources */,
 				EFAEA43A26276E9200397C90 /* ProfileServiceProtocol.swift in Sources */,
 				EFFF46492639BA3000D4870D /* ShakeAnimation.swift in Sources */,
@@ -1462,6 +1486,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HNZG8PLWWM;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = TinkoffChat/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1485,12 +1511,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HNZG8PLWWM;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = TinkoffChat/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

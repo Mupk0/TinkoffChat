@@ -1,0 +1,44 @@
+
+desc("Run SwiftLint")
+lane :swiftlint_run do |options|
+  swiftlint(
+    ignore_exit_status: true
+  )
+end
+ 
+desc "Create build for testing"
+lane :build_for_testing do
+  swiftlint_run
+  cocoapods(
+    try_repo_update_on_error: true
+  )
+  scan(
+    build_for_testing: true,
+    clean: true,
+    xcargs: "CI=true"
+  )
+end
+
+desc "Run tests on build"
+lane :run_tests do
+  scan(
+    test_without_building: true
+  )
+end
+
+desc "Send notification to discord"
+lane :send_discord_notification do
+  discord_notifier(
+    webhook_url: ENV['DISCORD_WEBHOOK_URL'],
+    title: "Tinkoff Chat",
+    description: "Build finished"
+  )
+end
+
+desc "Create build and run tests"
+lane :build_and_test do |options|
+  build_for_testing
+  run_tests
+
+  send_discord_notification
+end

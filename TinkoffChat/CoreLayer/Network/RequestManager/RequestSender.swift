@@ -12,16 +12,12 @@ class RequestSender: RequestSenderProtocol {
     private let backgroundQueue = DispatchQueue(label: "ru.tinkoff.TinkoffChat.RequestSender",
                                                 qos: .userInitiated)
     
-    public func send<Parser>(pageNumber: Int?,
-                             requestConfig config: RequestConfig<Parser>,
+    public func send<Parser>(requestConfig config: RequestConfig<Parser>,
                              completionHandler: @escaping (Result<Parser.Model, ApiError>) -> Void) where Parser: ParserProtocol {
         
         backgroundQueue.async {
             let session = self.getSession()
-            guard let urlRequest = config.request.urlRequest(pageNumber: pageNumber) else {
-                completionHandler(.failure(.stringParseError))
-                return
-            }
+            let urlRequest = config.request.urlRequest()
             
             let task = session.dataTask(with: urlRequest) { data, _, error in
                 if let error = error {

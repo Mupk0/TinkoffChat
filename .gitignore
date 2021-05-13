@@ -177,3 +177,7 @@ Dependencies/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+## Private Configs
+.env
+Config.xcconfig

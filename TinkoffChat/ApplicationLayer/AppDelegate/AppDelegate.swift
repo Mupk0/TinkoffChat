@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private let rootAssembly = RootAssembly()
     
+    private lazy var emitterAnimation = EmitterAnimation(window: window)
+    
     func application(_ application: UIApplication,
                      willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         
@@ -47,14 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tapGesture = UILongPressGestureRecognizer(target: self,
                                                             action: #selector(startAnimation(tapgesture:)))
-        tapGesture.minimumPressDuration = 0.1
+        tapGesture.minimumPressDuration = 0.4
         window?.addGestureRecognizer(tapGesture)
         
         return true
     }
     
     @objc private func startAnimation(tapgesture: UILongPressGestureRecognizer) {
-        let emitterAnimation = EmitterAnimation(gesture: tapgesture, window: window)
-        emitterAnimation.startAnimation()
+        emitterAnimation.startAnimation(gesture: tapgesture)
     }
 }
