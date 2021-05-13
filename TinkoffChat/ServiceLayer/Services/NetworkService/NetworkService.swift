@@ -19,12 +19,12 @@ class NetworkService: NetworkServiceProtocol {
         self.privateConfig = privateConfig
     }
     
-    public func getImageUrls(pageNumber: Int?,
+    public func getImageUrls(pageNumber: Int,
                              completionHandler: @escaping ([Images]?, String?) -> Void) {
-        let requestConfig = RequestsFactory.Requests.newImageUrlConfig(privateConfig: privateConfig)
+        let requestConfig = RequestsFactory.Requests.newImageUrlConfig(pageNumber: pageNumber,
+                                                                       privateConfig: privateConfig)
         
-        loadImageUrl(pageNumber: pageNumber,
-                     requestConfig: requestConfig,
+        loadImageUrl(requestConfig: requestConfig,
                      completionHandler: completionHandler)
     }
     
@@ -35,11 +35,9 @@ class NetworkService: NetworkServiceProtocol {
         loadImage(requestConfig: requestConfig, completionHandler: completionHandler)
     }
     
-    private func loadImageUrl(pageNumber: Int?,
-                              requestConfig: RequestConfig<ImageUrlParser>,
+    private func loadImageUrl(requestConfig: RequestConfig<ImageUrlParser>,
                               completionHandler: @escaping ([Images]?, String?) -> Void) {
-        requestSender.send(pageNumber: pageNumber,
-                           requestConfig: requestConfig) { (result: Result<[Images], ApiError>) in
+        requestSender.send(requestConfig: requestConfig) { (result: Result<[Images], ApiError>) in
             
             switch result {
             case .success(let apps):
@@ -52,8 +50,7 @@ class NetworkService: NetworkServiceProtocol {
     
     private func loadImage(requestConfig: RequestConfig<ImageParser>,
                            completionHandler: @escaping (UIImage?, String?) -> Void) {
-        requestSender.send(pageNumber: nil,
-                           requestConfig: requestConfig) { (result: Result<UIImage, ApiError>) in
+        requestSender.send(requestConfig: requestConfig) { (result: Result<UIImage, ApiError>) in
             
             switch result {
             case .success(let apps):

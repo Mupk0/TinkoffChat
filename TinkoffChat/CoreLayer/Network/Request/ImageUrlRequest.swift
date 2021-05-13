@@ -7,26 +7,32 @@
 
 import Foundation
 
-class ImageUrlRequest: RequestProtocol {
+class ImageUrlRequest: RequestProtocol, RequestPaginationProtocol {
+    
+    var pageNumber: Int
     
     private let privateConfig: PrivateConfigProtocol
     
-    init(privateConfig: PrivateConfigProtocol) {
+    init(pageNumber: Int,
+         privateConfig: PrivateConfigProtocol) {
+        
+        self.pageNumber = pageNumber
         self.privateConfig = privateConfig
     }
     
-    func urlRequest(pageNumber: Int?) -> URLRequest? {
-        guard let pageNumber = pageNumber,
-              let url = urlConstructor(pageNumber: pageNumber) else { return nil }
+    func urlRequest() -> URLRequest {
+        let url = urlConstructor(pageNumber: pageNumber)
         return URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
     }
     
-    private func urlConstructor(pageNumber: Int) -> URL? {
+    private func urlConstructor(pageNumber: Int) -> URL {
         let apiUrl = privateConfig.getValueForProperties(.apiUrl)
         let apiToken = privateConfig.getValueForProperties(.apiToken)
-        var urlConstructor = URLComponents(string: apiUrl)
+        guard var urlConstructor = URLComponents(string: apiUrl) else {
+            fatalError("API Url Sintaxis Error")
+        }
         
-        urlConstructor?.queryItems = [
+        urlConstructor.queryItems = [
             URLQueryItem(name: "key", value: apiToken),
             URLQueryItem(name: "q", value: "yellow+flowers"),
             URLQueryItem(name: "image_type", value: "photo"),
@@ -34,6 +40,10 @@ class ImageUrlRequest: RequestProtocol {
             URLQueryItem(name: "per_page", value: "30")
         ]
         
-        return urlConstructor?.url
+        guard let url = urlConstructor.url else {
+            fatalError("URLComponents can't parse url")
+        }
+        
+        return url
     }
 }

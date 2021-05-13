@@ -46,6 +46,7 @@
 		EF8DE789264C19C800F76831 /* PrivateConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE788264C19C800F76831 /* PrivateConfig.swift */; };
 		EF8DE78B264C19D600F76831 /* PrivateConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE78A264C19D600F76831 /* PrivateConfigProtocol.swift */; };
 		EF8DE78D264C1F5000F76831 /* PrivateProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE78C264C1F5000F76831 /* PrivateProperties.swift */; };
+		EF8DE798264D154B00F76831 /* RequestPaginationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */; };
 		EF97C8DB260496520049B00C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF97C8DA260496520049B00C /* GoogleService-Info.plist */; };
 		EF9A27922610F2DF006E0CF8 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27902610F2DF006E0CF8 /* Chat.xcdatamodeld */; };
 		EF9A27962610F4E1006E0CF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */; };
@@ -186,6 +187,7 @@
 		EF8DE788264C19C800F76831 /* PrivateConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConfig.swift; sourceTree = "<group>"; };
 		EF8DE78A264C19D600F76831 /* PrivateConfigProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConfigProtocol.swift; sourceTree = "<group>"; };
 		EF8DE78C264C1F5000F76831 /* PrivateProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateProperties.swift; sourceTree = "<group>"; };
+		EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPaginationProtocol.swift; sourceTree = "<group>"; };
 		EF97C8DA260496520049B00C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF9A27912610F2DF006E0CF8 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		EF9A27952610F4E1006E0CF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				EF08A51526313989005F9D2B /* RequestProtocol.swift */,
 				EF08A53726313CD0005F9D2B /* ImageUrlRequest.swift */,
 				EF08A53B26313D1E005F9D2B /* ImageRequest.swift */,
+				EF8DE797264D154B00F76831 /* RequestPaginationProtocol.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1261,6 +1264,7 @@
 				EFE436C725ECD86800869295 /* ConversationsListTableViewCell.swift in Sources */,
 				EF08A55226315110005F9D2B /* ImagePickerCell.swift in Sources */,
 				EFE436FC25EE2A8000869295 /* MessageCellConfiguration.swift in Sources */,
+				EF8DE798264D154B00F76831 /* RequestPaginationProtocol.swift in Sources */,
 				EFAEA4302627642800397C90 /* ThemesDataModel.swift in Sources */,
 				EFFF464B2639C29400D4870D /* EmitterAnimation.swift in Sources */,
 				EF08A52326313B9D005F9D2B /* RequestConfig.swift in Sources */,

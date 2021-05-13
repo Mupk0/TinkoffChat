@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RequestProtocol {
-    func urlRequest(pageNumber: Int?) -> URLRequest?
+    func urlRequest() -> URLRequest
 }
